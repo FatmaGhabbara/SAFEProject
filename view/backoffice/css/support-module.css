@@ -1,0 +1,684 @@
+/**
+ * ============================================
+ * MODULE SUPPORT PSYCHOLOGIQUE - CSS
+ * SAFEProject - Styles personnalisés
+ * ============================================
+ */
+
+/* ============================================
+   COULEURS PRINCIPALES
+   ============================================ */
+:root {
+    --color-primary: #4A90E2;
+    --color-success: #27AE60;
+    --color-warning: #F39C12;
+    --color-danger: #E74C3C;
+    --color-info: #3498DB;
+    --color-neutral: #95A5A6;
+    --color-purple: #9B59B6;
+    
+    --color-basse: #95A5A6;
+    --color-moyenne: #F39C12;
+    --color-haute: #E74C3C;
+    
+    --bg-light: #F8F9FC;
+    --text-dark: #2C3E50;
+    --border-color: #E3E6F0;
+}
+
+/* ============================================
+   BADGES DE STATUT
+   ============================================ */
+.badge-support {
+    padding: 0.35rem 0.75rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border-radius: 20px;
+    text-transform: capitalize;
+    display: inline-block;
+    white-space: nowrap;
+}
+
+/* Statuts des demandes */
+.badge-en-attente {
+    background-color: var(--color-warning);
+    color: white;
+}
+
+.badge-assignee {
+    background-color: var(--color-info);
+    color: white;
+}
+
+.badge-en-cours {
+    background-color: var(--color-purple);
+    color: white;
+}
+
+.badge-terminee {
+    background-color: var(--color-success);
+    color: white;
+}
+
+.badge-annulee {
+    background-color: var(--color-neutral);
+    color: white;
+}
+
+/* Niveaux d'urgence */
+.badge-urgence {
+    padding: 0.3rem 0.6rem;
+    font-size: 0.8rem;
+    border-radius: 15px;
+    font-weight: 600;
+}
+
+.badge-urgence-basse {
+    background-color: var(--color-basse);
+    color: white;
+}
+
+.badge-urgence-moyenne {
+    background-color: var(--color-moyenne);
+    color: white;
+}
+
+.badge-urgence-haute {
+    background-color: var(--color-haute);
+    color: white;
+    animation: pulse-urgent 2s infinite;
+}
+
+@keyframes pulse-urgent {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* ============================================
+   CARTES DE STATISTIQUES
+   ============================================ */
+.stat-card {
+    border-radius: 10px;
+    padding: 1.5rem;
+    border-left: 4px solid;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    background: white;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+
+.stat-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 0.5rem 2rem 0 rgba(58, 59, 69, 0.25);
+}
+
+.stat-card.stat-primary {
+    border-left-color: var(--color-primary);
+}
+
+.stat-card.stat-success {
+    border-left-color: var(--color-success);
+}
+
+.stat-card.stat-warning {
+    border-left-color: var(--color-warning);
+}
+
+.stat-card.stat-danger {
+    border-left-color: var(--color-danger);
+}
+
+.stat-card.stat-info {
+    border-left-color: var(--color-info);
+}
+
+.stat-card .stat-icon {
+    font-size: 2rem;
+    color: var(--color-primary);
+    opacity: 0.3;
+}
+
+.stat-card .stat-value {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.stat-card .stat-label {
+    font-size: 0.9rem;
+    color: var(--color-neutral);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-weight: 600;
+}
+
+/* ============================================
+   TABLEAU DES DEMANDES
+   ============================================ */
+.support-table {
+    background: white;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+
+.support-table thead {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #357ABD 100%);
+    color: white;
+}
+
+.support-table thead th {
+    border: none;
+    padding: 1rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.support-table tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+.support-table tbody tr:hover {
+    background-color: #F8F9FC;
+    cursor: pointer;
+}
+
+.support-table tbody td {
+    padding: 1rem;
+    vertical-align: middle;
+    border-color: var(--border-color);
+}
+
+/* ============================================
+   FILTRES
+   ============================================ */
+.filter-section {
+    background: white;
+    padding: 1.5rem;
+    border-radius: 10px;
+    margin-bottom: 2rem;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+
+.filter-section .form-control,
+.filter-section .form-select {
+    border-radius: 8px;
+    border: 2px solid var(--border-color);
+    padding: 0.6rem 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.filter-section .form-control:focus,
+.filter-section .form-select:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25);
+}
+
+/* ============================================
+   BOUTONS PERSONNALISÉS
+   ============================================ */
+.btn-support {
+    padding: 0.6rem 1.5rem;
+    border-radius: 8px;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    border: none;
+}
+
+.btn-support-primary {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #357ABD 100%);
+    color: white;
+}
+
+.btn-support-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(74, 144, 226, 0.4);
+    color: white;
+}
+
+.btn-support-success {
+    background: linear-gradient(135deg, var(--color-success) 0%, #229954 100%);
+    color: white;
+}
+
+.btn-support-success:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(39, 174, 96, 0.4);
+    color: white;
+}
+
+.btn-support-danger {
+    background: linear-gradient(135deg, var(--color-danger) 0%, #C0392B 100%);
+    color: white;
+}
+
+.btn-support-danger:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(231, 76, 60, 0.4);
+    color: white;
+}
+
+/* ============================================
+   CARDS DE DEMANDE
+   ============================================ */
+.request-card {
+    background: white;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.request-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 0.5rem 2rem 0 rgba(58, 59, 69, 0.25);
+}
+
+.request-card-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 1rem;
+    padding-bottom: 1rem;
+    border-bottom: 2px solid var(--border-color);
+}
+
+.request-card-title {
+    font-size: 1.2rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.request-card-body {
+    color: #5A6C7D;
+    line-height: 1.6;
+}
+
+.request-card-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 1rem;
+    padding-top: 1rem;
+    border-top: 1px solid var(--border-color);
+}
+
+/* ============================================
+   PROFIL CONSEILLER
+   ============================================ */
+.counselor-profile {
+    background: white;
+    border-radius: 10px;
+    padding: 2rem;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+
+.counselor-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--color-primary) 0%, #357ABD 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 0 auto 1rem;
+}
+
+.counselor-name {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    text-align: center;
+    margin-bottom: 0.5rem;
+}
+
+.counselor-specialite {
+    color: var(--color-primary);
+    text-align: center;
+    font-weight: 600;
+    margin-bottom: 1rem;
+}
+
+.counselor-bio {
+    color: #5A6C7D;
+    line-height: 1.6;
+    text-align: center;
+}
+
+/* ============================================
+   MESSAGES
+   ============================================ */
+.message-container {
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 1rem;
+    background: var(--bg-light);
+    border-radius: 10px;
+    margin-bottom: 1rem;
+}
+
+.message-bubble {
+    max-width: 70%;
+    padding: 1rem;
+    border-radius: 15px;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.message-bubble.message-sent {
+    background: linear-gradient(135deg, var(--color-primary) 0%, #357ABD 100%);
+    color: white;
+    margin-left: auto;
+    border-bottom-right-radius: 5px;
+}
+
+.message-bubble.message-received {
+    background: white;
+    color: var(--text-dark);
+    border-bottom-left-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.message-sender {
+    font-weight: 700;
+    font-size: 0.9rem;
+    margin-bottom: 0.5rem;
+}
+
+.message-content {
+    line-height: 1.5;
+    margin-bottom: 0.5rem;
+}
+
+.message-time {
+    font-size: 0.75rem;
+    opacity: 0.7;
+    text-align: right;
+}
+
+/* ============================================
+   FORMULAIRES
+   ============================================ */
+.form-support {
+    background: white;
+    padding: 2rem;
+    border-radius: 10px;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+
+.form-support .form-label {
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.form-support .form-control,
+.form-support .form-select,
+.form-support textarea {
+    border-radius: 8px;
+    border: 2px solid var(--border-color);
+    padding: 0.75rem 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.form-support .form-control:focus,
+.form-support .form-select:focus,
+.form-support textarea:focus {
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 0.2rem rgba(74, 144, 226, 0.25);
+}
+
+.form-support textarea {
+    resize: vertical;
+    min-height: 120px;
+}
+
+/* ============================================
+   ALERTES FLASH
+   ============================================ */
+.alert-flash {
+    border-radius: 10px;
+    padding: 1rem 1.5rem;
+    margin-bottom: 1.5rem;
+    border-left: 4px solid;
+    animation: slideInDown 0.5s ease;
+}
+
+@keyframes slideInDown {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.alert-flash.alert-success {
+    background-color: #D4EDDA;
+    border-left-color: var(--color-success);
+    color: #155724;
+}
+
+.alert-flash.alert-error {
+    background-color: #F8D7DA;
+    border-left-color: var(--color-danger);
+    color: #721C24;
+}
+
+.alert-flash.alert-warning {
+    background-color: #FFF3CD;
+    border-left-color: var(--color-warning);
+    color: #856404;
+}
+
+.alert-flash.alert-info {
+    background-color: #D1ECF1;
+    border-left-color: var(--color-info);
+    color: #0C5460;
+}
+
+/* ============================================
+   ICÔNES D'URGENCE
+   ============================================ */
+.urgence-icon {
+    display: inline-block;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    margin-right: 5px;
+}
+
+.urgence-icon.basse {
+    background-color: var(--color-basse);
+}
+
+.urgence-icon.moyenne {
+    background-color: var(--color-moyenne);
+}
+
+.urgence-icon.haute {
+    background-color: var(--color-haute);
+    animation: pulse-urgent 2s infinite;
+}
+
+/* ============================================
+   ACTIONS RAPIDES
+   ============================================ */
+.action-buttons {
+    display: flex;
+    gap: 0.5rem;
+}
+
+.action-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.action-btn:hover {
+    transform: scale(1.1);
+}
+
+.action-btn-view {
+    background-color: var(--color-info);
+    color: white;
+}
+
+.action-btn-edit {
+    background-color: var(--color-warning);
+    color: white;
+}
+
+.action-btn-delete {
+    background-color: var(--color-danger);
+    color: white;
+}
+
+.action-btn-assign {
+    background-color: var(--color-success);
+    color: white;
+}
+
+/* ============================================
+   PAGINATION
+   ============================================ */
+.pagination-support {
+    display: flex;
+    justify-content: center;
+    margin-top: 2rem;
+}
+
+.pagination-support .page-link {
+    border-radius: 8px;
+    margin: 0 5px;
+    border: 2px solid var(--border-color);
+    color: var(--color-primary);
+    font-weight: 600;
+    transition: all 0.3s ease;
+}
+
+.pagination-support .page-link:hover {
+    background-color: var(--color-primary);
+    color: white;
+    border-color: var(--color-primary);
+}
+
+.pagination-support .page-item.active .page-link {
+    background-color: var(--color-primary);
+    border-color: var(--color-primary);
+}
+
+/* ============================================
+   RESPONSIVE
+   ============================================ */
+@media (max-width: 768px) {
+    .stat-card {
+        margin-bottom: 1rem;
+    }
+    
+    .filter-section {
+        padding: 1rem;
+    }
+    
+    .message-bubble {
+        max-width: 90%;
+    }
+    
+    .request-card-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+    
+    .action-buttons {
+        flex-wrap: wrap;
+    }
+}
+
+/* ============================================
+   ANIMATIONS
+   ============================================ */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fade-in {
+    animation: fadeIn 0.5s ease;
+}
+
+/* ============================================
+   UTILITIES
+   ============================================ */
+.text-primary-custom {
+    color: var(--color-primary) !important;
+}
+
+.bg-light-custom {
+    background-color: var(--bg-light) !important;
+}
+
+.border-primary-custom {
+    border-color: var(--color-primary) !important;
+}
+
+.cursor-pointer {
+    cursor: pointer;
+}
+
+.no-decoration {
+    text-decoration: none !important;
+}
+
+/* ============================================
+   EMPTY STATE
+   ============================================ */
+.empty-state {
+    text-align: center;
+    padding: 3rem 1rem;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
+}
+
+.empty-state-icon {
+    font-size: 4rem;
+    color: var(--color-neutral);
+    opacity: 0.5;
+    margin-bottom: 1rem;
+}
+
+.empty-state-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin-bottom: 0.5rem;
+}
+
+.empty-state-text {
+    color: var(--color-neutral);
+    margin-bottom: 1.5rem;
+}
+
