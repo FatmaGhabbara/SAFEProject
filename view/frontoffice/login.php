@@ -7,26 +7,15 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
 
-    if (empty($email)) {
-        $errors[] = "Veuillez entrer votre adresse e-mail.";
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $errors[] = "Adresse e-mail invalide.";
-    }
-
-    if (empty($password)) {
-        $errors[] = "Veuillez entrer votre mot de passe.";
-    }
+    if (empty($email)) $errors[] = "Veuillez entrer votre e-mail.";
+    if (empty($password)) $errors[] = "Veuillez entrer votre mot de passe.";
 
     if (empty($errors)) {
         $auth = new AuthController();
         $result = $auth->login($email, $password);
-
         if ($result === true) {
-            if ($_SESSION['role'] === 'admin') {
-                header("Location: backoffice/user_list.php");
-            } else {
-                header("Location: frontoffice/profile.php");
-            }
+            if ($_SESSION['role'] === 'admin') header("Location: ../backoffice/index.php");
+            else header("Location: profile.php");
             exit;
         } else {
             $errors[] = $result;
@@ -35,121 +24,36 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 }
 ?>
 
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html lang="fr">
 <head>
-    <title>Connexion | SafeSpace</title>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
-    <!-- Chemins absolus depuis la racine -->
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+    <meta charset="UTF-8">
+    <title>Connexion - SafeSpace</title>
+    <link rel="stylesheet" href="assets/css/main.css">
 </head>
-<body class="is-preload">
+<body>
 
-<div id="page-wrapper">
+<h2>Connexion</h2>
 
-    <!-- Header -->
-    <header id="header">
-        <h1><a href="frontoffice/index.php">SafeSpace</a></h1>
-        <nav><a href="#menu">Menu</a></nav>
-    </header>
+<?php if(!empty($errors)): ?>
+    <ul style="color:red;">
+        <?php foreach($errors as $error): ?>
+            <li><?= htmlspecialchars($error) ?></li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>
 
-    <!-- Menu -->
-    <nav id="menu">
-        <div class="inner">
-            <h2>Menu</h2>
-            <ul class="links">
-                <li><a href="frontoffice/index.php">Home</a></li>
-                <li><a href="backoffice/index.php" target="_blank">Admin</a></li>
-                <li><a href="frontoffice/profile.php">Profil</a></li>
-                <li><a href="frontoffice/login.php">Connexion</a></li>
-                <li><a href="frontoffice/register.php">Inscription</a></li>
-            </ul>
-            <a href="#" class="close">Fermer</a>
-        </div>
-    </nav>
+<form method="post" action="">
+    <label>Email</label>
+    <input type="text" name="email" placeholder="exemple@mail.com">
+    <br>
+    <label>Mot de passe</label>
+    <input type="password" name="password" placeholder="••••••">
+    <br>
+    <input type="submit" value="Connexion">
+</form>
 
-    <!-- Wrapper -->
-    <section id="wrapper">
-        <header>
-            <div class="inner">
-                <h2>Connexion</h2>
-                <p>Connectez-vous pour accéder à votre espace personnel.</p>
-            </div>
-        </header>
-
-        <div class="wrapper">
-            <div class="inner">
-                <?php if (!empty($errors)) : ?>
-                    <div class="alert alert-danger" style="color:red; border:1px solid red; padding:10px; border-radius:8px;">
-                        <ul>
-                            <?php foreach ($errors as $error) : ?>
-                                <li><?= htmlspecialchars($error); ?></li>
-                            <?php endforeach; ?>
-                        </ul>
-                    </div>
-                <?php endif; ?>
-
-                <section>
-                    <form method="post" action="">
-                        <div class="fields">
-                            <div class="field">
-                                <label for="email">Adresse e-mail</label>
-                                <input type="text" name="email" id="email" placeholder="exemple@email.com" />
-                            </div>
-
-                            <div class="field">
-                                <label for="password">Mot de passe</label>
-                                <input type="password" name="password" id="password" placeholder="••••••••" />
-                            </div>
-
-                            <div class="field half">
-                                <input type="checkbox" id="remember" name="remember" />
-                                <label for="remember">Se souvenir de moi</label>
-                            </div>
-                        </div>
-
-                        <ul class="actions">
-                            <li><input type="submit" value="Connexion" class="primary" /></li>
-                        </ul>
-                    </form>
-
-                    <p style="margin-top: 1em;">
-                        <a href="frontoffice/forgot-password.php">Mot de passe oublié ?</a><br />
-                        <a href="frontoffice/register.php">Créer un compte</a>
-                    </p>
-                </section>
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <section id="footer">
-        <div class="inner">
-            <h2 class="major">SafeSpace</h2>
-            <p>Protégeons ensemble, agissons avec bienveillance.</p>
-            <ul class="contact">
-                <li class="icon solid fa-envelope"><a href="#">contact@safespace.tn</a></li>
-                <li class="icon brands fa-facebook-f"><a href="#">facebook.com/safespace</a></li>
-                <li class="icon brands fa-instagram"><a href="#">instagram.com/safespace</a></li>
-            </ul>
-            <ul class="copyright">
-                <li>&copy; 2025 SafeSpace. Tous droits réservés.</li>
-                <li>Design basé sur : <a href="http://html5up.net">HTML5 UP</a></li>
-            </ul>
-        </div>
-    </section>
-
-</div>
-
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.scrollex.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
+<p><a href="register.php">Créer un compte</a></p>
 
 </body>
 </html>
