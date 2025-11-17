@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <?php
 // SAFEProject/config.php
 
@@ -23,3 +24,30 @@ class Config {
 }
 ?>
 
+=======
+<?php
+class config
+{
+  private static $pdo = null;
+  public static function getConnexion()
+  {
+    if (!isset(self::$pdo)) {
+      try {
+        self::$pdo = new PDO(
+          'mysql:host=localhost;dbname=safeproject_db',  // ← ICI
+          'root',
+          '',
+          [
+            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION,
+            PDO::ATTR_DEFAULT_FETCH_MODE => PDO::FETCH_ASSOC
+          ]
+        );
+      } catch (Exception $e) {
+        die('Erreur: ' . $e->getMessage());
+      }
+    }
+    return self::$pdo;
+  }
+}
+?>
+>>>>>>> 1d4cac9fc0810cddbf202db6e58d309ec65b58c3
