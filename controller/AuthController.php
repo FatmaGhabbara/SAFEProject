@@ -66,11 +66,6 @@ class AuthController {
         }
     }
 
-    public function logout() {
-        session_start();
-        session_destroy();
-        header('Location: frontoffice/login.php');
-        exit();
-    }
+
 }
 ?>

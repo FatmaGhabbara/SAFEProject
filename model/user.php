@@ -29,9 +29,9 @@ class User {
         $this->password = password_hash($password, PASSWORD_BCRYPT); 
     }
     
-    // ✅ CORRECTION : Seulement 'membre' ou 'conseilleur' pour les utilisateurs normaux
+   
     public function setRole($role) { 
-        $allowedRoles = ['membre', 'conseilleur']; // Admin se fait manuellement
+        $allowedRoles = ['membre', 'conseilleur'];
         if (in_array($role, $allowedRoles)) {
             $this->role = $role;
         } else {
@@ -53,7 +53,6 @@ class User {
         $this->status = $data['status'] ?? 'en attente';
     }
 
-    // ... le reste des méthodes CRUD reste identique ...
 
     public function getAllUsers() {
         $stmt = $this->pdo->query("SELECT * FROM users ORDER BY id DESC");

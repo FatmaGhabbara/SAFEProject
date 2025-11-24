@@ -24,31 +24,7 @@ class AdminController {
         return $this->userModel->deleteUser($id);
     }
 
-    public function getStats() {
-        $users = $this->getAllUsers();
-        $totalUsers = count($users);
-        $approvedUsers = 0;
-        $blockedUsers = 0;
-        $pendingUsers = 0;
-
-        foreach ($users as $userData) {
-            $user = new User();
-            $user->hydrate($userData);
-            
-            switch ($user->getStatus()) {
-                case 'approved': $approvedUsers++; break;
-                case 'blocked': $blockedUsers++; break;
-                case 'en attente': $pendingUsers++; break;
-            }
-        }
-
-        return [
-            'users' => $totalUsers,
-            'approved' => $approvedUsers,
-            'blocked' => $blockedUsers,
-            'pending' => $pendingUsers
-        ];
-    }
+  
 
     public function displayUsersTable() {
         $users = $this->getAllUsers();
