@@ -8,13 +8,20 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $lastname = trim($_POST['lastname']);
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
-    $role = trim($_POST['role']); // ✅ AJOUT: Récupérer le rôle du formulaire
+    $role = trim($_POST['role']);
 
-    if (!$firstname || !$lastname) $errors[] = "Nom et prénom requis.";
-    if (!$email || !filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = "Email valide requis.";
-    if (!$password || strlen($password) < 6) $errors[] = "Mot de passe requis (minimum 6 caractères).";
+    // Validation des champs
+    if (empty($firstname) || empty($lastname)) {
+        $errors[] = "Nom et prénom requis.";
+    }
+    if (empty($email) || !filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        $errors[] = "Email valide requis.";
+    }
+    if (empty($password) || strlen($password) < 6) {
+        $errors[] = "Mot de passe requis (minimum 6 caractères).";
+    }
     
-    // ✅ AJOUT: Validation du rôle
+    // Validation du rôle
     $allowedRoles = ['membre', 'conseilleur'];
     if (!in_array($role, $allowedRoles)) {
         $role = 'membre'; // Valeur par défaut sécurisée
@@ -22,8 +29,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
     if (empty($errors)) {
         $authController = new AuthController();
-        // ✅ MODIFICATION: Ajouter le rôle en paramètre
-        $result = $authController->register($firstname, $lastname, $email, $password, $role);
+        
+        // CORRECTION: Créer le fullname avant d'appeler register
+        $fullname = trim($firstname . ' ' . $lastname);
+        
+        // CORRECTION: Appel correct avec fullname
+        $result = $authController->register($fullname, $email, $password, $role);
+        
         if ($result === true) {
             $_SESSION['success'] = "Inscription réussie ! Votre compte est en attente de validation.";
             header("Location: login.php");
@@ -89,22 +101,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     <div class="fields">
                         <div class="field half">
                             <label for="firstname">Prénom</label>
-                            <input type="text" name="firstname" id="firstname" placeholder="Votre prénom" value="<?= htmlspecialchars($_POST['firstname'] ?? '') ?>" />
+                            <input type="text" name="firstname" id="firstname" placeholder="Votre prénom" value="<?= htmlspecialchars($_POST['firstname'] ?? '') ?>" required />
                         </div>
                         <div class="field half">
                             <label for="lastname">Nom</label>
-                            <input type="text" name="lastname" id="lastname" placeholder="Votre nom" value="<?= htmlspecialchars($_POST['lastname'] ?? '') ?>" />
+                            <input type="text" name="lastname" id="lastname" placeholder="Votre nom" value="<?= htmlspecialchars($_POST['lastname'] ?? '') ?>" required />
                         </div>
                         <div class="field">
                             <label for="email">Email</label>
-                            <input type="email" name="email" id="email" placeholder="exemple@mail.com" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" />
+                            <input type="email" name="email" id="email" placeholder="exemple@mail.com" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" required />
                         </div>
                         <div class="field">
                             <label for="password">Mot de passe</label>
-                            <input type="password" name="password" id="password" placeholder="Minimum 6 caractères" />
+                            <input type="password" name="password" id="password" placeholder="Minimum 6 caractères" required minlength="6" />
                         </div>
                       
-                        <!-- ✅ CHAMP RÔLE -->
+                        <!-- Champ Rôle -->
                         <div class="field">
                             <label for="role">Rôle</label>
                             <select name="role" id="role" required>

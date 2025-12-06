@@ -1,9 +1,19 @@
 <?php
-session_start();
-require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/controller/UserController.php';
+// Activer les erreurs
+error_reporting(E_ALL);
+ini_set('display_errors', 1);
 
-$userController = new UserController();
-$users = $userController->listUsers();
+// Démarrer la session
+session_start();
+
+// Inclure l'AuthController pour vérifier l'authentification
+$controller_path = $_SERVER['DOCUMENT_ROOT'] . '/SAFEProject/controller/authcontroller.php';
+if (file_exists($controller_path)) {
+    require_once $controller_path;
+    $authController = new AuthController();
+} else {
+    die("Erreur: Fichier contrôleur introuvable");
+}
 ?>
 
 <!DOCTYPE html>
@@ -14,36 +24,62 @@ $users = $userController->listUsers();
     <title>SafeSpace - Accueil</title>
     <link rel="stylesheet" href="assets/css/main.css">
     <noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
+   
+    </style>
 </head>
 <body class="is-preload">
 
 <div id="page-wrapper">
-
-    <!-- Header -->
     <header id="header">
-        <h1><a href="index.php">SafeSpace</a></h1>
-        <nav>
-            <a href="index.php">Accueil</a> |
-            <a href="../backoffice/index.php">Admin</a> |
-            <a href="profile.php">Profil</a> |
-            <a href="login.php">Connexion</a> |
-            <a href="register.php">Inscription</a>
-        </nav>
+        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+            <div style="display: flex; align-items: center; gap: 15px;">
+                <a class="navbar-brand nav-logo text-primary" href="index.php" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
+                    <img src="images/logo.png" alt="SafeSpace Logo" style="height: 40px; width: auto;">
+                    <h1 style="margin: 0; font-size: 1.5em;">SafeSpace</h1>
+                </a>
+            </div>
+           
+            <nav>
+                <a href="index.php">Accueil</a> |
+                <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin'): ?>
+                    <a href="../backoffice/index.php">Admin</a> |
+                <?php endif; ?>
+                <?php if (isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'conseilleur'): ?>
+                    <a href="../backoffice/adviser_dashboard.php">Tableau de bord</a> |
+                <?php endif; ?>
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <a href="profile.php">Profil</a> |
+                    <a href="logout.php">Déconnexion</a>
+                <?php else: ?>
+                    <a href="login.php">Connexion</a> |
+                    <a href="register.php">Inscription</a>
+                <?php endif; ?>
+            </nav>
+        </div>
     </header>
 
-    <!-- Wrapper -->
     <section id="wrapper">
         <header>
             <div class="inner">
                 <h2>Bienvenue sur SafeSpace</h2>
                 <p>Envie de libérer vos émotions ? Partagez vos pensées en toute sécurité.</p>
+                
+                <?php if (isset($_SESSION['user_id'])): ?>
+                    <div class="welcome-message">
+                        <h3>Bienvenue, <?= htmlspecialchars($_SESSION['fullname'] ?? 'Utilisateur') ?> !</h3>
+                        <p>Votre rôle: <?= htmlspecialchars($_SESSION['user_role'] ?? 'Membre') ?></p>
+                    </div>
+                <?php else: ?>
+                    <div style="text-align: center; margin: 20px 0;">
+                        <a href="register.php" class="button primary" style="margin-right: 10px;">S'inscrire</a>
+                        <a href="login.php" class="button">Se connecter</a>
+                    </div>
+                <?php endif; ?>
             </div>
         </header>
 
-        <!-- Content -->
         <div class="wrapper">
             <div class="inner">
-
                 <section class="features">
                     <div class="feature">
                         <h3 class="major">🔒 Sécurisé</h3>
@@ -58,21 +94,20 @@ $users = $userController->listUsers();
                         <p>Exprimez-vous sans jugement dans un espace safe</p>
                     </div>
                 </section>
-
             </div>
         </div>
     </section>
 
-    <!-- Footer -->
     <section id="footer">
         <div class="inner">
             <p>Protégeons ensemble, agissons avec bienveillance.</p>
+            <?php if (isset($_SESSION['user_id'])): ?>
+                <p>Connecté en tant que: <?= htmlspecialchars($_SESSION['user_email'] ?? '') ?></p>
+            <?php endif; ?>
         </div>
     </section>
-
 </div>
 
-<!-- Scripts -->
 <script src="assets/js/jquery.min.js"></script>
 <script src="assets/js/jquery.scrollex.min.js"></script>
 <script src="assets/js/browser.min.js"></script>
