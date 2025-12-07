@@ -6,13 +6,13 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/vendor/PHPMailer-master/src
 
 class MailController {
     
-    // Configuration SMTP
+    // Configuration SMTP - REMPLACEZ LE PASSWORD
     private $config = [
         'host' => 'smtp.gmail.com',
-        'username' => 'fatimaghabbara18@gmail.com', // À CHANGER
-        'password' => 'votre_mot_de_passe_app', // À CHANGER
+        'username' => 'fatimaghabbara18@gmail.com',
+        'password' => 'olsn idjd yhgt imya', // ⚠️ MOT DE PASSE D'APPLICATION
         'port' => 587,
-        'from_email' => 'no-reply@safespace.com',
+        'from_email' => 'fatimaghabbara18@gmail.com',
         'from_name' => 'SafeSpace'
     ];
     
@@ -56,6 +56,84 @@ class MailController {
             error_log("MailController Error: " . $e->getMessage());
             return false;
         }
+    }
+    
+    // ⭐⭐ AJOUTEZ CETTE MÉTHODE MANQUANTE ⭐⭐
+    /**
+     * Tester la connexion Gmail (alias pour testSMTPConnection)
+     */
+    public function testGmailConnection() {
+        return $this->testSMTPConnection();
+    }
+    
+    /**
+     * Tester la connexion SMTP
+     */
+    public function testSMTPConnection() {
+        try {
+            $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+            $mail->isSMTP();
+            $mail->Host = $this->config['host'];
+            $mail->SMTPAuth = true;
+            $mail->Username = $this->config['username'];
+            $mail->Password = $this->config['password'];
+            $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = $this->config['port'];
+            $mail->Timeout = 10;
+            
+            if ($mail->smtpConnect()) {
+                $mail->smtpClose();
+                return [
+                    'success' => true,
+                    'message' => '✅ Connexion SMTP réussie !'
+                ];
+            }
+        } catch (Exception $e) {
+            return [
+                'success' => false,
+                'message' => '❌ Erreur SMTP: ' . $e->getMessage()
+            ];
+        }
+        
+        return [
+            'success' => false,
+            'message' => '❌ Impossible de se connecter au serveur SMTP'
+        ];
+    }
+    
+    /**
+     * Tester avec affichage détaillé (debug)
+     */
+    public function testWithDebug() {
+        try {
+            $mail = new PHPMailer\PHPMailer\PHPMailer(true);
+            
+            // Activer le debug
+            $mail->SMTPDebug = 2; // Niveau de debug maximal
+            $mail->Debugoutput = function($str, $level) {
+                echo "<pre style='background: #f0f0f0; padding: 10px; margin: 5px;'>[$level] $str</pre>";
+            };
+            
+            $mail->isSMTP();
+            $mail->Host = $this->config['host'];
+            $mail->SMTPAuth = true;
+            $mail->Username = $this->config['username'];
+            $mail->Password = $this->config['password'];
+            $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
+            $mail->Port = $this->config['port'];
+            
+            echo "<h3>Connexion en cours...</h3>";
+            
+            if ($mail->smtpConnect()) {
+                $mail->smtpClose();
+                return "✅ Connexion SMTP réussie !";
+            }
+            
+        } catch (Exception $e) {
+            return "❌ Exception: " . $e->getMessage();
+        }
+        
+        return "❌ Connexion échouée";
     }
     
     /**
@@ -231,41 +309,6 @@ class MailController {
         </html>';
         
         return $this->sendEmail($userEmail, $subject, $body, $userName);
-    }
-    
-    /**
-     * Tester la connexion SMTP
-     */
-    public function testSMTPConnection() {
-        try {
-            $mail = new PHPMailer\PHPMailer\PHPMailer(true);
-            $mail->isSMTP();
-            $mail->Host = $this->config['host'];
-            $mail->SMTPAuth = true;
-            $mail->Username = $this->config['username'];
-            $mail->Password = $this->config['password'];
-            $mail->SMTPSecure = PHPMailer\PHPMailer\PHPMailer::ENCRYPTION_STARTTLS;
-            $mail->Port = $this->config['port'];
-            $mail->Timeout = 10;
-            
-            if ($mail->smtpConnect()) {
-                $mail->smtpClose();
-                return [
-                    'success' => true,
-                    'message' => '✅ Connexion SMTP réussie !'
-                ];
-            }
-        } catch (Exception $e) {
-            return [
-                'success' => false,
-                'message' => '❌ Erreur SMTP: ' . $e->getMessage()
-            ];
-        }
-        
-        return [
-            'success' => false,
-            'message' => '❌ Impossible de se connecter au serveur SMTP'
-        ];
     }
     
     /**
