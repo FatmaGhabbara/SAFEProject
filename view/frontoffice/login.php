@@ -1,4 +1,5 @@
 <?php
+
 require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/controller/AuthController.php';
 session_start();
 

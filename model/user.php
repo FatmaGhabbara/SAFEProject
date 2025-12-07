@@ -11,7 +11,7 @@ class User {
     private $pdo;
 
     public function __construct() {
-        $this->pdo = Config::connect();
+        $this->pdo = Config::getConnexion();
     }
 
     // GETTERS

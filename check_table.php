@@ -1,9 +1,10 @@
 <?php
+/*
 $root = $_SERVER['DOCUMENT_ROOT'] . '/SAFEProject/';
 include_once $root . 'config.php';
 
 try {
-    $db = config::getConnexion();
+    $db = config::connect();
     
     // Vérifier si la table existe
     $result = $db->query("SHOW TABLES LIKE 'article_reactions'");

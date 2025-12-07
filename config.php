@@ -7,7 +7,7 @@ class Config {
     private static $username = "root";
     private static $password = "";
 
-    public static function connect() {
+    public static function getConnexion() {
         try {
             $pdo = new PDO(
                 "mysql:host=".self::$host.";dbname=".self::$db_name,
