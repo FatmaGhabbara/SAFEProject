@@ -329,7 +329,6 @@ function getProfilePictureUrl($user, $default = 'default-avatar.png') {
         }
     </style>
 </head>
-
 <body id="page-top">
 
     <!-- Page Wrapper -->
@@ -338,24 +337,34 @@ function getProfilePictureUrl($user, $default = 'default-avatar.png') {
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
+            <!-- Sidebar - Brand avec VOTRE LOGO -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= $dashboard_url ?>">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-shield-alt"></i>
+                <div class="sidebar-brand-icon">
+                    <!-- VOTRE LOGO - chemin ajusté pour backoffice -->
+                    <img src="../frontoffice/images/logo.png" 
+                         alt="SafeSpace Logo" 
+                         class="sidebar-logo"
+                         style="height: 40px; width: auto;"
+                         onerror="this.onerror=null; this.style.display='none'; 
+                                  document.getElementById('logo-fallback').style.display='block';">
+                    <!-- Fallback si le logo n'existe pas -->
+                    <div id="logo-fallback" class="sidebar-brand-icon rotate-n-15" style="display: none;">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
                 </div>
+                
                 <div class="sidebar-brand-text mx-3">SafeSpace 
-                    <sup>
+                    <sup style="font-size: 0.6em; vertical-align: super;">
                         <?php 
                         switch ($_SESSION['user_role']) {
-                            case 'admin': echo 'Admin'; break;
-                            case 'conseilleur': echo 'Conseiller'; break;
-                            case 'membre': echo 'Membre'; break;
+                            case 'admin': echo '👑 Admin'; break;
+                            case 'conseilleur': echo '💼 Conseiller'; break;
+                            case 'membre': echo '👤 Membre'; break;
                         }
                         ?>
                     </sup>
                 </div>
             </a>
-
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
