@@ -1,0 +1,198 @@
+[2025-11-29 14:18:28] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-11-29 14:18:28] [info] [User: 5] User logged in: pierre.dubois@example.com
+[2025-11-29 17:27:40] [info] [User: guest] New user created (ID: 8) - Email: user1@gmail.com
+[2025-11-29 17:27:40] [info] [User: guest] New user registered (ID: 8) - Email: user1@gmail.com - Role: user
+[2025-11-29 17:28:01] [info] [User: 8] New support request created (ID: 7) by user 8
+[2025-11-29 17:28:01] [info] [User: 8] Demande de support créée (ID: 7) par utilisateur 8
+[2025-11-29 17:28:42] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-29 17:28:42] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-29 17:54:39] [info] [User: 1] Support request 7 updated
+[2025-11-29 17:54:39] [info] [User: 1] Conseiller 2 assigné à la demande 7 par admin 1
+[2025-11-29 17:54:39] [info] [User: 1] NOTIFICATION: Conseiller Sophie Bernard assigné à la demande de user1 user1
+[2025-11-29 17:54:39] [info] [User: 1] New message sent (ID: 17) for request 7
+[2025-11-29 17:56:26] [info] [User: guest] User authenticated: sophie.bernard@example.com
+[2025-11-29 17:56:26] [info] [User: 4] User logged in: sophie.bernard@example.com
+[2025-11-29 17:56:39] [info] [User: 4] Support request 7 updated
+[2025-11-29 17:56:39] [info] [User: 4] Demande 7 mise en cours par conseiller 4
+[2025-11-29 17:56:45] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-29 17:56:45] [info] [User: 4] New message sent (ID: 18) for request 7
+[2025-11-29 17:56:45] [info] [User: 4] Message envoyé (ID: 18) sur la demande 7 par counselor
+[2025-11-29 17:58:05] [info] [User: guest] User authenticated: sophie.bernard@example.com
+[2025-11-29 17:58:05] [info] [User: 4] User logged in: sophie.bernard@example.com
+[2025-11-29 17:58:16] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-29 17:58:27] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-29 17:58:27] [info] [User: 4] New message sent (ID: 19) for request 7
+[2025-11-29 17:58:27] [info] [User: 4] Message envoyé (ID: 19) sur la demande 7 par counselor
+[2025-11-29 18:00:09] [info] [User: 8] New message sent (ID: 20) for request 7
+[2025-11-29 18:00:09] [info] [User: 8] Message envoyé (ID: 20) sur la demande 7 par user
+[2025-11-29 18:00:24] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-29 18:00:42] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-29 18:00:42] [info] [User: 4] New message sent (ID: 21) for request 7
+[2025-11-29 18:00:42] [info] [User: 4] Message envoyé (ID: 21) sur la demande 7 par counselor
+[2025-11-29 18:00:48] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-29 18:00:48] [info] [User: 4] New message sent (ID: 22) for request 7
+[2025-11-29 18:00:48] [info] [User: 4] Message envoyé (ID: 22) sur la demande 7 par counselor
+[2025-11-29 18:00:52] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-29 18:01:20] [info] [User: 8] New message sent (ID: 23) for request 7
+[2025-11-29 18:01:20] [info] [User: 8] Message envoyé (ID: 23) sur la demande 7 par user
+[2025-11-29 18:01:28] [info] [User: 8] New message sent (ID: 24) for request 7
+[2025-11-29 18:01:28] [info] [User: 8] Message envoyé (ID: 24) sur la demande 7 par user
+[2025-11-29 18:01:39] [info] [User: 8] New message sent (ID: 25) for request 7
+[2025-11-29 18:01:39] [info] [User: 8] Message envoyé (ID: 25) sur la demande 7 par user
+[2025-11-29 18:01:48] [info] [User: 8] New message sent (ID: 26) for request 7
+[2025-11-29 18:01:48] [info] [User: 8] Message envoyé (ID: 26) sur la demande 7 par user
+[2025-11-29 18:01:54] [info] [User: 8] New message sent (ID: 27) for request 7
+[2025-11-29 18:01:54] [info] [User: 8] Message envoyé (ID: 27) sur la demande 7 par user
+[2025-11-29 18:02:03] [info] [User: 8] New message sent (ID: 28) for request 7
+[2025-11-29 18:02:03] [info] [User: 8] Message envoyé (ID: 28) sur la demande 7 par user
+[2025-11-29 18:02:22] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-29 18:02:22] [info] [User: 4] New message sent (ID: 29) for request 7
+[2025-11-29 18:02:22] [info] [User: 4] Message envoyé (ID: 29) sur la demande 7 par counselor
+[2025-11-29 18:02:26] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-29 18:02:26] [info] [User: 4] New message sent (ID: 30) for request 7
+[2025-11-29 18:02:26] [info] [User: 4] Message envoyé (ID: 30) sur la demande 7 par counselor
+[2025-11-29 18:02:29] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-29 18:02:29] [info] [User: 4] New message sent (ID: 31) for request 7
+[2025-11-29 18:02:29] [info] [User: 4] Message envoyé (ID: 31) sur la demande 7 par counselor
+[2025-11-29 18:02:37] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-29 18:02:37] [info] [User: 4] New message sent (ID: 32) for request 7
+[2025-11-29 18:02:37] [info] [User: 4] Message envoyé (ID: 32) sur la demande 7 par counselor
+[2025-11-29 18:02:41] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-29 18:02:41] [info] [User: 4] New message sent (ID: 33) for request 7
+[2025-11-29 18:02:41] [info] [User: 4] Message envoyé (ID: 33) sur la demande 7 par counselor
+[2025-11-29 18:49:05] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-11-29 18:49:05] [info] [User: 5] User logged in: pierre.dubois@example.com
+[2025-11-29 18:49:22] [info] [User: 5] New support request created (ID: 1) by user 5
+[2025-11-29 18:49:22] [info] [User: 5] Demande de support créée (ID: 1) par utilisateur 5
+[2025-11-29 19:02:21] [info] [User: 1] Support request 1 updated
+[2025-11-29 19:02:21] [info] [User: 1] Conseiller 4 assigné à la demande 1 par admin 1
+[2025-11-29 19:02:21] [info] [User: 1] NOTIFICATION: Conseiller Sophie Bernard assigné à la demande de Pierre Dubois
+[2025-11-29 19:02:21] [info] [User: 1] New message sent (ID: 1) for request 1
+[2025-11-29 19:05:17] [info] [User: guest] User authenticated: sophie.bernard@example.com
+[2025-11-29 19:05:17] [info] [User: 4] User logged in: sophie.bernard@example.com
+[2025-11-29 19:07:03] [info] [User: 5] New support request created (ID: 2) by user 5
+[2025-11-29 19:07:03] [info] [User: 5] Demande de support créée (ID: 2) par utilisateur 5
+[2025-11-29 19:07:24] [info] [User: 1] Support request 2 updated
+[2025-11-29 19:07:24] [info] [User: 1] Conseiller 4 assigné à la demande 2 par admin 1
+[2025-11-29 19:07:24] [info] [User: 1] NOTIFICATION: Conseiller Sophie Bernard assigné à la demande de Pierre Dubois
+[2025-11-29 19:07:24] [info] [User: 1] New message sent (ID: 2) for request 2
+[2025-11-29 19:08:10] [info] [User: guest] User authenticated: sophie.bernard@example.com
+[2025-11-29 19:08:10] [info] [User: 4] User logged in: sophie.bernard@example.com
+[2025-11-29 19:15:09] [info] [User: 5] New support request created (ID: 3) by user 5
+[2025-11-29 19:15:09] [info] [User: 5] Demande de support créée (ID: 3) par utilisateur 5
+[2025-11-29 19:15:31] [info] [User: 1] DEBUG: Assigning counselor 3 to request 3. Current status: en_attente, Current counselor: NULL
+[2025-11-29 19:15:31] [info] [User: 1] DEBUG: After setting values - counselor_user_id: 3, statut: assignee, date_assignation: 2025-11-29 19:15:31
+[2025-11-29 19:15:31] [info] [User: 1] Support request 3 updated - counselor_user_id: 3, statut: assignee
+[2025-11-29 19:15:31] [info] [User: 1] DEBUG: After save - Request 3 reloaded. counselor_user_id: 3, statut: assignee
+[2025-11-29 19:15:31] [info] [User: 1] Conseiller 3 assigné à la demande 3 par admin 1
+[2025-11-29 19:15:31] [info] [User: 1] NOTIFICATION: Conseiller Marie Martin assigné à la demande de Pierre Dubois
+[2025-11-29 19:15:31] [info] [User: 1] New message sent (ID: 3) for request 3
+[2025-11-29 19:16:25] [info] [User: guest] User authenticated: marie.martin@example.com
+[2025-11-29 19:16:25] [info] [User: 3] User logged in: marie.martin@example.com
+[2025-11-29 19:24:23] [info] [User: 3] DEBUG: Loading requests for counselor user_id: 3, counselor_id: 3
+[2025-11-29 19:24:23] [info] [User: 3] DEBUG: Found 1 requests for counselor_user_id: 3
+[2025-11-29 19:24:23] [info] [User: 3] DEBUG: Found 1 total requests for counselor 3
+[2025-11-29 19:24:23] [info] [User: 3] DEBUG: Filtered to 1 active assigned requests for counselor 3
+[2025-11-29 19:24:23] [info] [User: 3] DEBUG: Found 1 requests for counselor_user_id: 3
+[2025-11-29 19:24:30] [info] [User: 3] Support request 3 updated - counselor_user_id: 3, statut: en_cours
+[2025-11-29 19:24:30] [info] [User: 3] Demande 3 mise en cours par conseiller 3
+[2025-11-29 19:24:31] [info] [User: 3] DEBUG: Found 1 requests for counselor_user_id: 3
+[2025-11-29 19:24:35] [info] [User: 3] SUCCESS: Counselor access granted for user 3
+[2025-11-29 19:24:35] [info] [User: 3] New message sent (ID: 4) for request 3
+[2025-11-29 19:24:35] [info] [User: 3] Message envoyé (ID: 4) sur la demande 3 par counselor
+[2025-11-29 19:24:35] [info] [User: 3] DEBUG: Found 1 requests for counselor_user_id: 3
+[2025-11-29 19:24:50] [info] [User: 5] New message sent (ID: 5) for request 3
+[2025-11-29 19:24:50] [info] [User: 5] Message envoyé (ID: 5) sur la demande 3 par user
+[2025-11-29 19:25:06] [info] [User: 3] DEBUG: Found 1 requests for counselor_user_id: 3
+[2025-11-29 19:25:49] [info] [User: guest] User authenticated: sophie.bernard@example.com
+[2025-11-29 19:25:49] [info] [User: 4] User logged in: sophie.bernard@example.com
+[2025-11-29 19:25:49] [info] [User: 4] DEBUG: Loading requests for counselor user_id: 4, counselor_id: 4
+[2025-11-29 19:25:49] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-29 19:25:49] [info] [User: 4] DEBUG: Found 2 total requests for counselor 4
+[2025-11-29 19:25:49] [info] [User: 4] DEBUG: Filtered to 2 active assigned requests for counselor 4
+[2025-11-29 19:25:49] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-29 19:25:52] [info] [User: 4] Support request 2 updated - counselor_user_id: 4, statut: en_cours
+[2025-11-29 19:25:52] [info] [User: 4] Demande 2 mise en cours par conseiller 4
+[2025-11-29 19:25:53] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-29 19:26:00] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-29 19:26:00] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-29 19:26:05] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-29 19:26:05] [info] [User: 4] New message sent (ID: 6) for request 2
+[2025-11-29 19:26:05] [info] [User: 4] Message envoyé (ID: 6) sur la demande 2 par counselor
+[2025-11-29 19:26:06] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-29 19:26:30] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-29 19:26:30] [info] [User: 4] New message sent (ID: 7) for request 2
+[2025-11-29 19:26:30] [info] [User: 4] Message envoyé (ID: 7) sur la demande 2 par counselor
+[2025-11-29 19:26:30] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-29 19:26:51] [info] [User: 5] New message sent (ID: 8) for request 2
+[2025-11-29 19:26:51] [info] [User: 5] Message envoyé (ID: 8) sur la demande 2 par user
+[2025-11-29 19:26:57] [info] [User: 5] New message sent (ID: 9) for request 2
+[2025-11-29 19:26:57] [info] [User: 5] Message envoyé (ID: 9) sur la demande 2 par user
+[2025-11-29 19:27:01] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-29 19:27:04] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-29 19:37:58] [info] [User: 5] New support request created (ID: 1) by user 5
+[2025-11-29 19:37:58] [info] [User: 5] Demande de support créée (ID: 1) par utilisateur 5
+[2025-11-29 19:38:11] [info] [User: 1] DEBUG: Assigning counselor 4 to request 1. Current status: en_attente, Current counselor: NULL
+[2025-11-29 19:38:11] [info] [User: 1] DEBUG: After setting values - counselor_user_id: 4, statut: assignee, date_assignation: 2025-11-29 19:38:11
+[2025-11-29 19:38:11] [info] [User: 1] Support request 1 updated - counselor_user_id: 4, statut: assignee
+[2025-11-29 19:38:11] [info] [User: 1] DEBUG: After save - Request 1 reloaded. counselor_user_id: 4, statut: assignee
+[2025-11-29 19:38:11] [info] [User: 1] Conseiller 4 assigné à la demande 1 par admin 1
+[2025-11-29 19:38:11] [info] [User: 1] NOTIFICATION: Conseiller Sophie Bernard assigné à la demande de Pierre Dubois
+[2025-11-29 19:38:11] [info] [User: 1] New message sent (ID: 1) for request 1
+[2025-11-29 19:38:20] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-29 19:38:24] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-29 19:41:31] [info] [User: guest] User authenticated: sophie.bernard@example.com
+[2025-11-29 19:41:31] [info] [User: 4] User logged in: sophie.bernard@example.com
+[2025-11-29 19:41:32] [info] [User: 4] DEBUG: Loading requests for counselor user_id: 4, counselor_id: 4
+[2025-11-29 19:41:32] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-29 19:41:32] [info] [User: 4] DEBUG: Found 1 total requests for counselor 4
+[2025-11-29 19:41:32] [info] [User: 4] DEBUG: Filtered to 1 active assigned requests for counselor 4
+[2025-11-29 19:41:32] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-29 19:41:35] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-29 19:41:39] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-29 19:41:39] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-29 19:41:45] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-29 19:41:45] [info] [User: 4] New message sent (ID: 2) for request 1
+[2025-11-29 19:41:45] [info] [User: 4] Support request 1 updated - counselor_user_id: 4, statut: en_cours
+[2025-11-29 19:41:45] [info] [User: 4] Message envoyé (ID: 2) sur la demande 1 par counselor
+[2025-11-29 19:41:45] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-29 19:42:00] [info] [User: 5] New message sent (ID: 3) for request 1
+[2025-11-29 19:42:00] [info] [User: 5] Message envoyé (ID: 3) sur la demande 1 par user
+[2025-11-29 19:42:15] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-29 19:42:19] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-29 19:45:48] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-29 19:45:57] [info] [User: 4] DEBUG: Loading requests for counselor user_id: 4, counselor_id: 4
+[2025-11-29 19:45:57] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-29 19:45:57] [info] [User: 4] DEBUG: Found 1 total requests for counselor 4
+[2025-11-29 19:45:57] [info] [User: 4] DEBUG: Filtered to 1 active assigned requests for counselor 4
+[2025-11-29 19:45:57] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-29 19:47:29] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-11-29 19:47:29] [info] [User: 5] User logged in: pierre.dubois@example.com
+[2025-11-29 19:56:14] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-11-29 19:56:14] [info] [User: 5] User logged in: pierre.dubois@example.com
+[2025-11-29 20:02:26] [info] [User: 5] New message sent (ID: 4) for request 1
+[2025-11-29 20:02:26] [info] [User: 5] Message envoyé (ID: 4) sur la demande 1 par user
+[2025-11-29 20:07:01] [info] [User: 5] New message sent (ID: 5) for request 1
+[2025-11-29 20:07:01] [info] [User: 5] Message envoyé (ID: 5) sur la demande 1 par user
+[2025-11-29 20:10:04] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-11-29 20:10:04] [info] [User: 5] User logged in: pierre.dubois@example.com
+[2025-11-29 20:21:15] [info] [User: 5] User logged out: pierre.dubois@example.com
+[2025-11-29 20:21:24] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-29 20:21:24] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-29 20:21:36] [info] [User: 5] User logged out: pierre.dubois@example.com
+[2025-11-29 20:21:42] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-29 20:21:42] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-29 20:35:24] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-11-29 20:35:24] [info] [User: 5] User logged in: pierre.dubois@example.com
+[2025-11-29 20:35:26] [info] [User: 5] User logged out: pierre.dubois@example.com
+[2025-11-29 20:35:43] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-29 20:35:43] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-29 20:36:06] [warning] [User: guest] Failed authentication attempt for email: admin@safeproject.com
+[2025-11-29 20:36:06] [warning] [User: guest] Failed login attempt for: admin@safeproject.com
+[2025-11-29 20:36:09] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-29 20:36:09] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-29 20:47:54] [info] [User: 1] User logged out: admin@safeproject.com
+[2025-11-29 20:48:01] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-29 20:48:01] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-29 23:56:46] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-11-29 23:56:46] [info] [User: 5] User logged in: pierre.dubois@example.com

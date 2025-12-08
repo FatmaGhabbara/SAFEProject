@@ -1,0 +1,665 @@
+[2025-11-30 00:02:46] [info] [User: 4] DEBUG: Loading requests for counselor user_id: 4, counselor_id: 4
+[2025-11-30 00:02:46] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:02:46] [info] [User: 4] DEBUG: Found 1 total requests for counselor 4
+[2025-11-30 00:02:46] [info] [User: 4] DEBUG: Filtered to 1 active assigned requests for counselor 4
+[2025-11-30 00:02:46] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:03:00] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:03:02] [info] [User: 4] DEBUG: Loading requests for counselor user_id: 4, counselor_id: 4
+[2025-11-30 00:03:02] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:03:02] [info] [User: 4] DEBUG: Found 1 total requests for counselor 4
+[2025-11-30 00:03:02] [info] [User: 4] DEBUG: Filtered to 1 active assigned requests for counselor 4
+[2025-11-30 00:03:02] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:04:06] [info] [User: 1] User logged out: admin@safeproject.com
+[2025-11-30 00:04:13] [info] [User: 4] User logged out: sophie.bernard@example.com
+[2025-11-30 00:04:28] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-11-30 00:04:28] [info] [User: 5] User logged in: pierre.dubois@example.com
+[2025-11-30 00:04:30] [info] [User: 5] User logged out: pierre.dubois@example.com
+[2025-11-30 00:04:43] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-30 00:04:43] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-30 00:05:28] [info] [User: guest] User authenticated: marie.martin@example.com
+[2025-11-30 00:05:28] [info] [User: 3] User logged in: marie.martin@example.com
+[2025-11-30 00:05:28] [info] [User: 3] DEBUG: Loading requests for counselor user_id: 3, counselor_id: 3
+[2025-11-30 00:05:28] [info] [User: 3] DEBUG: Found 0 requests for counselor_user_id: 3
+[2025-11-30 00:05:28] [info] [User: 3] DEBUG: Found 0 total requests for counselor 3
+[2025-11-30 00:05:28] [info] [User: 3] DEBUG: Filtered to 0 active assigned requests for counselor 3
+[2025-11-30 00:05:28] [info] [User: 3] DEBUG: Found 0 requests for counselor_user_id: 3
+[2025-11-30 00:05:33] [info] [User: 3] User logged out: marie.martin@example.com
+[2025-11-30 00:05:40] [warning] [User: guest] Failed authentication attempt for email: marie.martin@example.com
+[2025-11-30 00:05:40] [warning] [User: guest] Failed login attempt for: marie.martin@example.com
+[2025-11-30 00:05:46] [info] [User: guest] User authenticated: marie.martin@example.com
+[2025-11-30 00:05:46] [info] [User: 3] User logged in: marie.martin@example.com
+[2025-11-30 00:05:46] [info] [User: 3] DEBUG: Loading requests for counselor user_id: 3, counselor_id: 3
+[2025-11-30 00:05:46] [info] [User: 3] DEBUG: Found 0 requests for counselor_user_id: 3
+[2025-11-30 00:05:46] [info] [User: 3] DEBUG: Found 0 total requests for counselor 3
+[2025-11-30 00:05:46] [info] [User: 3] DEBUG: Filtered to 0 active assigned requests for counselor 3
+[2025-11-30 00:05:46] [info] [User: 3] DEBUG: Found 0 requests for counselor_user_id: 3
+[2025-11-30 00:05:49] [info] [User: 3] User logged out: marie.martin@example.com
+[2025-11-30 00:06:06] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-11-30 00:06:06] [info] [User: 5] User logged in: pierre.dubois@example.com
+[2025-11-30 00:06:28] [info] [User: 5] New support request created (ID: 2) by user 5
+[2025-11-30 00:06:28] [info] [User: 5] Demande de support créée (ID: 2) par utilisateur 5
+[2025-11-30 00:06:33] [info] [User: 5] User logged out: pierre.dubois@example.com
+[2025-11-30 00:06:49] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-30 00:06:49] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-30 00:06:58] [info] [User: 1] DEBUG: Assigning counselor 3 to request 2. Current status: en_attente, Current counselor: NULL
+[2025-11-30 00:06:58] [info] [User: 1] DEBUG: After setting values - counselor_user_id: 3, statut: assignee, date_assignation: 2025-11-30 00:06:58
+[2025-11-30 00:06:58] [info] [User: 1] Support request 2 updated - counselor_user_id: 3, statut: assignee
+[2025-11-30 00:06:58] [info] [User: 1] DEBUG: After save - Request 2 reloaded. counselor_user_id: 3, statut: assignee
+[2025-11-30 00:06:58] [info] [User: 1] Conseiller 3 assigné à la demande 2 par admin 1
+[2025-11-30 00:06:58] [info] [User: 1] NOTIFICATION: Conseiller Marie Martin assigné à la demande de Pierre Dubois
+[2025-11-30 00:06:58] [info] [User: 1] New message sent (ID: 6) for request 2
+[2025-11-30 00:13:50] [info] [User: 1] User logged out: admin@safeproject.com
+[2025-11-30 00:13:58] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-11-30 00:13:58] [info] [User: 5] User logged in: pierre.dubois@example.com
+[2025-11-30 00:14:01] [info] [User: 5] User logged out: pierre.dubois@example.com
+[2025-11-30 00:14:09] [info] [User: guest] User authenticated: sophie.bernard@example.com
+[2025-11-30 00:14:09] [info] [User: 4] User logged in: sophie.bernard@example.com
+[2025-11-30 00:14:09] [info] [User: 4] DEBUG: Loading requests for counselor user_id: 4, counselor_id: 4
+[2025-11-30 00:14:09] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:14:09] [info] [User: 4] DEBUG: Found 1 total requests for counselor 4
+[2025-11-30 00:14:09] [info] [User: 4] DEBUG: Filtered to 1 active assigned requests for counselor 4
+[2025-11-30 00:14:09] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:14:11] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:14:20] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-30 00:14:20] [info] [User: 4] New message sent (ID: 7) for request 1
+[2025-11-30 00:14:20] [info] [User: 4] Message envoyé (ID: 7) sur la demande 1 par counselor
+[2025-11-30 00:14:20] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:14:26] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:14:29] [info] [User: 4] User logged out: sophie.bernard@example.com
+[2025-11-30 00:14:38] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-11-30 00:14:38] [info] [User: 5] User logged in: pierre.dubois@example.com
+[2025-11-30 00:17:28] [info] [User: 5] User logged out: pierre.dubois@example.com
+[2025-11-30 00:18:24] [info] [User: 5] User logged out: pierre.dubois@example.com
+[2025-11-30 00:18:32] [info] [User: guest] User authenticated: sophie.bernard@example.com
+[2025-11-30 00:18:32] [info] [User: 4] User logged in: sophie.bernard@example.com
+[2025-11-30 00:18:32] [info] [User: 4] DEBUG: Loading requests for counselor user_id: 4, counselor_id: 4
+[2025-11-30 00:18:32] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:18:32] [info] [User: 4] DEBUG: Found 1 total requests for counselor 4
+[2025-11-30 00:18:32] [info] [User: 4] DEBUG: Filtered to 1 active assigned requests for counselor 4
+[2025-11-30 00:18:32] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:18:35] [info] [User: 4] DEBUG: Loading requests for counselor user_id: 4, counselor_id: 4
+[2025-11-30 00:18:35] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:18:35] [info] [User: 4] DEBUG: Found 1 total requests for counselor 4
+[2025-11-30 00:18:35] [info] [User: 4] DEBUG: Filtered to 1 active assigned requests for counselor 4
+[2025-11-30 00:18:35] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:18:49] [info] [User: 4] DEBUG: Loading requests for counselor user_id: 4, counselor_id: 4
+[2025-11-30 00:18:49] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:18:49] [info] [User: 4] DEBUG: Found 1 total requests for counselor 4
+[2025-11-30 00:18:49] [info] [User: 4] DEBUG: Filtered to 1 active assigned requests for counselor 4
+[2025-11-30 00:18:49] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:18:58] [info] [User: 4] DEBUG: Loading requests for counselor user_id: 4, counselor_id: 4
+[2025-11-30 00:18:58] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:18:58] [info] [User: 4] DEBUG: Found 1 total requests for counselor 4
+[2025-11-30 00:18:58] [info] [User: 4] DEBUG: Filtered to 1 active assigned requests for counselor 4
+[2025-11-30 00:18:58] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:19:04] [info] [User: 4] DEBUG: Loading requests for counselor user_id: 4, counselor_id: 4
+[2025-11-30 00:19:04] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:19:04] [info] [User: 4] DEBUG: Found 1 total requests for counselor 4
+[2025-11-30 00:19:04] [info] [User: 4] DEBUG: Filtered to 1 active assigned requests for counselor 4
+[2025-11-30 00:19:04] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:19:08] [info] [User: 4] DEBUG: Loading requests for counselor user_id: 4, counselor_id: 4
+[2025-11-30 00:19:08] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:19:08] [info] [User: 4] DEBUG: Found 1 total requests for counselor 4
+[2025-11-30 00:19:08] [info] [User: 4] DEBUG: Filtered to 1 active assigned requests for counselor 4
+[2025-11-30 00:19:08] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:22:11] [info] [User: 1] User logged out: sophie.bernard@example.com
+[2025-11-30 00:22:18] [info] [User: guest] User authenticated: sophie.bernard@example.com
+[2025-11-30 00:22:18] [info] [User: 4] User logged in: sophie.bernard@example.com
+[2025-11-30 00:22:18] [info] [User: 4] DEBUG: Loading requests for counselor user_id: 4, counselor_id: 4
+[2025-11-30 00:22:18] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:22:18] [info] [User: 4] DEBUG: Found 1 total requests for counselor 4
+[2025-11-30 00:22:18] [info] [User: 4] DEBUG: Filtered to 1 active assigned requests for counselor 4
+[2025-11-30 00:22:18] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:22:21] [info] [User: 4] DEBUG: Loading requests for counselor user_id: 4, counselor_id: 4
+[2025-11-30 00:22:21] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:22:21] [info] [User: 4] DEBUG: Found 1 total requests for counselor 4
+[2025-11-30 00:22:21] [info] [User: 4] DEBUG: Filtered to 1 active assigned requests for counselor 4
+[2025-11-30 00:22:21] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:22:24] [info] [User: 4] DEBUG: Loading requests for counselor user_id: 4, counselor_id: 4
+[2025-11-30 00:22:24] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:22:24] [info] [User: 4] DEBUG: Found 1 total requests for counselor 4
+[2025-11-30 00:22:24] [info] [User: 4] DEBUG: Filtered to 1 active assigned requests for counselor 4
+[2025-11-30 00:22:24] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:22:24] [info] [User: 4] DEBUG: Loading requests for counselor user_id: 4, counselor_id: 4
+[2025-11-30 00:22:24] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:22:24] [info] [User: 4] DEBUG: Found 1 total requests for counselor 4
+[2025-11-30 00:22:24] [info] [User: 4] DEBUG: Filtered to 1 active assigned requests for counselor 4
+[2025-11-30 00:22:24] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:22:31] [info] [User: 4] User logged out: sophie.bernard@example.com
+[2025-11-30 00:22:38] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-11-30 00:22:38] [info] [User: 5] User logged in: pierre.dubois@example.com
+[2025-11-30 00:23:00] [info] [User: 5] New support request created (ID: 3) by user 5
+[2025-11-30 00:23:00] [info] [User: 5] Demande de support créée (ID: 3) par utilisateur 5
+[2025-11-30 00:23:04] [info] [User: 5] User logged out: pierre.dubois@example.com
+[2025-11-30 00:23:14] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-30 00:23:14] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-30 00:23:26] [info] [User: 1] DEBUG: Assigning counselor 4 to request 3. Current status: en_attente, Current counselor: NULL
+[2025-11-30 00:23:26] [info] [User: 1] DEBUG: After setting values - counselor_user_id: 4, statut: assignee, date_assignation: 2025-11-30 00:23:26
+[2025-11-30 00:23:26] [info] [User: 1] Support request 3 updated - counselor_user_id: 4, statut: assignee
+[2025-11-30 00:23:26] [info] [User: 1] DEBUG: After save - Request 3 reloaded. counselor_user_id: 4, statut: assignee
+[2025-11-30 00:23:26] [info] [User: 1] Conseiller 4 assigné à la demande 3 par admin 1
+[2025-11-30 00:23:26] [info] [User: 1] NOTIFICATION: Conseiller Sophie Bernard assigné à la demande de Pierre Dubois
+[2025-11-30 00:23:27] [info] [User: 1] New message sent (ID: 8) for request 3
+[2025-11-30 00:23:30] [info] [User: 1] User logged out: admin@safeproject.com
+[2025-11-30 00:23:37] [warning] [User: guest] Failed authentication attempt for email: sophie.bernard@example.com
+[2025-11-30 00:23:37] [warning] [User: guest] Failed login attempt for: sophie.bernard@example.com
+[2025-11-30 00:23:41] [info] [User: guest] User authenticated: sophie.bernard@example.com
+[2025-11-30 00:23:41] [info] [User: 4] User logged in: sophie.bernard@example.com
+[2025-11-30 00:23:41] [info] [User: 4] DEBUG: Loading requests for counselor user_id: 4, counselor_id: 4
+[2025-11-30 00:23:41] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-30 00:23:41] [info] [User: 4] DEBUG: Found 2 total requests for counselor 4
+[2025-11-30 00:23:41] [info] [User: 4] DEBUG: Filtered to 2 active assigned requests for counselor 4
+[2025-11-30 00:23:41] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-30 00:23:50] [info] [User: 4] Support request 3 updated - counselor_user_id: 4, statut: en_cours
+[2025-11-30 00:23:50] [info] [User: 4] Demande 3 mise en cours par conseiller 4
+[2025-11-30 00:23:51] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-30 00:23:57] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-30 00:23:57] [info] [User: 4] New message sent (ID: 9) for request 3
+[2025-11-30 00:23:57] [info] [User: 4] Message envoyé (ID: 9) sur la demande 3 par counselor
+[2025-11-30 00:23:57] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-30 00:24:01] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-30 00:24:03] [info] [User: 4] DEBUG: Loading requests for counselor user_id: 4, counselor_id: 4
+[2025-11-30 00:24:03] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-30 00:24:03] [info] [User: 4] DEBUG: Found 2 total requests for counselor 4
+[2025-11-30 00:24:03] [info] [User: 4] DEBUG: Filtered to 2 active assigned requests for counselor 4
+[2025-11-30 00:24:03] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-30 00:24:05] [info] [User: 4] User logged out: sophie.bernard@example.com
+[2025-11-30 00:24:13] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-30 00:24:13] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-30 00:24:37] [info] [User: 1] User logged out: admin@safeproject.com
+[2025-11-30 00:24:45] [info] [User: guest] User authenticated: marie.martin@example.com
+[2025-11-30 00:24:45] [info] [User: 3] User logged in: marie.martin@example.com
+[2025-11-30 00:24:45] [info] [User: 3] DEBUG: Loading requests for counselor user_id: 3, counselor_id: 3
+[2025-11-30 00:24:45] [info] [User: 3] DEBUG: Found 1 requests for counselor_user_id: 3
+[2025-11-30 00:24:45] [info] [User: 3] DEBUG: Found 1 total requests for counselor 3
+[2025-11-30 00:24:45] [info] [User: 3] DEBUG: Filtered to 1 active assigned requests for counselor 3
+[2025-11-30 00:24:45] [info] [User: 3] DEBUG: Found 1 requests for counselor_user_id: 3
+[2025-11-30 00:24:49] [info] [User: 3] Support request 2 updated - counselor_user_id: 3, statut: en_cours
+[2025-11-30 00:24:49] [info] [User: 3] Demande 2 mise en cours par conseiller 3
+[2025-11-30 00:24:49] [info] [User: 3] DEBUG: Found 1 requests for counselor_user_id: 3
+[2025-11-30 00:25:15] [info] [User: 3] DEBUG: Loading requests for counselor user_id: 3, counselor_id: 3
+[2025-11-30 00:25:15] [info] [User: 3] DEBUG: Found 1 requests for counselor_user_id: 3
+[2025-11-30 00:25:15] [info] [User: 3] DEBUG: Found 1 total requests for counselor 3
+[2025-11-30 00:25:15] [info] [User: 3] DEBUG: Filtered to 1 active assigned requests for counselor 3
+[2025-11-30 00:25:15] [info] [User: 3] DEBUG: Found 1 requests for counselor_user_id: 3
+[2025-11-30 00:27:10] [info] [User: 3] DEBUG: Loading requests for counselor user_id: 3, counselor_id: 3
+[2025-11-30 00:27:10] [info] [User: 3] DEBUG: Found 1 requests for counselor_user_id: 3
+[2025-11-30 00:27:10] [info] [User: 3] DEBUG: Found 1 total requests for counselor 3
+[2025-11-30 00:27:10] [info] [User: 3] DEBUG: Filtered to 1 active assigned requests for counselor 3
+[2025-11-30 00:27:10] [info] [User: 3] DEBUG: Found 1 requests for counselor_user_id: 3
+[2025-11-30 00:27:14] [info] [User: 3] DEBUG: Found 1 requests for counselor_user_id: 3
+[2025-11-30 00:27:18] [info] [User: 3] SUCCESS: Counselor access granted for user 3
+[2025-11-30 00:27:18] [info] [User: 3] DEBUG: Found 1 requests for counselor_user_id: 3
+[2025-11-30 00:27:23] [info] [User: 3] SUCCESS: Counselor access granted for user 3
+[2025-11-30 00:27:23] [info] [User: 3] DEBUG: Found 1 requests for counselor_user_id: 3
+[2025-11-30 00:27:25] [info] [User: 3] DEBUG: Found 1 requests for counselor_user_id: 3
+[2025-11-30 00:27:28] [info] [User: 3] SUCCESS: Counselor access granted for user 3
+[2025-11-30 00:27:28] [info] [User: 3] DEBUG: Found 1 requests for counselor_user_id: 3
+[2025-11-30 00:27:32] [info] [User: 3] User logged out: marie.martin@example.com
+[2025-11-30 00:27:37] [info] [User: guest] User authenticated: sophie.bernard@example.com
+[2025-11-30 00:27:37] [info] [User: 4] User logged in: sophie.bernard@example.com
+[2025-11-30 00:27:38] [info] [User: 4] DEBUG: Loading requests for counselor user_id: 4, counselor_id: 4
+[2025-11-30 00:27:38] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-30 00:27:38] [info] [User: 4] DEBUG: Found 2 total requests for counselor 4
+[2025-11-30 00:27:38] [info] [User: 4] DEBUG: Filtered to 2 active assigned requests for counselor 4
+[2025-11-30 00:27:38] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-30 00:27:40] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-30 00:27:44] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-30 00:27:44] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-30 00:27:48] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-30 00:27:48] [info] [User: 4] New message sent (ID: 10) for request 3
+[2025-11-30 00:27:48] [info] [User: 4] Message envoyé (ID: 10) sur la demande 3 par counselor
+[2025-11-30 00:27:48] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-30 00:27:54] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-30 00:27:55] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-30 00:27:59] [info] [User: 4] Support request 3 marked as completed
+[2025-11-30 00:27:59] [info] [User: 4] Demande 3 terminée par conseiller 4
+[2025-11-30 00:27:59] [info] [User: 4] DEBUG: Loading requests for counselor user_id: 4, counselor_id: 4
+[2025-11-30 00:27:59] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-30 00:27:59] [info] [User: 4] DEBUG: Found 2 total requests for counselor 4
+[2025-11-30 00:27:59] [info] [User: 4] DEBUG: Filtered to 1 active assigned requests for counselor 4
+[2025-11-30 00:27:59] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-30 00:28:18] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-30 00:28:22] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-30 00:28:22] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-30 00:28:28] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-30 00:28:28] [info] [User: 4] New message sent (ID: 11) for request 1
+[2025-11-30 00:28:28] [info] [User: 4] Message envoyé (ID: 11) sur la demande 1 par counselor
+[2025-11-30 00:28:28] [info] [User: 4] DEBUG: Found 2 requests for counselor_user_id: 4
+[2025-11-30 00:28:33] [info] [User: 4] User logged out: sophie.bernard@example.com
+[2025-11-30 00:28:39] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-11-30 00:28:39] [info] [User: 5] User logged in: pierre.dubois@example.com
+[2025-11-30 00:28:59] [info] [User: 5] New message sent (ID: 12) for request 2
+[2025-11-30 00:28:59] [info] [User: 5] Message envoyé (ID: 12) sur la demande 2 par user
+[2025-11-30 00:29:14] [info] [User: 5] New message sent (ID: 13) for request 1
+[2025-11-30 00:29:14] [info] [User: 5] Message envoyé (ID: 13) sur la demande 1 par user
+[2025-11-30 00:29:33] [info] [User: 5] User logged out: pierre.dubois@example.com
+[2025-11-30 00:29:44] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-30 00:29:44] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-30 00:34:10] [info] [User: 1] User logged out: admin@safeproject.com
+[2025-11-30 00:34:38] [info] [User: guest] User authenticated: marie.martin@example.com
+[2025-11-30 00:34:38] [info] [User: 3] User logged in: marie.martin@example.com
+[2025-11-30 00:34:39] [info] [User: 3] DEBUG: Loading requests for counselor user_id: 3, counselor_id: 3
+[2025-11-30 00:34:39] [info] [User: 3] DEBUG: Found 1 requests for counselor_user_id: 3
+[2025-11-30 00:34:39] [info] [User: 3] DEBUG: Found 1 total requests for counselor 3
+[2025-11-30 00:34:39] [info] [User: 3] DEBUG: Filtered to 1 active assigned requests for counselor 3
+[2025-11-30 00:34:39] [info] [User: 3] DEBUG: Found 1 requests for counselor_user_id: 3
+[2025-11-30 00:34:42] [info] [User: 3] Support request 2 marked as completed
+[2025-11-30 00:34:42] [info] [User: 3] Demande 2 terminée par conseiller 3
+[2025-11-30 00:34:42] [info] [User: 3] DEBUG: Loading requests for counselor user_id: 3, counselor_id: 3
+[2025-11-30 00:34:42] [info] [User: 3] DEBUG: Found 1 requests for counselor_user_id: 3
+[2025-11-30 00:34:42] [info] [User: 3] DEBUG: Found 1 total requests for counselor 3
+[2025-11-30 00:34:42] [info] [User: 3] DEBUG: Filtered to 0 active assigned requests for counselor 3
+[2025-11-30 00:34:42] [info] [User: 3] DEBUG: Found 1 requests for counselor_user_id: 3
+[2025-11-30 00:34:57] [info] [User: 3] User logged out: marie.martin@example.com
+[2025-11-30 00:35:17] [warning] [User: guest] Failed authentication attempt for email: admin@safeproject.com
+[2025-11-30 00:35:17] [warning] [User: guest] Failed login attempt for: admin@safeproject.com
+[2025-11-30 00:35:22] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-30 00:35:22] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-30 00:35:34] [info] [User: 1] User 3 updated
+[2025-11-30 00:35:34] [warning] [User: 1] Counselor 3 deleted (role changed to user)
+[2025-11-30 00:35:34] [warning] [User: 1] Conseiller 3 supprimé par admin 1
+[2025-11-30 00:35:57] [error] [User: 1] Error deleting user 2: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'request_id' in 'IN/ALL/ANY subquery'
+[2025-11-30 00:36:20] [error] [User: 1] Error deleting user 5: SQLSTATE[42S22]: Column not found: 1054 Unknown column 'request_id' in 'IN/ALL/ANY subquery'
+[2025-11-30 00:39:30] [warning] [User: 1] User deleted by admin: Pierre Dubois (pierre.dubois@example.com) - ID: 5
+[2025-11-30 00:39:35] [warning] [User: 1] User deleted by admin: Jean Dupont (jean.dupont@example.com) - ID: 2
+[2025-11-30 00:40:55] [info] [User: 1] User logged out: admin@safeproject.com
+[2025-11-30 00:42:04] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-11-30 00:42:04] [info] [User: 5] User logged in: pierre.dubois@example.com
+[2025-11-30 00:42:42] [info] [User: 5] New support request created (ID: 1) by user 5
+[2025-11-30 00:42:42] [info] [User: 5] Demande de support créée (ID: 1) par utilisateur 5
+[2025-11-30 00:45:03] [info] [User: 5] User logged out: pierre.dubois@example.com
+[2025-11-30 00:45:12] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-30 00:45:12] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-30 00:45:34] [info] [User: 1] DEBUG: Assigning counselor 4 to request 1. Current status: en_attente, Current counselor: NULL
+[2025-11-30 00:45:34] [info] [User: 1] DEBUG: After setting values - counselor_user_id: 4, statut: assignee, date_assignation: 2025-11-30 00:45:34
+[2025-11-30 00:45:34] [info] [User: 1] Support request 1 updated - counselor_user_id: 4, statut: assignee
+[2025-11-30 00:45:34] [info] [User: 1] DEBUG: After save - Request 1 reloaded. counselor_user_id: 4, statut: assignee
+[2025-11-30 00:45:34] [info] [User: 1] Conseiller 4 assigné à la demande 1 par admin 1
+[2025-11-30 00:45:34] [info] [User: 1] NOTIFICATION: Conseiller Sophie Bernard assigné à la demande de Pierre Dubois
+[2025-11-30 00:45:34] [info] [User: 1] New message sent (ID: 1) for request 1
+[2025-11-30 00:45:37] [info] [User: 1] User logged out: admin@safeproject.com
+[2025-11-30 00:45:43] [info] [User: guest] User authenticated: sophie.bernard@example.com
+[2025-11-30 00:45:43] [info] [User: 4] User logged in: sophie.bernard@example.com
+[2025-11-30 00:45:43] [info] [User: 4] DEBUG: Loading requests for counselor user_id: 4, counselor_id: 4
+[2025-11-30 00:45:43] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:45:43] [info] [User: 4] DEBUG: Found 1 total requests for counselor 4
+[2025-11-30 00:45:43] [info] [User: 4] DEBUG: Filtered to 1 active assigned requests for counselor 4
+[2025-11-30 00:45:43] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:46:05] [info] [User: 4] Support request 1 updated - counselor_user_id: 4, statut: en_cours
+[2025-11-30 00:46:05] [info] [User: 4] Demande 1 mise en cours par conseiller 4
+[2025-11-30 00:46:05] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:46:10] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-30 00:46:10] [info] [User: 4] New message sent (ID: 2) for request 1
+[2025-11-30 00:46:10] [info] [User: 4] Message envoyé (ID: 2) sur la demande 1 par counselor
+[2025-11-30 00:46:10] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:46:15] [info] [User: 4] User logged out: sophie.bernard@example.com
+[2025-11-30 00:46:28] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-11-30 00:46:28] [info] [User: 5] User logged in: pierre.dubois@example.com
+[2025-11-30 00:46:38] [info] [User: 5] New message sent (ID: 3) for request 1
+[2025-11-30 00:46:38] [info] [User: 5] Message envoyé (ID: 3) sur la demande 1 par user
+[2025-11-30 00:46:55] [info] [User: 5] User logged out: pierre.dubois@example.com
+[2025-11-30 00:47:01] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-30 00:47:01] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-30 00:47:16] [warning] [User: 1] User deleted by admin: Jean Dupont (jean.dupont@example.com) - ID: 2
+[2025-11-30 00:47:29] [info] [User: 1] User 4 updated
+[2025-11-30 00:47:29] [info] [User: 1] User 4 updated
+[2025-11-30 00:47:29] [info] [User: 1] Counselor 4 updated
+[2025-11-30 00:47:29] [info] [User: 1] Conseiller 4 mis à jour par admin 1
+[2025-11-30 00:47:29] [info] [User: 1] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:47:40] [info] [User: 1] User 4 updated
+[2025-11-30 00:47:40] [info] [User: 1] User 4 updated
+[2025-11-30 00:47:40] [info] [User: 1] Counselor 4 updated
+[2025-11-30 00:47:40] [info] [User: 1] Conseiller 4 mis à jour par admin 1
+[2025-11-30 00:47:40] [info] [User: 1] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:47:49] [info] [User: 1] User logged out: admin@safeproject.com
+[2025-11-30 00:47:59] [info] [User: guest] User authenticated: sophiee.bernard@example.com
+[2025-11-30 00:47:59] [info] [User: 4] User logged in: sophiee.bernard@example.com
+[2025-11-30 00:47:59] [info] [User: 4] DEBUG: Loading requests for counselor user_id: 4, counselor_id: 4
+[2025-11-30 00:47:59] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:47:59] [info] [User: 4] DEBUG: Found 1 total requests for counselor 4
+[2025-11-30 00:47:59] [info] [User: 4] DEBUG: Filtered to 1 active assigned requests for counselor 4
+[2025-11-30 00:47:59] [info] [User: 4] DEBUG: Found 1 requests for counselor_user_id: 4
+[2025-11-30 00:48:09] [info] [User: 4] User logged out: sophiee.bernard@example.com
+[2025-11-30 00:56:02] [info] [User: guest] New user created (ID: 6) - Email: client@gmail.com
+[2025-11-30 00:56:02] [info] [User: guest] New user registered (ID: 6) - Email: client@gmail.com - Role: user
+[2025-11-30 00:56:20] [info] [User: 6] New support request created (ID: 1) by user 6
+[2025-11-30 00:56:20] [info] [User: 6] Demande de support créée (ID: 1) par utilisateur 6
+[2025-11-30 00:56:25] [info] [User: 6] User logged out: client@gmail.com
+[2025-11-30 00:59:14] [info] [User: 1] User logged out: admin@safeproject.com
+[2025-11-30 00:59:44] [info] [User: guest] New user created (ID: 7) - Email: consultant@codingfactory.com
+[2025-11-30 00:59:44] [info] [User: guest] New user registered (ID: 7) - Email: consultant@codingfactory.com - Role: counselor
+[2025-11-30 00:59:48] [info] [User: 7] User logged out: consultant@codingfactory.com
+[2025-11-30 00:59:56] [info] [User: guest] User authenticated: client@gmail.com
+[2025-11-30 00:59:56] [info] [User: 6] User logged in: client@gmail.com
+[2025-11-30 01:00:02] [info] [User: 6] User logged out: client@gmail.com
+[2025-11-30 01:00:10] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-30 01:00:10] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-30 01:00:18] [info] [User: 1] Support request 1 updated - counselor_user_id: 7, statut: assignee
+[2025-11-30 01:00:18] [info] [User: 1] Conseiller 7 assigné à la demande 1 par admin 1
+[2025-11-30 01:00:18] [info] [User: 1] New message sent (ID: 1) for request 1
+[2025-11-30 01:00:21] [info] [User: 1] User logged out: admin@safeproject.com
+[2025-11-30 01:00:26] [info] [User: guest] User authenticated: consultant@codingfactory.com
+[2025-11-30 01:00:26] [info] [User: 7] User logged in: consultant@codingfactory.com
+[2025-11-30 01:00:32] [info] [User: 7] Support request 1 updated - counselor_user_id: 7, statut: en_cours
+[2025-11-30 01:00:32] [info] [User: 7] Demande 1 mise en cours par conseiller 7
+[2025-11-30 01:00:41] [info] [User: 7] SUCCESS: Counselor access granted for user 7
+[2025-11-30 01:00:41] [info] [User: 7] New message sent (ID: 2) for request 1
+[2025-11-30 01:00:41] [info] [User: 7] Message envoyé (ID: 2) sur la demande 1 par counselor
+[2025-11-30 01:00:56] [info] [User: 7] User logged out: consultant@codingfactory.com
+[2025-11-30 01:01:02] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-11-30 01:01:02] [info] [User: 5] User logged in: pierre.dubois@example.com
+[2025-11-30 01:01:09] [info] [User: 5] User logged out: pierre.dubois@example.com
+[2025-11-30 01:01:16] [info] [User: guest] User authenticated: client@gmail.com
+[2025-11-30 01:01:16] [info] [User: 6] User logged in: client@gmail.com
+[2025-11-30 01:01:29] [info] [User: 6] New message sent (ID: 3) for request 1
+[2025-11-30 01:01:29] [info] [User: 6] Message envoyé (ID: 3) sur la demande 1 par user
+[2025-11-30 01:02:50] [info] [User: 6] User logged out: client@gmail.com
+[2025-11-30 01:03:02] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-30 01:03:02] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-30 01:03:46] [info] [User: 1] User 7 updated
+[2025-11-30 01:03:46] [info] [User: 1] User 7 updated
+[2025-11-30 01:03:46] [info] [User: 1] Counselor 7 updated
+[2025-11-30 01:03:46] [info] [User: 1] Conseiller 7 mis à jour par admin 1
+[2025-11-30 01:03:55] [info] [User: 1] User logged out: admin@safeproject.com
+[2025-11-30 01:04:10] [warning] [User: guest] Failed authentication attempt for email: cons@gmail.com
+[2025-11-30 01:04:10] [warning] [User: guest] Failed login attempt for: cons@gmail.com
+[2025-11-30 01:04:17] [warning] [User: guest] Failed authentication attempt for email: consultant@gmail.com
+[2025-11-30 01:04:17] [warning] [User: guest] Failed login attempt for: consultant@gmail.com
+[2025-11-30 01:04:27] [warning] [User: guest] Failed authentication attempt for email: consultant@gmail.com
+[2025-11-30 01:04:27] [warning] [User: guest] Failed login attempt for: consultant@gmail.com
+[2025-11-30 01:04:38] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-30 01:04:38] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-30 01:04:58] [info] [User: 1] User logged out: admin@safeproject.com
+[2025-11-30 01:05:03] [info] [User: guest] User authenticated: consultant@codingfactory.com
+[2025-11-30 01:05:03] [info] [User: 7] User logged in: consultant@codingfactory.com
+[2025-11-30 01:07:23] [info] [User: 7] User logged out: consultant@codingfactory.com
+[2025-11-30 01:07:44] [info] [User: guest] New user created (ID: 8) - Email: cons1@gmail.com
+[2025-11-30 01:07:44] [info] [User: guest] New user registered (ID: 8) - Email: cons1@gmail.com - Role: counselor
+[2025-11-30 01:07:54] [info] [User: 8] User logged out: cons1@gmail.com
+[2025-11-30 01:08:00] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-30 01:08:00] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-30 01:12:39] [info] [User: 1] User logged out: admin@safeproject.com
+[2025-11-30 01:12:59] [info] [User: guest] User authenticated: cons1@gmail.com
+[2025-11-30 01:12:59] [info] [User: 8] User logged in: cons1@gmail.com
+[2025-11-30 01:13:11] [info] [User: 8] User 8 updated
+[2025-11-30 01:13:11] [info] [User: 8] Counselor 8 toggled availability to: available
+[2025-11-30 01:13:22] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-30 01:13:22] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-30 01:13:41] [info] [User: 8] User 8 updated
+[2025-11-30 01:13:41] [info] [User: 8] Counselor 8 toggled availability to: unavailable
+[2025-11-30 01:14:15] [info] [User: 1] User 8 updated
+[2025-11-30 01:14:15] [info] [User: 1] User 8 updated
+[2025-11-30 01:14:15] [info] [User: 1] Counselor 8 updated
+[2025-11-30 01:14:15] [info] [User: 1] Conseiller 8 mis à jour par admin 1
+[2025-11-30 01:14:42] [info] [User: 8] User 8 updated
+[2025-11-30 01:14:42] [info] [User: 8] Counselor 8 toggled availability to: unavailable
+[2025-11-30 01:16:55] [info] [User: 8] User 8 updated
+[2025-11-30 01:16:55] [info] [User: 8] Counselor 8 toggled availability to: available
+[2025-11-30 01:17:08] [info] [User: 8] User 8 updated
+[2025-11-30 01:17:08] [info] [User: 8] Counselor 8 toggled availability to: unavailable
+[2025-11-30 01:17:20] [info] [User: 1] User logged out: admin@safeproject.com
+[2025-11-30 01:17:27] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-11-30 01:17:27] [info] [User: 5] User logged in: pierre.dubois@example.com
+[2025-11-30 01:17:43] [info] [User: 5] New support request created (ID: 2) by user 5
+[2025-11-30 01:17:43] [info] [User: 5] Demande de support créée (ID: 2) par utilisateur 5
+[2025-11-30 01:17:53] [info] [User: 5] User logged out: pierre.dubois@example.com
+[2025-11-30 01:17:59] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-30 01:17:59] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-30 01:18:13] [info] [User: 1] Support request 2 updated - counselor_user_id: 8, statut: assignee
+[2025-11-30 01:18:13] [info] [User: 1] Conseiller 8 assigné à la demande 2 par admin 1
+[2025-11-30 01:18:13] [info] [User: 1] New message sent (ID: 4) for request 2
+[2025-11-30 01:18:23] [info] [User: 1] User logged out: admin@safeproject.com
+[2025-11-30 01:18:33] [info] [User: guest] User authenticated: cons1@gmail.com
+[2025-11-30 01:18:33] [info] [User: 8] User logged in: cons1@gmail.com
+[2025-11-30 01:18:43] [info] [User: 8] Support request 2 updated - counselor_user_id: 8, statut: en_cours
+[2025-11-30 01:18:43] [info] [User: 8] Demande 2 mise en cours par conseiller 8
+[2025-11-30 01:18:50] [info] [User: 8] SUCCESS: Counselor access granted for user 8
+[2025-11-30 01:18:50] [info] [User: 8] New message sent (ID: 5) for request 2
+[2025-11-30 01:18:50] [info] [User: 8] Message envoyé (ID: 5) sur la demande 2 par counselor
+[2025-11-30 01:19:03] [info] [User: 8] SUCCESS: Counselor access granted for user 8
+[2025-11-30 01:19:03] [info] [User: 8] New message sent (ID: 6) for request 2
+[2025-11-30 01:19:03] [info] [User: 8] Message envoyé (ID: 6) sur la demande 2 par counselor
+[2025-11-30 01:19:10] [info] [User: 8] User 8 updated
+[2025-11-30 01:19:10] [info] [User: 8] Counselor 8 toggled availability to: available
+[2025-11-30 01:19:21] [info] [User: 8] User logged out: cons1@gmail.com
+[2025-11-30 01:19:29] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-30 01:19:29] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-30 12:24:29] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-11-30 12:24:29] [info] [User: 5] User logged in: pierre.dubois@example.com
+[2025-11-30 12:24:47] [info] [User: 5] New support request created (ID: 3) by user 5
+[2025-11-30 12:24:47] [info] [User: 5] Demande de support créée (ID: 3) par utilisateur 5
+[2025-11-30 12:24:52] [info] [User: 5] User logged out: pierre.dubois@example.com
+[2025-11-30 12:25:24] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-30 12:25:24] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-30 12:25:35] [info] [User: 1] Support request 3 updated - counselor_user_id: 3, statut: assignee
+[2025-11-30 12:25:35] [info] [User: 1] Conseiller 3 assigné à la demande 3 par admin 1
+[2025-11-30 12:25:35] [info] [User: 1] New message sent (ID: 7) for request 3
+[2025-11-30 12:27:27] [info] [User: 1] User logged out: admin@safeproject.com
+[2025-11-30 12:33:29] [info] [User: guest] New user created (ID: 9) - Email: dhia1@gmail.com
+[2025-11-30 12:33:29] [info] [User: guest] New user registered (ID: 9) - Email: dhia1@gmail.com - Role: user
+[2025-11-30 12:33:37] [info] [User: 9] User logged out: dhia1@gmail.com
+[2025-11-30 12:43:59] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-11-30 12:43:59] [info] [User: 5] User logged in: pierre.dubois@example.com
+[2025-11-30 12:44:16] [info] [User: 5] New support request created (ID: 1) by user 5
+[2025-11-30 12:44:16] [info] [User: 5] Demande de support créée (ID: 1) par utilisateur 5
+[2025-11-30 12:44:20] [info] [User: 5] User logged out: pierre.dubois@example.com
+[2025-11-30 12:44:26] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-30 12:44:26] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-30 12:44:34] [info] [User: 1] Support request 1 updated - counselor_user_id: 3, statut: assignee
+[2025-11-30 12:44:34] [info] [User: 1] Conseiller 3 assigné à la demande 1 par admin 1
+[2025-11-30 12:44:34] [info] [User: 1] New message sent (ID: 1) for request 1
+[2025-11-30 12:44:39] [info] [User: 1] User logged out: admin@safeproject.com
+[2025-11-30 12:44:46] [info] [User: guest] User authenticated: marie.martin@example.com
+[2025-11-30 12:44:46] [info] [User: 3] User logged in: marie.martin@example.com
+[2025-11-30 12:44:57] [info] [User: 3] SUCCESS: Counselor access granted for user 3
+[2025-11-30 12:45:03] [info] [User: 3] User logged out: marie.martin@example.com
+[2025-11-30 12:45:08] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-11-30 12:45:08] [info] [User: 5] User logged in: pierre.dubois@example.com
+[2025-11-30 12:45:24] [info] [User: 5] New message sent (ID: 2) for request 1
+[2025-11-30 12:45:24] [info] [User: 5] Support request 1 updated - counselor_user_id: 3, statut: en_cours
+[2025-11-30 12:45:24] [info] [User: 5] Message envoyé (ID: 2) sur la demande 1 par user
+[2025-11-30 12:45:32] [info] [User: 5] User logged out: pierre.dubois@example.com
+[2025-11-30 12:45:38] [info] [User: guest] User authenticated: marie.martin@example.com
+[2025-11-30 12:45:38] [info] [User: 3] User logged in: marie.martin@example.com
+[2025-11-30 12:46:03] [info] [User: 3] SUCCESS: Counselor access granted for user 3
+[2025-11-30 12:46:11] [info] [User: 3] SUCCESS: Counselor access granted for user 3
+[2025-11-30 12:46:11] [info] [User: 3] New message sent (ID: 3) for request 1
+[2025-11-30 12:46:11] [info] [User: 3] Message envoyé (ID: 3) sur la demande 1 par counselor
+[2025-11-30 12:46:20] [info] [User: 3] User logged out: marie.martin@example.com
+[2025-11-30 12:46:42] [info] [User: guest] New user created (ID: 6) - Email: user10@gmail.com - Role: user
+[2025-11-30 12:46:42] [info] [User: guest] New user registered (ID: 6) - Email: user10@gmail.com - Role: user
+[2025-11-30 12:46:46] [info] [User: 6] User logged out: user10@gmail.com
+[2025-11-30 12:47:03] [info] [User: guest] New user created (ID: 7) - Email: user5@gmail.com - Role: user
+[2025-11-30 12:47:03] [info] [User: guest] New user registered (ID: 7) - Email: user5@gmail.com - Role: user
+[2025-11-30 12:47:07] [info] [User: 7] User logged out: user5@gmail.com
+[2025-11-30 12:51:04] [info] [User: guest] User authenticated: user5@gmail.com
+[2025-11-30 12:51:04] [info] [User: 7] User logged in: user5@gmail.com
+[2025-11-30 12:51:18] [info] [User: 7] New support request created (ID: 2) by user 7
+[2025-11-30 12:51:18] [info] [User: 7] Demande de support créée (ID: 2) par utilisateur 7
+[2025-11-30 12:51:21] [info] [User: 7] User logged out: user5@gmail.com
+[2025-11-30 12:51:27] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-30 12:51:27] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-30 12:51:33] [info] [User: 1] Support request 2 updated - counselor_user_id: 4, statut: assignee
+[2025-11-30 12:51:33] [info] [User: 1] Conseiller 4 assigné à la demande 2 par admin 1
+[2025-11-30 12:51:33] [info] [User: 1] New message sent (ID: 4) for request 2
+[2025-11-30 12:51:47] [info] [User: 1] User logged out: admin@safeproject.com
+[2025-11-30 12:52:19] [info] [User: guest] Attempting to register counselor - Email: coni@gmail.com, Specialite: azertyuiopoiuyttttttttttttttttttttttttttttttttttttttttttttt, Biographie length: 107
+[2025-11-30 12:52:19] [info] [User: guest] DEBUG Counselor Insert - Specialite: azertyuiopoiuyttttttttttttttttttttttttttttttttttttttttttttt, Biographie length: 107, StatutCounselor: actif, Nombre: 0
+[2025-11-30 12:52:19] [info] [User: guest] New user created (ID: 8) - Email: coni@gmail.com - Role: counselor
+[2025-11-30 12:52:19] [info] [User: guest] New user registered (ID: 8) - Email: coni@gmail.com - Role: counselor
+[2025-11-30 12:52:19] [info] [User: guest] Counselor profile created for user 8 - Specialite: azertyuiopoiuyttttttttttttttttttttttttttttttttttttttttttttt, Statut: actif
+[2025-11-30 13:04:09] [info] [User: 8] User logged out: coni@gmail.com
+[2025-11-30 18:07:38] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-11-30 18:07:38] [info] [User: 5] User logged in: pierre.dubois@example.com
+[2025-11-30 18:07:56] [info] [User: 5] Support message 2 updated
+[2025-11-30 18:07:56] [info] [User: 5] Message 2 modifié par l'utilisateur 5
+[2025-11-30 18:08:08] [warning] [User: 5] Support message 2 deleted
+[2025-11-30 18:08:08] [info] [User: 5] Message 2 supprimé par l'utilisateur 5
+[2025-11-30 18:08:14] [info] [User: 5] User logged out: pierre.dubois@example.com
+[2025-11-30 18:08:22] [info] [User: guest] User authenticated: marie.martin@example.com
+[2025-11-30 18:08:22] [info] [User: 3] User logged in: marie.martin@example.com
+[2025-11-30 18:08:31] [info] [User: 3] SUCCESS: Counselor access granted for user 3
+[2025-11-30 18:08:36] [info] [User: 3] SUCCESS: Counselor access granted for user 3
+[2025-11-30 18:08:36] [info] [User: 3] New message sent (ID: 5) for request 1
+[2025-11-30 18:08:36] [info] [User: 3] Message envoyé (ID: 5) sur la demande 1 par counselor
+[2025-11-30 18:10:04] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-11-30 18:10:04] [info] [User: 5] User logged in: pierre.dubois@example.com
+[2025-11-30 18:10:19] [info] [User: 5] New support request created (ID: 3) by user 5
+[2025-11-30 18:10:19] [info] [User: 5] Demande de support créée (ID: 3) par utilisateur 5
+[2025-11-30 18:10:24] [info] [User: 5] User logged out: pierre.dubois@example.com
+[2025-11-30 18:10:31] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-30 18:10:31] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-30 18:10:46] [info] [User: 1] Support request 3 updated - counselor_user_id: 3, statut: assignee
+[2025-11-30 18:10:46] [info] [User: 1] Conseiller 3 assigné à la demande 3 par admin 1
+[2025-11-30 18:10:46] [info] [User: 1] New message sent (ID: 6) for request 3
+[2025-11-30 18:12:15] [warning] [User: 3] Support message 5 deleted
+[2025-11-30 18:12:15] [info] [User: 3] Message 5 supprimé par l'utilisateur 3
+[2025-11-30 18:12:25] [info] [User: 3] Support message 3 updated
+[2025-11-30 18:12:25] [info] [User: 3] Message 3 modifié par l'utilisateur 3
+[2025-11-30 18:12:31] [info] [User: 3] User logged out: marie.martin@example.com
+[2025-11-30 18:12:41] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-11-30 18:12:41] [info] [User: 5] User logged in: pierre.dubois@example.com
+[2025-11-30 18:16:22] [warning] [User: 5] Support request 1 deleted
+[2025-11-30 18:16:22] [info] [User: 5] Demande 1 supprimée par l'utilisateur 5
+[2025-11-30 18:16:34] [warning] [User: 5] Support request 3 deleted
+[2025-11-30 18:16:34] [info] [User: 5] Demande 3 supprimée par l'utilisateur 5
+[2025-11-30 18:16:56] [info] [User: 5] New support request created (ID: 4) by user 5
+[2025-11-30 18:16:56] [info] [User: 5] Demande de support créée (ID: 4) par utilisateur 5
+[2025-11-30 18:18:48] [info] [User: 5] Support request 4 marked as cancelled
+[2025-11-30 18:18:48] [info] [User: 5] Demande 4 annulée par l'utilisateur 5
+[2025-11-30 18:18:56] [warning] [User: 5] Support request 4 deleted
+[2025-11-30 18:18:56] [info] [User: 5] Demande 4 supprimée par l'utilisateur 5
+[2025-11-30 18:19:08] [info] [User: 5] New support request created (ID: 5) by user 5
+[2025-11-30 18:19:08] [info] [User: 5] Demande de support créée (ID: 5) par utilisateur 5
+[2025-11-30 18:19:13] [info] [User: 5] Support request 5 marked as cancelled
+[2025-11-30 18:19:13] [info] [User: 5] Demande 5 annulée par l'utilisateur 5
+[2025-11-30 18:21:22] [warning] [User: 5] Support request 5 deleted
+[2025-11-30 18:21:22] [info] [User: 5] Demande 5 supprimée par l'utilisateur 5
+[2025-11-30 18:21:35] [info] [User: 5] New support request created (ID: 6) by user 5
+[2025-11-30 18:21:35] [info] [User: 5] Demande de support créée (ID: 6) par utilisateur 5
+[2025-11-30 18:21:52] [info] [User: 1] Support request 6 updated - counselor_user_id: 4, statut: assignee
+[2025-11-30 18:21:52] [info] [User: 1] Conseiller 4 assigné à la demande 6 par admin 1
+[2025-11-30 18:21:52] [info] [User: 1] New message sent (ID: 7) for request 6
+[2025-11-30 18:21:58] [info] [User: 5] User logged out: pierre.dubois@example.com
+[2025-11-30 18:22:03] [info] [User: guest] User authenticated: sophie.bernard@example.com
+[2025-11-30 18:22:03] [info] [User: 4] User logged in: sophie.bernard@example.com
+[2025-11-30 18:22:12] [info] [User: 4] Support request 6 updated - counselor_user_id: 4, statut: en_cours
+[2025-11-30 18:22:12] [info] [User: 4] Demande 6 mise en cours par conseiller 4
+[2025-11-30 18:25:15] [info] [User: 4] User logged out: sophie.bernard@example.com
+[2025-11-30 18:29:28] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-11-30 18:29:28] [info] [User: 5] User logged in: pierre.dubois@example.com
+[2025-11-30 18:29:56] [info] [User: 5] User 5 updated
+[2025-11-30 18:29:56] [info] [User: 5] Profil de l'utilisateur 5 mis à jour
+[2025-11-30 18:30:02] [info] [User: 5] User logged out: pierre@example.com
+[2025-11-30 18:30:10] [info] [User: guest] User authenticated: pierre@example.com
+[2025-11-30 18:30:10] [info] [User: 5] User logged in: pierre@example.com
+[2025-11-30 18:30:23] [warning] [User: 5] Support request 6 deleted
+[2025-11-30 18:30:23] [info] [User: 5] Demande 6 supprimée par l'utilisateur 5
+[2025-11-30 18:30:38] [info] [User: 5] New support request created (ID: 7) by user 5
+[2025-11-30 18:30:38] [info] [User: 5] Demande de support créée (ID: 7) par utilisateur 5
+[2025-11-30 18:31:31] [info] [User: 1] Support request 7 updated - counselor_user_id: 4, statut: assignee
+[2025-11-30 18:31:31] [info] [User: 1] Conseiller 4 assigné à la demande 7 par admin 1
+[2025-11-30 18:31:31] [info] [User: 1] New message sent (ID: 8) for request 7
+[2025-11-30 18:31:31] [info] [User: 1] New message sent (ID: 9) for request 7
+[2025-11-30 18:31:33] [info] [User: 1] User logged out: admin@safeproject.com
+[2025-11-30 18:31:44] [info] [User: 5] User logged out: pierre@example.com
+[2025-11-30 18:31:49] [info] [User: guest] User authenticated: sophie.bernard@example.com
+[2025-11-30 18:31:49] [info] [User: 4] User logged in: sophie.bernard@example.com
+[2025-11-30 18:32:15] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-30 18:32:22] [info] [User: 4] Support request 7 updated - counselor_user_id: 4, statut: en_cours
+[2025-11-30 18:32:22] [info] [User: 4] Demande 7 mise en cours par conseiller 4
+[2025-11-30 18:32:25] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-30 18:32:31] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-30 18:32:31] [info] [User: 4] New message sent (ID: 10) for request 7
+[2025-11-30 18:32:31] [info] [User: 4] Message envoyé (ID: 10) sur la demande 7 par counselor
+[2025-11-30 18:32:40] [info] [User: 4] Support message 10 updated
+[2025-11-30 18:32:40] [info] [User: 4] Message 10 modifié par l'utilisateur 4
+[2025-11-30 18:34:50] [info] [User: 4] User 4 updated
+[2025-11-30 18:34:51] [info] [User: 4] Profil de l'utilisateur 4 mis à jour
+[2025-11-30 18:35:05] [info] [User: 4] User logged out: sophieeeee.bernard@example.com
+[2025-11-30 18:35:13] [info] [User: guest] User authenticated: pierre@example.com
+[2025-11-30 18:35:13] [info] [User: 5] User logged in: pierre@example.com
+[2025-11-30 18:35:21] [warning] [User: 5] Support request 7 deleted
+[2025-11-30 18:35:21] [info] [User: 5] Demande 7 supprimée par l'utilisateur 5
+[2025-11-30 18:35:26] [info] [User: 5] User logged out: pierre@example.com
+[2025-11-30 18:35:34] [info] [User: guest] User authenticated: sophieeeee.bernard@example.com
+[2025-11-30 18:35:34] [info] [User: 4] User logged in: sophieeeee.bernard@example.com
+[2025-11-30 18:36:58] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-30 18:36:58] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-30 18:37:24] [info] [User: 4] User logged out: sophieeeee.bernard@example.com
+[2025-11-30 18:37:29] [info] [User: guest] User authenticated: sophieeeee.bernard@example.com
+[2025-11-30 18:37:29] [info] [User: 4] User logged in: sophieeeee.bernard@example.com
+[2025-11-30 18:37:38] [info] [User: 4] User logged out: sophieeeee.bernard@example.com
+[2025-11-30 18:37:44] [info] [User: guest] User authenticated: marie.martin@example.com
+[2025-11-30 18:37:44] [info] [User: 3] User logged in: marie.martin@example.com
+[2025-11-30 18:37:59] [info] [User: 3] User logged out: marie.martin@example.com
+[2025-11-30 18:38:06] [info] [User: guest] User authenticated: pierre@example.com
+[2025-11-30 18:38:06] [info] [User: 5] User logged in: pierre@example.com
+[2025-11-30 18:38:20] [info] [User: 5] New support request created (ID: 8) by user 5
+[2025-11-30 18:38:20] [info] [User: 5] Demande de support créée (ID: 8) par utilisateur 5
+[2025-11-30 19:05:53] [info] [User: 5] User logged out: pierre@example.com
+[2025-11-30 19:07:10] [info] [User: guest] Attempting to register counselor - Email: kaka@gmail.com, Specialite: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, Biographie length: 63
+[2025-11-30 19:07:10] [info] [User: guest] DEBUG Counselor Insert - Specialite: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, Biographie length: 63, StatutCounselor: actif, Nombre: 0
+[2025-11-30 19:07:10] [info] [User: guest] New user created (ID: 9) - Email: kaka@gmail.com - Role: counselor
+[2025-11-30 19:07:10] [info] [User: guest] New user registered (ID: 9) - Email: kaka@gmail.com - Role: counselor
+[2025-11-30 19:07:10] [info] [User: guest] Counselor profile created for user 9 - Specialite: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, Statut: actif
+[2025-11-30 19:07:22] [info] [User: 9] User logged out: kaka@gmail.com
+[2025-11-30 19:21:22] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-30 19:21:22] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-30 19:21:25] [info] [User: 1] User logged out: admin@safeproject.com
+[2025-11-30 19:21:34] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-11-30 19:21:34] [info] [User: 5] User logged in: pierre.dubois@example.com
+[2025-11-30 19:21:49] [info] [User: 5] New support request created (ID: 1) by user 5
+[2025-11-30 19:21:49] [info] [User: 5] Demande de support créée (ID: 1) par utilisateur 5
+[2025-11-30 19:22:01] [info] [User: 5] User 5 updated
+[2025-11-30 19:22:01] [info] [User: 5] Profil de l'utilisateur 5 mis à jour
+[2025-11-30 19:22:18] [info] [User: 5] User logged out: pierre@example.com
+[2025-11-30 19:22:24] [info] [User: guest] User authenticated: pierre@example.com
+[2025-11-30 19:22:24] [info] [User: 5] User logged in: pierre@example.com
+[2025-11-30 19:22:28] [info] [User: 1] User logged out: admin@safeproject.com
+[2025-11-30 19:22:34] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-11-30 19:22:34] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-11-30 19:22:53] [info] [User: 1] Support request 1 updated - counselor_user_id: 4, statut: assignee
+[2025-11-30 19:22:53] [info] [User: 1] Conseiller 4 assigné à la demande 1 par admin 1
+[2025-11-30 19:22:53] [info] [User: 1] New message sent (ID: 1) for request 1
+[2025-11-30 19:22:53] [info] [User: 1] New message sent (ID: 2) for request 1
+[2025-11-30 19:22:58] [info] [User: 5] User logged out: pierre@example.com
+[2025-11-30 19:23:04] [info] [User: guest] User authenticated: sophie.bernard@example.com
+[2025-11-30 19:23:04] [info] [User: 4] User logged in: sophie.bernard@example.com
+[2025-11-30 19:23:10] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-30 19:23:13] [info] [User: 4] SUCCESS: Counselor access granted for user 4
+[2025-11-30 19:23:13] [info] [User: 4] New message sent (ID: 3) for request 1
+[2025-11-30 19:23:13] [info] [User: 4] Support request 1 updated - counselor_user_id: 4, statut: en_cours
+[2025-11-30 19:23:13] [info] [User: 4] Message envoyé (ID: 3) sur la demande 1 par counselor
+[2025-11-30 19:23:20] [info] [User: 4] Support message 3 updated
+[2025-11-30 19:23:20] [info] [User: 4] Message 3 modifié par l'utilisateur 4
+[2025-11-30 19:23:29] [info] [User: 4] User logged out: sophie.bernard@example.com
+[2025-11-30 19:23:36] [warning] [User: guest] Failed authentication attempt for email: pierre@example.com
+[2025-11-30 19:23:36] [warning] [User: guest] Failed login attempt for: pierre@example.com
+[2025-11-30 19:23:40] [info] [User: guest] User authenticated: pierre@example.com
+[2025-11-30 19:23:40] [info] [User: 5] User logged in: pierre@example.com
+[2025-11-30 19:24:00] [warning] [User: 5] Support request 1 deleted
+[2025-11-30 19:24:00] [info] [User: 5] Demande 1 supprimée par l'utilisateur 5
+[2025-11-30 19:24:51] [info] [User: 5] User logged out: pierre@example.com
+[2025-11-30 19:25:17] [info] [User: guest] Attempting to register counselor - Email: bb@gmail.com, Specialite: tgrhefzdzfgredzas, Biographie length: 70
+[2025-11-30 19:25:17] [info] [User: guest] DEBUG Counselor Insert - Specialite: tgrhefzdzfgredzas, Biographie length: 70, StatutCounselor: actif, Nombre: 0
+[2025-11-30 19:25:17] [info] [User: guest] New user created (ID: 6) - Email: bb@gmail.com - Role: counselor
+[2025-11-30 19:25:17] [info] [User: guest] New user registered (ID: 6) - Email: bb@gmail.com - Role: counselor
+[2025-11-30 19:25:17] [info] [User: guest] Counselor profile created for user 6 - Specialite: tgrhefzdzfgredzas, Statut: actif
+[2025-11-30 19:25:20] [info] [User: 6] User logged out: bb@gmail.com
+[2025-11-30 19:27:01] [info] [User: guest] Attempting to register counselor - Email: dhia@gmail.com, Specialite: kijuhygtfreu-yhtgrfy-tr, Biographie length: 68
+[2025-11-30 19:27:01] [info] [User: guest] DEBUG Counselor Insert - Specialite: kijuhygtfreu-yhtgrfy-tr, Biographie length: 68, StatutCounselor: actif, Nombre: 0
+[2025-11-30 19:27:01] [info] [User: guest] New user created (ID: 7) - Email: dhia@gmail.com - Role: counselor
+[2025-11-30 19:27:01] [info] [User: guest] New user registered (ID: 7) - Email: dhia@gmail.com - Role: counselor
+[2025-11-30 19:27:01] [info] [User: guest] Counselor profile created for user 7 - Specialite: kijuhygtfreu-yhtgrfy-tr, Statut: actif
+[2025-11-30 19:27:03] [info] [User: 7] User logged out: dhia@gmail.com
+[2025-11-30 19:33:51] [info] [User: guest] Attempting to register counselor - Email: dhiaaa@gmail.com, Specialite: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, Biographie length: 52
+[2025-11-30 19:33:51] [info] [User: guest] DEBUG Counselor Insert - Specialite: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, Biographie length: 52, StatutCounselor: actif, Nombre: 0
+[2025-11-30 19:33:51] [info] [User: guest] New user created (ID: 8) - Email: dhiaaa@gmail.com - Role: counselor
+[2025-11-30 19:33:51] [info] [User: guest] New user registered (ID: 8) - Email: dhiaaa@gmail.com - Role: counselor
+[2025-11-30 19:33:51] [info] [User: guest] Counselor profile created for user 8 - Specialite: aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa, Statut: actif
+[2025-11-30 19:33:55] [info] [User: 8] User logged out: dhiaaa@gmail.com
+[2025-11-30 19:34:10] [info] [User: guest] New user created (ID: 9) - Email: aaaaaa@gmail.com - Role: user
+[2025-11-30 19:34:10] [info] [User: guest] New user registered (ID: 9) - Email: aaaaaa@gmail.com - Role: user
+[2025-11-30 19:37:28] [info] [User: 1] User logged out: admin@safeproject.com

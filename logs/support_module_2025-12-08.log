@@ -1,0 +1,69 @@
+[2025-12-08 01:00:22] [info] [User: guest] New user created (ID: 6) - Email: aziz@gmail.com - Role: user
+[2025-12-08 01:00:22] [info] [User: guest] New user registered (ID: 6) - Email: aziz@gmail.com - Role: user
+[2025-12-08 01:02:17] [info] [User: 6] New support request created (ID: 2) by user 6
+[2025-12-08 01:02:17] [info] [User: 6] Demande de support créée (ID: 2) par utilisateur 6
+[2025-12-08 01:03:52] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-12-08 01:03:52] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-12-08 01:04:06] [info] [User: 1] Support request 2 updated - counselor_user_id: 3, statut: assignee
+[2025-12-08 01:04:06] [info] [User: 1] Conseiller 3 assigné à la demande 2 par admin 1
+[2025-12-08 01:04:06] [info] [User: 1] New message sent (ID: 4) for request 2
+[2025-12-08 01:04:06] [info] [User: 1] New message sent (ID: 5) for request 2
+[2025-12-08 01:04:11] [info] [User: 1] User logged out: admin@safeproject.com
+[2025-12-08 01:04:19] [info] [User: guest] User authenticated: marie.martin@example.com
+[2025-12-08 01:04:19] [info] [User: 3] User logged in: marie.martin@example.com
+[2025-12-08 01:04:30] [info] [User: 3] Support request 2 updated - counselor_user_id: 3, statut: en_cours
+[2025-12-08 01:04:30] [info] [User: 3] Demande 2 mise en cours par conseiller 3
+[2025-12-08 01:04:35] [info] [User: 3] SUCCESS: Counselor access granted for user 3
+[2025-12-08 01:04:40] [info] [User: 3] SUCCESS: Counselor access granted for user 3
+[2025-12-08 01:04:40] [info] [User: 3] New message sent (ID: 6) for request 2
+[2025-12-08 01:04:40] [info] [User: 3] Message envoyé (ID: 6) sur la demande 2 par counselor
+[2025-12-08 01:09:34] [info] [User: 6] User logged out: aziz@gmail.com
+[2025-12-08 01:10:04] [info] [User: guest] New user created (ID: 7) - Email: dhia.trb@gmail.com - Role: user
+[2025-12-08 01:10:04] [info] [User: guest] New user registered (ID: 7) - Email: dhia.trb@gmail.com - Role: user
+[2025-12-08 01:10:58] [info] [User: 7] User logged out: dhia.trb@gmail.com
+[2025-12-08 01:11:09] [info] [User: guest] User authenticated: dhia.trb@gmail.com
+[2025-12-08 01:11:09] [info] [User: 7] User logged in: dhia.trb@gmail.com
+[2025-12-08 01:12:57] [info] [User: 7] User logged out: dhia.trb@gmail.com
+[2025-12-08 01:13:17] [info] [User: guest] User authenticated: dhia.trb@gmail.com
+[2025-12-08 01:13:17] [info] [User: 7] User logged in: dhia.trb@gmail.com
+[2025-12-08 01:13:17] [info] [User: 7] Attempting to send welcome email to: dhia.trb@gmail.com
+[2025-12-08 01:13:17] [info] [User: 7] DEBUG: Email saved to file: /mnt/c/WURK/neilphp/SAFEProject/controller/../logs/email_debug_2025-12-08_01-13-17.html
+[2025-12-08 01:13:17] [info] [User: 7] DEBUG: Email content preview (first 200 chars): 
+    
+    
+    
+        
+        Bienvenue sur SAFEProject
+        
+            body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4; }
+            .conta
+[2025-12-08 01:13:29] [info] [User: 7] User logged out: dhia.trb@gmail.com
+[2025-12-08 01:13:45] [info] [User: guest] User authenticated: dhia.trb@gmail.com
+[2025-12-08 01:13:45] [info] [User: 7] User logged in: dhia.trb@gmail.com
+[2025-12-08 01:13:45] [info] [User: 7] Attempting to send welcome email to: dhia.trb@gmail.com
+[2025-12-08 01:13:45] [info] [User: 7] DEBUG: Email saved to file: /mnt/c/WURK/neilphp/SAFEProject/controller/../logs/email_debug_2025-12-08_01-13-45.html
+[2025-12-08 01:13:45] [info] [User: 7] DEBUG: Email content preview (first 200 chars): 
+    
+    
+    
+        
+        Bienvenue sur SAFEProject
+        
+            body { font-family: Arial, sans-serif; margin: 0; padding: 20px; background-color: #f4f4f4; }
+            .conta
+[2025-12-08 01:35:29] [info] [User: guest] User authenticated: sophie.bernard@example.com
+[2025-12-08 01:35:29] [info] [User: 4] User logged in: sophie.bernard@example.com
+[2025-12-08 01:36:19] [info] [User: 7] User logged out: dhia.trb@gmail.com
+[2025-12-08 01:36:26] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-12-08 01:36:26] [info] [User: 5] User logged in: pierre.dubois@example.com
+[2025-12-08 01:39:51] [info] [User: 5] User logged out: pierre.dubois@example.com
+[2025-12-08 01:40:04] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-12-08 01:40:04] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-12-08 01:52:30] [info] [User: 1] User logged out: admin@safeproject.com
+[2025-12-08 01:52:38] [warning] [User: guest] Failed authentication attempt for email: pierre.dubois@example.com
+[2025-12-08 01:52:38] [warning] [User: guest] Failed login attempt for: pierre.dubois@example.com
+[2025-12-08 01:52:44] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-12-08 01:52:44] [info] [User: 5] User logged in: pierre.dubois@example.com
+[2025-12-08 01:56:45] [info] [User: 5] User logged out: pierre.dubois@example.com
+[2025-12-08 02:08:29] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-12-08 02:08:29] [info] [User: 1] User logged in: admin@safeproject.com

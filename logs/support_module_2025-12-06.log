@@ -1,0 +1,11 @@
+[2025-12-06 16:52:58] [info] [User: guest] User authenticated: admin@safeproject.com
+[2025-12-06 16:52:58] [info] [User: 1] User logged in: admin@safeproject.com
+[2025-12-06 16:53:03] [info] [User: 1] User logged out: admin@safeproject.com
+[2025-12-06 16:54:43] [info] [User: guest] User authenticated: sophie.bernard@example.com
+[2025-12-06 16:54:43] [info] [User: 4] User logged in: sophie.bernard@example.com
+[2025-12-06 16:54:52] [info] [User: 4] User logged out: sophie.bernard@example.com
+[2025-12-06 17:01:14] [info] [User: guest] User authenticated: sophie.bernard@example.com
+[2025-12-06 17:01:14] [info] [User: 4] User logged in: sophie.bernard@example.com
+[2025-12-06 17:01:20] [info] [User: 4] User logged out: sophie.bernard@example.com
+[2025-12-06 17:01:50] [info] [User: guest] User authenticated: pierre.dubois@example.com
+[2025-12-06 17:01:50] [info] [User: 5] User logged in: pierre.dubois@example.com
