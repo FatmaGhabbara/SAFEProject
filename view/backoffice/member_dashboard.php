@@ -1,6 +1,14 @@
 <?php
 // DÉMARRER LA SESSION EN PREMIER
 session_start();
+// Après session_start() et avant require_once
+require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/controller/AuthController.php';
+
+// Après la création de $userController
+$authController = new AuthController();
+$welcomeMessage = $authController->getWelcomeMessage();
+$securityAlert = $authController->getSecurityAlert();
+$loginInfo = $authController->getLastLoginInfo();
 
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['user_id'])) {
@@ -40,7 +48,17 @@ function getProfilePictureUrl($user, $default = 'default-avatar.png') {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <title>SafeSpace - Dashboard <?= $roleName ?></title>
+    <!-- Dans la section principale après le titre -->
+<div class="container-fluid">
+    <?php if ($welcomeMessage): ?>
+    <div class="alert alert-primary mb-4">
+        <i class="fas fa-map-marker-alt mr-2"></i>
+        <?= htmlspecialchars($welcomeMessage) ?>
+    </div>
+    <?php endif; ?>
     
+    <!-- Le reste de votre code existant -->
+</div>
     <link href="assets/vendor/fontawesome-free/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="assets/css/sb-admin-2.min.css" rel="stylesheet">

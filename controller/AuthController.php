@@ -4,12 +4,100 @@ require_once __DIR__ . '/../controller/usercontroller.php';
 
 class AuthController {
     private $userController;
+    private $maxAttempts = 5; // Nombre maximum de tentatives
+    private $lockoutTime = 900; // 15 minutes en secondes
 
     public function __construct() {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
         $this->userController = new UserController();
+    }
+
+    // 🆕 MÉTHODE POUR GÉOLOCALISATION IP (ipapi.co)
+    private function getIpGeolocation($ip) {
+        try {
+            // API ipapi.co - simple et gratuit
+            $url = "https://ipapi.co/{$ip}/json/";
+            
+            // Utiliser file_get_contents (plus simple)
+            $context = stream_context_create([
+                'http' => [
+                    'timeout' => 3, // Timeout de 3 secondes
+                    'header' => "User-Agent: SafeSpace-App/1.0\r\n"
+                ]
+            ]);
+            
+            $response = @file_get_contents($url, false, $context);
+            
+            if ($response !== false) {
+                $data = json_decode($response, true);
+                
+                // Vérifier si l'API a retourné une erreur
+                if (isset($data['error'])) {
+                    error_log("❌ Erreur ipapi.co: " . ($data['reason'] ?? 'Unknown error'));
+                    return null;
+                }
+                
+                return [
+                    'ip' => $data['ip'] ?? $ip,
+                    'city' => $data['city'] ?? 'Inconnu',
+                    'region' => $data['region'] ?? 'Inconnu',
+                    'country' => $data['country_name'] ?? 'Inconnu',
+                    'country_code' => $data['country_code'] ?? 'XX',
+                    'timezone' => $data['timezone'] ?? 'UTC',
+                    'currency' => $data['currency'] ?? 'EUR',
+                    'languages' => $data['languages'] ?? 'fr',
+                    'isp' => $data['org'] ?? 'Inconnu',
+                    'latitude' => $data['latitude'] ?? null,
+                    'longitude' => $data['longitude'] ?? null
+                ];
+            }
+            
+            return null;
+            
+        } catch (Exception $e) {
+            error_log("❌ Exception géolocalisation: " . $e->getMessage());
+            return null;
+        }
+    }
+
+    // 🆕 MÉTHODE POUR DÉTECTER LE NAVIGATEUR
+    private function detectBrowser() {
+        $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? '';
+        
+        if (stripos($userAgent, 'Chrome') !== false && stripos($userAgent, 'Edg') === false) {
+            return 'Chrome';
+        } elseif (stripos($userAgent, 'Firefox') !== false) {
+            return 'Firefox';
+        } elseif (stripos($userAgent, 'Safari') !== false && stripos($userAgent, 'Chrome') === false) {
+            return 'Safari';
+        } elseif (stripos($userAgent, 'Edg') !== false) {
+            return 'Edge';
+        } elseif (stripos($userAgent, 'Opera') !== false || stripos($userAgent, 'OPR') !== false) {
+            return 'Opera';
+        } else {
+            return 'Navigateur';
+        }
+    }
+
+    // 🆕 MÉTHODE POUR DÉTECTER LE SYSTÈME D'EXPLOITATION
+    private function detectOS() {
+        $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? '';
+        
+        if (stripos($userAgent, 'Windows') !== false) {
+            return 'Windows';
+        } elseif (stripos($userAgent, 'Mac') !== false) {
+            return 'macOS';
+        } elseif (stripos($userAgent, 'Linux') !== false) {
+            return 'Linux';
+        } elseif (stripos($userAgent, 'Android') !== false) {
+            return 'Android';
+        } elseif (stripos($userAgent, 'iPhone') !== false || stripos($userAgent, 'iPad') !== false) {
+            return 'iOS';
+        } else {
+            return 'OS';
+        }
     }
 
     // MÉTHODE REGISTER
@@ -57,99 +145,205 @@ class AuthController {
         }
     }
 
-    // MÉTHODE LOGIN - VERSION CORRIGÉE
- // Dans AuthController.php - modifier la méthode login
-public function login($email, $password) {
-    if (empty($email) || empty($password)) {
-        return "Email et mot de passe requis.";
+    // MÉTHODE LOGIN AVEC GÉOLOCALISATION ET LIMITATION
+    public function login($email, $password) {
+        if (empty($email) || empty($password)) {
+            return "Email et mot de passe requis.";
+        }
+
+        try {
+            $email = trim($email);
+            $email = strtolower($email);
+
+            // Vérifier les tentatives dans la session
+            $ip = $_SERVER['REMOTE_ADDR'];
+            $attemptKey = 'login_attempts_' . md5($email . $ip);
+            
+            // Initialiser le compteur si non existant
+            if (!isset($_SESSION[$attemptKey])) {
+                $_SESSION[$attemptKey] = [
+                    'count' => 0,
+                    'last_attempt' => time(),
+                    'blocked_until' => 0
+                ];
+            }
+
+            $attempts = $_SESSION[$attemptKey];
+
+            // Vérifier si bloqué
+            if ($attempts['blocked_until'] > time()) {
+                $remaining = $attempts['blocked_until'] - time();
+                $minutes = ceil($remaining / 60);
+                return "Trop de tentatives. Réessayez dans " . $minutes . " minute(s)";
+            }
+
+            $userData = $this->userController->getUserByEmail($email);
+            
+            if (!$userData) {
+                // Incrémenter les tentatives
+                $_SESSION[$attemptKey]['count']++;
+                $_SESSION[$attemptKey]['last_attempt'] = time();
+                
+                // Bloquer après 5 tentatives
+                if ($_SESSION[$attemptKey]['count'] >= $this->maxAttempts) {
+                    $_SESSION[$attemptKey]['blocked_until'] = time() + $this->lockoutTime;
+                    return "Trop de tentatives échouées. Compte bloqué pour 15 minutes.";
+                }
+                
+                $remainingAttempts = $this->maxAttempts - $_SESSION[$attemptKey]['count'];
+                return "Email ou mot de passe incorrect. Tentatives restantes: " . $remainingAttempts;
+            }
+
+            if (!password_verify($password, $userData['password'])) {
+                // Incrémenter les tentatives
+                $_SESSION[$attemptKey]['count']++;
+                $_SESSION[$attemptKey]['last_attempt'] = time();
+                
+                // Bloquer après 5 tentatives
+                if ($_SESSION[$attemptKey]['count'] >= $this->maxAttempts) {
+                    $_SESSION[$attemptKey]['blocked_until'] = time() + $this->lockoutTime;
+                    return "Trop de tentatives échouées. Compte bloqué pour 15 minutes.";
+                }
+                
+                $remainingAttempts = $this->maxAttempts - $_SESSION[$attemptKey]['count'];
+                return "Email ou mot de passe incorrect. Tentatives restantes: " . $remainingAttempts;
+            }
+
+            // ✅ CONNEXION RÉUSSIE - Récupérer les infos de géolocalisation
+            
+            // 1. Détecter navigateur et OS
+            $browser = $this->detectBrowser();
+            $os = $this->detectOS();
+            
+            // 2. Récupérer la géolocalisation (asynchrone pour ne pas ralentir)
+            $geoData = $this->getIpGeolocation($ip);
+
+            // 3. Si succès, réinitialiser les tentatives
+            unset($_SESSION[$attemptKey]);
+
+            // Vérifier le statut - standardisé sur 'actif'
+            if ($userData['status'] !== 'actif') {
+                // Pour l'admin, on autorise même si en attente
+                if ($userData['role'] === 'admin') {
+                    // Activer automatiquement l'admin
+                    $this->userController->updateUserStatus($userData['id'], 'actif');
+                    $userData['status'] = 'actif';
+                } else {
+                    return "Votre compte est en attente d'approbation.";
+                }
+            }
+
+            // Stocker les informations de session (avec géolocalisation)
+            $_SESSION['user_id'] = $userData['id'];
+            $_SESSION['user_role'] = $userData['role'];
+            $_SESSION['fullname'] = $userData['nom'];
+            $_SESSION['user_email'] = $userData['email'];
+            $_SESSION['user_status'] = $userData['status'];
+            $_SESSION['last_login'] = time();
+            $_SESSION['login_ip'] = $ip;
+            $_SESSION['login_browser'] = $browser;
+            $_SESSION['login_os'] = $os;
+            
+            // Stocker la géolocalisation si disponible
+            if ($geoData) {
+                $_SESSION['login_geo'] = $geoData;
+            }
+
+            // Redirection selon le rôle
+            if ($userData['role'] === 'admin') {
+                header('Location: /SAFEProject/view/backoffice/index.php');
+                exit();
+            } elseif ($userData['role'] === 'conseilleur') {
+                header('Location: /SAFEProject/view/backoffice/adviser_dashboard.php');
+                exit();
+            } elseif ($userData['role'] === 'membre') {
+                header('Location: /SAFEProject/view/backoffice/member_dashboard.php');
+                exit();
+            } else {
+                header('Location: /SAFEProject/view/backoffice/member_dashboard.php');
+                exit();
+            }
+            
+        } catch (PDOException $e) {
+            error_log("❌ Erreur PDO login: " . $e->getMessage());
+            return "Erreur de connexion: " . $e->getMessage();
+        } catch (Exception $e) {
+            error_log("❌ Erreur login: " . $e->getMessage());
+            return "Erreur lors de la connexion.";
+        }
     }
 
-    try {
-        $email = trim($email);
-        $email = strtolower($email);
-
-        $userData = $this->userController->getUserByEmail($email);
+    // 🆕 MÉTHODE POUR RÉCUPÉRER LA DERNIÈRE CONNEXION
+    public function getLastLoginInfo() {
+        if (!$this->isLoggedIn()) {
+            return null;
+        }
         
-        if (!$userData) {
-            return "Email ou mot de passe incorrect.";
-        }
-
-        if (!password_verify($password, $userData['password'])) {
-            return "Email ou mot de passe incorrect.";
-        }
-
-        // Vérifier le statut - standardisé sur 'actif'
-        if ($userData['status'] !== 'actif') {
-            // Pour l'admin, on autorise même si en attente
-            if ($userData['role'] === 'admin') {
-                // Activer automatiquement l'admin
-                $this->userController->updateUserStatus($userData['id'], 'actif');
-                $userData['status'] = 'actif';
-            } else {
-                return "Votre compte est en attente d'approbation.";
+        // Si la géolocalisation n'est pas en session, on essaie de la récupérer
+        if (!isset($_SESSION['login_geo']) && isset($_SESSION['login_ip'])) {
+            $_SESSION['login_geo'] = $this->getIpGeolocation($_SESSION['login_ip']);
+            
+            // Si pas encore détectés, détecter navigateur et OS
+            if (!isset($_SESSION['login_browser'])) {
+                $_SESSION['login_browser'] = $this->detectBrowser();
+            }
+            if (!isset($_SESSION['login_os'])) {
+                $_SESSION['login_os'] = $this->detectOS();
             }
         }
+        
+        return [
+            'ip' => $_SESSION['login_ip'] ?? null,
+            'browser' => $_SESSION['login_browser'] ?? null,
+            'os' => $_SESSION['login_os'] ?? null,
+            'geo' => $_SESSION['login_geo'] ?? null,
+            'time' => $_SESSION['last_login'] ?? null
+        ];
+    }
 
-        // Démarrer la session si ce n'est pas déjà fait
-        if (session_status() == PHP_SESSION_NONE) {
-            session_start();
+    // 🆕 MÉTHODE POUR AFFICHER UN MESSAGE PERSONNALISÉ
+    public function getWelcomeMessage() {
+        if (!$this->isLoggedIn()) {
+            return "Bienvenue sur SafeSpace";
         }
-
-        // Stocker les informations de session
-        $_SESSION['user_id'] = $userData['id'];
-        $_SESSION['user_role'] = $userData['role'];
-        $_SESSION['fullname'] = $userData['nom'];
-        $_SESSION['user_email'] = $userData['email'];
-        $_SESSION['user_status'] = $userData['status'];
         
-        // DEBUG: Vérifier les données de session
-        error_log("✅ Connexion réussie pour: " . $userData['email']);
-        error_log("✅ Rôle: " . $userData['role']);
-        error_log("✅ Session ID: " . session_id());
+        $geo = $_SESSION['login_geo'] ?? null;
+        $browser = $_SESSION['login_browser'] ?? null;
         
-        // Redirection selon le rôle - CORRECTION ICI
-        if ($userData['role'] === 'admin') {
-            header('Location: /SAFEProject/view/backoffice/index.php');
-            exit();
-        } elseif ($userData['role'] === 'conseilleur') {
-            header('Location: /SAFEProject/view/backoffice/adviser_dashboard.php');
-            exit();
-        } elseif ($userData['role'] === 'membre') {
-            header('Location: /SAFEProject/view/backoffice/member_dashboard.php');
-            exit();
+        if ($geo && $geo['city'] !== 'Inconnu') {
+            return "Vous êtes connecté depuis " . $geo['city'] . ", " . $geo['country'] . 
+                   " via " . $browser;
+        } elseif ($browser) {
+            return "Bienvenue sur SafeSpace ! Connexion via " . $browser;
         } else {
-            // Par défaut, rediriger vers le dashboard membre
-            header('Location: /SAFEProject/view/backoffice/member_dashboard.php');
-            exit();
+            return "Bienvenue sur SafeSpace !";
+        }
+    }
+
+    // 🆕 MÉTHODE POUR AFFICHER UNE ALERTE DE SÉCURITÉ
+    public function getSecurityAlert() {
+        if (!$this->isLoggedIn()) {
+            return null;
         }
         
-    } catch (PDOException $e) {
-        error_log("❌ Erreur PDO login: " . $e->getMessage());
-        return "Erreur de connexion: " . $e->getMessage();
-    } catch (Exception $e) {
-        error_log("❌ Erreur login: " . $e->getMessage());
-        return "Erreur lors de la connexion.";
+        $geo = $_SESSION['login_geo'] ?? null;
+        $lastLogin = $_SESSION['last_login'] ?? null;
+        
+        if ($geo && $lastLogin) {
+            // Vérifier si la connexion est récente (< 1 heure)
+            $timeDiff = time() - $lastLogin;
+            if ($timeDiff < 3600) {
+                return [
+                    'type' => 'info',
+                    'message' => "Nouvelle connexion détectée depuis " . $geo['city'] . ", " . $geo['country'],
+                    'time' => date('H:i', $lastLogin)
+                ];
+            }
+        }
+        
+        return null;
     }
-}
 
-// Supprimer ou modifier la méthode redirectUser si elle existe
-private function redirectUser($role) {
-    switch ($role) {
-        case 'admin':
-            header('Location: /SAFEProject/view/backoffice/index.php');
-            break;
-        case 'conseilleur':
-            header('Location: /SAFEProject/view/backoffice/adviser_dashboard.php');
-            break;
-        case 'membre':
-            header('Location: /SAFEProject/view/backoffice/member_dashboard.php');
-            break;
-        default:
-            header('Location: /SAFEProject/view/backoffice/member_dashboard.php');
-            break;
-    }
-    exit();
-}
     // MÉTHODE LOGOUT
     public function logout() {
         $_SESSION = array();
@@ -169,15 +363,18 @@ private function redirectUser($role) {
 
     // MÉTHODES DE VÉRIFICATION
     public function isLoggedIn() {
+        if (session_status() == PHP_SESSION_NONE) {
+            session_start();
+        }
         return isset($_SESSION['user_id']);
     }
 
     public function isAdmin() {
-        return isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin';
+        return $this->isLoggedIn() && isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin';
     }
 
     public function isConseilleur() {
-        return isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'conseilleur';
+        return $this->isLoggedIn() && isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'conseilleur';
     }
 
     public function getCurrentUserRole() {
@@ -233,7 +430,6 @@ private function redirectUser($role) {
         try {
             $adminEmail = 'admin@safespace.com';
             
-            // Vérifier si l'admin existe déjà
             $existing = $this->userController->getUserByEmail($adminEmail);
             
             if (!$existing) {
@@ -253,6 +449,14 @@ private function redirectUser($role) {
             error_log("❌ Erreur createDefaultAdmin: " . $e->getMessage());
             return "Erreur: " . $e->getMessage();
         }
+    }
+    
+    // MÉTHODE POUR RÉINITIALISER LES TENTATIVES
+    public function resetLoginAttempts($email) {
+        $ip = $_SERVER['REMOTE_ADDR'];
+        $attemptKey = 'login_attempts_' . md5($email . $ip);
+        unset($_SESSION[$attemptKey]);
+        return true;
     }
 }
 ?>

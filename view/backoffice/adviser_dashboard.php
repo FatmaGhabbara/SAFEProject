@@ -1,6 +1,14 @@
 <?php
 // DÉMARRER LA SESSION EN PREMIER
 session_start();
+// Après session_start() et avant require_once
+require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/controller/AuthController.php';
+
+// Après la création de $userController
+$authController = new AuthController();
+$welcomeMessage = $authController->getWelcomeMessage();
+$securityAlert = $authController->getSecurityAlert();
+$loginInfo = $authController->getLastLoginInfo();
 
 // Vérifier si l'utilisateur est connecté et est un conseiller
 if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'conseilleur') {
@@ -551,7 +559,29 @@ function getProfilePictureUrl($user, $default = 'default-avatar.png') {
                             <h2>Bienvenue, <?= htmlspecialchars($user->getNom()) ?> !</h2>
                             <p>Conseiller professionnel - Tableau de bord</p>
                         </div>
+<!-- Après la section "Message de bienvenue élégant" -->
+<?php if ($welcomeMessage): ?>
+<div class="alert alert-info" style="margin-bottom: 20px; border-left: 4px solid #3498db;">
+    <i class="fas fa-map-marker-alt"></i> 
+    <?= htmlspecialchars($welcomeMessage) ?>
+    
+    <?php if ($loginInfo && $loginInfo['geo']): ?>
+    <small class="d-block mt-2 text-muted">
+        <i class="fas fa-info-circle"></i> 
+        IP: <?= htmlspecialchars($loginInfo['ip']) ?> | 
+        OS: <?= htmlspecialchars($loginInfo['os']) ?> |
+        Fuseau: <?= htmlspecialchars($loginInfo['geo']['timezone']) ?>
+    </small>
+    <?php endif; ?>
+</div>
+<?php endif; ?>
 
+<?php if ($securityAlert): ?>
+<div class="alert alert-warning" style="margin-bottom: 20px;">
+    <i class="fas fa-shield-alt"></i> 
+    <strong>Sécurité :</strong> <?= htmlspecialchars($securityAlert['message']) ?> à <?= htmlspecialchars($securityAlert['time']) ?>
+</div>
+<?php endif; ?>
                         <!-- PROFIL CONSEILLER -->
                         <div id="profile-section" class="profile-header-conseiller">
                             <div class="text-center">
