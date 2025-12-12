@@ -1,0 +1,314 @@
+[2025-12-11 20:16:25] 
+
+📝 NOUVELLE REQUÊTE DE POST
+[2025-12-11 20:16:25] Auteur: test vulgarite
+[2025-12-11 20:16:25] Message: Allez tous au diable
+[2025-12-11 20:16:25] === DÉBUT VÉRIFICATION GEMINI ===
+[2025-12-11 20:16:25] Texte à vérifier: test vulgarite | Allez tous au diable...
+[2025-12-11 20:16:25] ❌ ERREUR: Clé API manquante ou non configurée
+[2025-12-11 20:16:25] Résultat final modération: ERREUR_API
+[2025-12-11 20:16:25] ⚠️ POST REJETÉ - Erreur API
+[2025-12-11 20:18:03] 
+
+📝 NOUVELLE REQUÊTE DE POST
+[2025-12-11 20:18:03] Auteur: test vulgarite
+[2025-12-11 20:18:03] Message: Putin fuck
+[2025-12-11 20:18:03] === DÉBUT VÉRIFICATION GEMINI ===
+[2025-12-11 20:18:03] Texte à vérifier: test vulgarite | Putin fuck...
+[2025-12-11 20:18:03] ✅ Clé API validée
+[2025-12-11 20:18:03] Payload JSON préparé: 306 bytes
+[2025-12-11 20:18:03] Envoi requête à Gemini API...
+[2025-12-11 20:18:04] HTTP Status: 429
+[2025-12-11 20:18:04] Response length: 2286 bytes
+[2025-12-11 20:18:04] ❌ ERREUR HTTP 429. Response: {
+  "error": {
+    "code": 429,
+    "message": "You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https://ai.google.dev/gemini-a
+[2025-12-11 20:18:04] Résultat final modération: ERREUR_API
+[2025-12-11 20:18:04] ⚠️ POST REJETÉ - Erreur API
+[2025-12-11 20:20:22] 📝 NOUVEAU POST - Auteur: test vulgarite
+[2025-12-11 20:20:22] 
+========== VÉRIFICATION GEMINI LANCÉE ==========
+[2025-12-11 20:20:22] Texte à analyser: test vulgarite | putin fuck...
+[2025-12-11 20:20:22] ❌ ERREUR: Clé API par défaut! Vous devez la remplacer!
+[2025-12-11 20:20:22] 📌 Guide: Allez sur https://aistudio.google.com
+[2025-12-11 20:20:22] Résultat final: ERREUR_API
+[2025-12-11 20:20:22] POST REJETÉ - Erreur API
+[2025-12-11 20:21:07] 📝 NOUVEAU POST - Auteur: test vulgarite
+[2025-12-11 20:21:07] 
+========== VÉRIFICATION GEMINI LANCÉE ==========
+[2025-12-11 20:21:07] Texte à analyser: test vulgarite | putin fuck...
+[2025-12-11 20:21:07] ✅ Clé API valide
+[2025-12-11 20:21:07] ✅ curl disponible
+[2025-12-11 20:21:07] Payload JSON préparé (383 bytes)
+[2025-12-11 20:21:07] Envoi vers Gemini API...
+[2025-12-11 20:21:09] Réponse HTTP: 200
+[2025-12-11 20:21:09] ✅ JSON parsé
+[2025-12-11 20:21:09] ✅ Réponse Gemini: 'YES'
+[2025-12-11 20:21:09] ========== VÉRIFICATION TERMINÉE ==========
+
+[2025-12-11 20:21:09] Résultat final: OUI
+[2025-12-11 20:21:09] POST REJETÉ - Contenu inapproprié
+[2025-12-11 20:23:01] 📝 NOUVEAU POST - Auteur: ala 
+[2025-12-11 20:23:01] 
+========== VÉRIFICATION GEMINI LANCÉE ==========
+[2025-12-11 20:23:01] Texte à analyser: ala  | "Bonjour, comment ça va?"...
+[2025-12-11 20:23:01] ✅ Clé API valide
+[2025-12-11 20:23:01] ✅ curl disponible
+[2025-12-11 20:23:01] Payload JSON préparé (399 bytes)
+[2025-12-11 20:23:01] Envoi vers Gemini API...
+[2025-12-11 20:23:04] Réponse HTTP: 503
+[2025-12-11 20:23:04] ❌ ERREUR HTTP 503
+[2025-12-11 20:23:04] Réponse: {
+  "error": {
+    "code": 503,
+    "message": "The model is overloaded. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+[2025-12-11 20:23:04] Résultat final: ERREUR_API
+[2025-12-11 20:23:04] POST REJETÉ - Erreur API
+[2025-12-11 20:23:46] 📝 NOUVEAU POST - Auteur: aa
+[2025-12-11 20:23:46] 
+========== VÉRIFICATION GEMINI LANCÉE ==========
+[2025-12-11 20:23:46] Texte à analyser: aa | "Bonjour, comment ça va?"...
+[2025-12-11 20:23:46] ✅ Clé API valide
+[2025-12-11 20:23:46] ✅ curl disponible
+[2025-12-11 20:23:46] Payload JSON préparé (397 bytes)
+[2025-12-11 20:23:46] Envoi vers Gemini API...
+[2025-12-11 20:23:50] Réponse HTTP: 503
+[2025-12-11 20:23:50] ❌ ERREUR HTTP 503
+[2025-12-11 20:23:50] Réponse: {
+  "error": {
+    "code": 503,
+    "message": "The model is overloaded. Please try again later.",
+    "status": "UNAVAILABLE"
+  }
+}
+
+[2025-12-11 20:23:50] Résultat final: ERREUR_API
+[2025-12-11 20:23:50] POST REJETÉ - Erreur API
+[2025-12-11 20:25:11] 📝 NOUVEAU POST - Auteur: ala
+[2025-12-11 20:25:11] 
+========== VÉRIFICATION GEMINI LANCÉE ==========
+[2025-12-11 20:25:11] Texte à analyser: ala | "Bonjour, comment ça va?"...
+[2025-12-11 20:25:11] ✅ Clé API valide
+[2025-12-11 20:25:11] ✅ curl disponible
+[2025-12-11 20:25:11] Payload JSON préparé (398 bytes)
+[2025-12-11 20:25:11] Envoi vers Gemini API...
+[2025-12-11 20:25:13] Réponse HTTP: 200
+[2025-12-11 20:25:13] ✅ JSON parsé
+[2025-12-11 20:25:13] ✅ Réponse Gemini: 'NO'
+[2025-12-11 20:25:13] ========== VÉRIFICATION TERMINÉE ==========
+
+[2025-12-11 20:25:13] Résultat final: NON
+[2025-12-11 20:25:13] POST APPROUVÉ - Contenu acceptable
+[2025-12-11 20:25:13] Image uploadée: ../uploads/693b1a9926000_ajout.png
+[2025-12-11 20:25:13] ✅ Post sauvegardé en BD
+
+[2025-12-11 20:25:50] 📝 NOUVEAU POST - Auteur: test vulgarite
+[2025-12-11 20:25:50] 
+========== VÉRIFICATION GEMINI LANCÉE ==========
+[2025-12-11 20:25:50] Texte à analyser: test vulgarite | putin fuck...
+[2025-12-11 20:25:50] ✅ Clé API valide
+[2025-12-11 20:25:51] ✅ curl disponible
+[2025-12-11 20:25:51] Payload JSON préparé (383 bytes)
+[2025-12-11 20:25:51] Envoi vers Gemini API...
+[2025-12-11 20:25:52] Réponse HTTP: 200
+[2025-12-11 20:25:52] ✅ JSON parsé
+[2025-12-11 20:25:52] ✅ Réponse Gemini: 'YES'
+[2025-12-11 20:25:52] ========== VÉRIFICATION TERMINÉE ==========
+
+[2025-12-11 20:25:52] Résultat final: OUI
+[2025-12-11 20:25:52] POST REJETÉ - Contenu inapproprié
+[2025-12-11 20:26:38] 📝 NOUVEAU POST - Auteur: test vulgarite
+[2025-12-11 20:26:38] 
+========== VÉRIFICATION GEMINI LANCÉE ==========
+[2025-12-11 20:26:38] Texte à analyser: test vulgarite | ca va bien mon ami...
+[2025-12-11 20:26:38] ✅ Clé API valide
+[2025-12-11 20:26:38] ✅ curl disponible
+[2025-12-11 20:26:38] Payload JSON préparé (391 bytes)
+[2025-12-11 20:26:38] Envoi vers Gemini API...
+[2025-12-11 20:26:40] Réponse HTTP: 200
+[2025-12-11 20:26:40] ✅ JSON parsé
+[2025-12-11 20:26:40] ✅ Réponse Gemini: 'YES'
+[2025-12-11 20:26:40] ========== VÉRIFICATION TERMINÉE ==========
+
+[2025-12-11 20:26:40] Résultat final: OUI
+[2025-12-11 20:26:40] POST REJETÉ - Contenu inapproprié
+[2025-12-11 20:27:27] 📝 NOUVEAU POST - Auteur: first post 
+[2025-12-11 20:27:27] 
+========== VÉRIFICATION GEMINI LANCÉE ==========
+[2025-12-11 20:27:27] Texte à analyser: first post  | bonjour mes amis...
+[2025-12-11 20:27:27] ✅ Clé API valide
+[2025-12-11 20:27:27] ✅ curl disponible
+[2025-12-11 20:27:27] Payload JSON préparé (386 bytes)
+[2025-12-11 20:27:27] Envoi vers Gemini API...
+[2025-12-11 20:27:28] Réponse HTTP: 429
+[2025-12-11 20:27:28] ❌ ERREUR 429: Trop de requêtes (quota dépassé)
+[2025-12-11 20:27:28] Résultat final: ERREUR_API
+[2025-12-11 20:27:28] POST REJETÉ - Erreur API
+[2025-12-11 20:28:10] 📝 NOUVEAU POST - Auteur: ala
+[2025-12-11 20:28:10] 
+========== VÉRIFICATION GEMINI LANCÉE ==========
+[2025-12-11 20:28:10] Texte à analyser: ala | bonjour...
+[2025-12-11 20:28:10] ✅ Clé API valide
+[2025-12-11 20:28:10] ✅ curl disponible
+[2025-12-11 20:28:10] Payload JSON préparé (369 bytes)
+[2025-12-11 20:28:10] Envoi vers Gemini API...
+[2025-12-11 20:28:11] Réponse HTTP: 429
+[2025-12-11 20:28:11] ❌ ERREUR 429: Trop de requêtes (quota dépassé)
+[2025-12-11 20:28:11] Résultat final: ERREUR_API
+[2025-12-11 20:28:11] POST REJETÉ - Erreur API
+[2025-12-11 20:28:50] 📝 NOUVEAU POST - Auteur: test vulgarite
+[2025-12-11 20:28:50] 
+========== VÉRIFICATION GEMINI LANCÉE ==========
+[2025-12-11 20:28:50] Texte à analyser: test vulgarite | bonjour...
+[2025-12-11 20:28:50] ✅ Clé API valide
+[2025-12-11 20:28:50] ✅ curl disponible
+[2025-12-11 20:28:50] Payload JSON préparé (380 bytes)
+[2025-12-11 20:28:50] Envoi vers Gemini API...
+[2025-12-11 20:28:54] Réponse HTTP: 429
+[2025-12-11 20:28:54] ❌ ERREUR 429: Trop de requêtes (quota dépassé)
+[2025-12-11 20:28:54] Résultat final: ERREUR_API
+[2025-12-11 20:28:54] POST REJETÉ - Erreur API
+[2025-12-11 20:38:31] 📝 NOUVEAU POST - Auteur: test vulgarite
+[2025-12-11 20:38:31] 
+========== VÉRIFICATION GEMINI LANCÉE ==========
+[2025-12-11 20:38:31] Texte à analyser: test vulgarite | putin fuck off...
+[2025-12-11 20:38:31] ✅ Clé API valide
+[2025-12-11 20:38:31] ✅ curl disponible
+[2025-12-11 20:38:31] Payload JSON préparé (387 bytes)
+[2025-12-11 20:38:31] Envoi vers Gemini API...
+[2025-12-11 20:38:33] Réponse HTTP: 429
+[2025-12-11 20:38:33] ❌ ERREUR 429: Trop de requêtes (quota dépassé)
+[2025-12-11 20:38:33] Résultat final: ERREUR_API
+[2025-12-11 20:38:33] POST REJETÉ - Erreur API
+[2025-12-11 20:40:38] 📝 NOUVEAU POST - Auteur: test vulgarite
+[2025-12-11 20:40:38] 
+========== VÉRIFICATION GEMINI LANCÉE ==========
+[2025-12-11 20:40:38] Texte à analyser: test vulgarite | putin fuck off...
+[2025-12-11 20:40:38] ✅ Clé API valide
+[2025-12-11 20:40:38] ✅ curl disponible
+[2025-12-11 20:40:38] Payload JSON préparé (387 bytes)
+[2025-12-11 20:40:38] Envoi vers Gemini API...
+[2025-12-11 20:40:44] Réponse HTTP: 200
+[2025-12-11 20:40:44] ✅ JSON parsé
+[2025-12-11 20:40:44] ✅ Réponse Gemini: 'YES'
+[2025-12-11 20:40:44] ========== VÉRIFICATION TERMINÉE ==========
+
+[2025-12-11 20:40:44] Résultat final: OUI
+[2025-12-11 20:40:44] POST REJETÉ - Contenu inapproprié
+[2025-12-11 20:42:19] 📝 NOUVEAU POST - Auteur: test vrai
+[2025-12-11 20:42:19] 
+========== VÉRIFICATION GEMINI LANCÉE ==========
+[2025-12-11 20:42:19] Texte à analyser: test vrai | bonjours mes amis...
+[2025-12-11 20:42:19] ✅ Clé API valide
+[2025-12-11 20:42:19] ✅ curl disponible
+[2025-12-11 20:42:19] Payload JSON préparé (385 bytes)
+[2025-12-11 20:42:19] Envoi vers Gemini API...
+[2025-12-11 20:42:22] Réponse HTTP: 200
+[2025-12-11 20:42:22] ✅ JSON parsé
+[2025-12-11 20:42:22] ✅ Réponse Gemini: 'NO'
+[2025-12-11 20:42:22] ========== VÉRIFICATION TERMINÉE ==========
+
+[2025-12-11 20:42:22] Résultat final: NON
+[2025-12-11 20:42:22] POST APPROUVÉ - Contenu acceptable
+[2025-12-11 20:42:22] Image uploadée: ../uploads/693b1e9e3c275_branche.png
+[2025-12-11 20:42:22] ✅ Post sauvegardé en BD
+
+[2025-12-12 16:00:39] 📝 NOUVEAU POST - Auteur: first post 
+[2025-12-12 16:00:39] 
+========== VÉRIFICATION GEMINI LANCÉE ==========
+[2025-12-12 16:00:39] Texte à analyser: first post  | first post...
+[2025-12-12 16:00:39] ✅ Clé API valide
+[2025-12-12 16:00:39] ✅ curl disponible
+[2025-12-12 16:00:39] Payload JSON préparé (380 bytes)
+[2025-12-12 16:00:39] Envoi vers Gemini API...
+[2025-12-12 16:00:40] Réponse HTTP: 400
+[2025-12-12 16:00:40] ❌ ERREUR HTTP 400
+[2025-12-12 16:00:40] Réponse: {
+  "error": {
+    "code": 400,
+    "message": "API key not valid. Please pass a valid API key.",
+    "status": "INVALID_ARGUMENT",
+    "details": [
+      {
+        "@type": "type.googleapis.com/google.rpc.ErrorInfo",
+        "reason": "API_KEY_INVALID",
+        "domain": "googleapis.com",
+        "
+[2025-12-12 16:00:40] Résultat final: ERREUR_API
+[2025-12-12 16:00:40] POST REJETÉ - Erreur API
+[2025-12-12 16:01:59] 📝 NOUVEAU POST - Auteur: first post 
+[2025-12-12 16:01:59] 
+========== VÉRIFICATION GEMINI LANCÉE ==========
+[2025-12-12 16:01:59] Texte à analyser: first post  | first testing positive  post ...
+[2025-12-12 16:01:59] ✅ Clé API valide
+[2025-12-12 16:01:59] ✅ curl disponible
+[2025-12-12 16:01:59] Payload JSON préparé (399 bytes)
+[2025-12-12 16:01:59] Envoi vers Gemini API...
+[2025-12-12 16:02:00] Réponse HTTP: 200
+[2025-12-12 16:02:00] ✅ JSON parsé
+[2025-12-12 16:02:00] ✅ Réponse Gemini: 'NO'
+[2025-12-12 16:02:00] ========== VÉRIFICATION TERMINÉE ==========
+
+[2025-12-12 16:02:00] Résultat final: NON
+[2025-12-12 16:02:00] POST APPROUVÉ - Contenu acceptable
+[2025-12-12 16:02:00] Image uploadée: ../uploads/693c2e6869411_capcut.png
+[2025-12-12 16:02:00] ✅ Post sauvegardé en BD
+
+[2025-12-12 16:04:01] 📝 NOUVEAU POST - Auteur: test vulgarite
+[2025-12-12 16:04:01] 
+========== VÉRIFICATION GEMINI LANCÉE ==========
+[2025-12-12 16:04:01] Texte à analyser: test vulgarite | putin tu est malade ...
+[2025-12-12 16:04:01] ✅ Clé API valide
+[2025-12-12 16:04:01] ✅ curl disponible
+[2025-12-12 16:04:01] Payload JSON préparé (393 bytes)
+[2025-12-12 16:04:01] Envoi vers Gemini API...
+[2025-12-12 16:04:02] Réponse HTTP: 403
+[2025-12-12 16:04:02] ❌ ERREUR 403: Accès refusé
+[2025-12-12 16:04:02] Réponse: {
+  "error": {
+    "code": 403,
+    "message": "Your API key was reported as leaked. Please use another API key.",
+    "status": "PERMISSION_DENIED"
+  }
+}
+
+[2025-12-12 16:04:02] Résultat final: ERREUR_API
+[2025-12-12 16:04:02] POST REJETÉ - Erreur API
+[2025-12-12 16:06:42] 📝 NOUVEAU POST - Auteur: test vulgarite
+[2025-12-12 16:06:42] 
+========== VÉRIFICATION GEMINI LANCÉE ==========
+[2025-12-12 16:06:42] Texte à analyser: test vulgarite | putin tu es malade fuck ...
+[2025-12-12 16:06:42] ✅ Clé API valide
+[2025-12-12 16:06:42] ✅ curl disponible
+[2025-12-12 16:06:42] Payload JSON préparé (397 bytes)
+[2025-12-12 16:06:42] Envoi vers Gemini API...
+[2025-12-12 16:06:44] Réponse HTTP: 200
+[2025-12-12 16:06:44] ✅ JSON parsé
+[2025-12-12 16:06:44] ✅ Réponse Gemini: 'YES'
+[2025-12-12 16:06:44] ========== VÉRIFICATION TERMINÉE ==========
+
+[2025-12-12 16:06:44] Résultat final: OUI
+[2025-12-12 16:06:44] POST REJETÉ - Contenu inapproprié
+[2025-12-12 16:07:42] 📝 NOUVEAU POST - Auteur: second post 
+[2025-12-12 16:07:42] 
+========== VÉRIFICATION GEMINI LANCÉE ==========
+[2025-12-12 16:07:42] Texte à analyser: second post  | seconde test positive post ...
+[2025-12-12 16:07:42] ✅ Clé API valide
+[2025-12-12 16:07:42] ✅ curl disponible
+[2025-12-12 16:07:42] Payload JSON préparé (398 bytes)
+[2025-12-12 16:07:42] Envoi vers Gemini API...
+[2025-12-12 16:07:48] Réponse HTTP: 200
+[2025-12-12 16:07:48] ✅ JSON parsé
+[2025-12-12 16:07:48] ✅ Réponse Gemini: 'NO'
+[2025-12-12 16:07:48] ========== VÉRIFICATION TERMINÉE ==========
+
+[2025-12-12 16:07:48] Résultat final: NON
+[2025-12-12 16:07:48] POST APPROUVÉ - Contenu acceptable
+[2025-12-12 16:07:48] Image uploadée: ../uploads/693c2fc430b2d_1764948173376.jpeg
+[2025-12-12 16:07:48] ✅ Post sauvegardé en BD
+
