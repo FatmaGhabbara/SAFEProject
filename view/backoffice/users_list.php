@@ -166,13 +166,14 @@ $totalAllUsers = count($allUsers);
         <!-- Sidebar -->
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">SafeSpace <sup>Admin</sup></div>
-            </a>
+<!-- Sidebar - Brand -->
+<a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
+    <div class="sidebar-brand-icon">
+    
+        <img src="assets/logo.png" alt="SafeSpace Logo" style="width: 40px; height: 40px;">
+    </div>
+    <div class="sidebar-brand-text mx-3">SafeSpace <sup>Admin</sup></div>
+</a>
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">

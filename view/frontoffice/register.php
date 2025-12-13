@@ -1,13 +1,30 @@
 <?php
 require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/controller/AuthController.php';
+require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/config.php';
 session_start();
 
 $errors = [];
+$maxFileSize = 2 * 1024 * 1024; // 2MB max
+$allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
+$uploadPath = $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/assets/images/profile_pictures/';
+
+// Créer le dossier s'il n'existe pas
+if (!file_exists($uploadPath)) {
+    mkdir($uploadPath, 0777, true);
+}
+
+// Vérifier si l'utilisateur est déjà connecté
+if (isset($_SESSION['user_id'])) {
+    header('Location: member_dashboard.php');
+    exit();
+}
+
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $firstname = trim($_POST['firstname']);
     $lastname = trim($_POST['lastname']);
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
+    $confirm_password = trim($_POST['confirm_password'] ?? '');
     $role = trim($_POST['role']);
 
     // Validation des champs
@@ -20,6 +37,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if (empty($password) || strlen($password) < 6) {
         $errors[] = "Mot de passe requis (minimum 6 caractères).";
     }
+    if ($password !== $confirm_password) {
+        $errors[] = "Les mots de passe ne correspondent pas.";
+    }
     
     // Validation du rôle
     $allowedRoles = ['membre', 'conseilleur'];
@@ -27,12 +47,62 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $role = 'membre'; // Valeur par défaut sécurisée
     }
 
+    // Vérifier si l'email existe déjà
+    if (empty($errors)) {
+        try {
+            $db = Database::getInstance()->getConnection();
+            $stmt = $db->prepare("SELECT id FROM users WHERE email = ?");
+            $stmt->execute([$email]);
+            if ($stmt->fetch()) {
+                $errors[] = "Cette adresse email est déjà utilisée.";
+            }
+        } catch (PDOException $e) {
+            $errors[] = "Erreur de vérification de l'email.";
+        }
+    }
+
+    // Gestion de l'upload de la photo
+    $profilePicture = 'default-avatar.png'; // Valeur par défaut
+    
+    if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
+        $file = $_FILES['profile_picture'];
+        $fileName = $file['name'];
+        $fileTmpName = $file['tmp_name'];
+        $fileSize = $file['size'];
+        $fileType = mime_content_type($fileTmpName);
+        $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
+        
+        // Validation de la photo
+        if ($fileSize > $maxFileSize) {
+            $errors[] = "La photo est trop volumineuse (maximum 2MB).";
+        }
+        elseif (!in_array($fileType, $allowedTypes)) {
+            $errors[] = "Type de fichier non autorisé. Formats acceptés: JPG, JPEG, PNG, GIF.";
+        }
+        elseif (!in_array($fileExtension, ['jpg', 'jpeg', 'png', 'gif'])) {
+            $errors[] = "Extension de fichier non autorisée.";
+        }
+        else {
+            // Générer un nom de fichier unique
+            $newFileName = 'profile_' . time() . '_' . uniqid() . '.' . $fileExtension;
+            $uploadFile = $uploadPath . $newFileName;
+            
+            // Déplacer le fichier uploadé
+            if (move_uploaded_file($fileTmpName, $uploadFile)) {
+                $profilePicture = 'profile_pictures/' . $newFileName;
+            } else {
+                $errors[] = "Erreur lors de l'upload de la photo.";
+            }
+        }
+    } elseif (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] !== UPLOAD_ERR_NO_FILE) {
+        $errors[] = "Erreur lors de l'upload du fichier.";
+    }
+
     if (empty($errors)) {
         $authController = new AuthController();
         
-        $fullname = trim($firstname . ' ' . $lastname);
-        $result = $authController->register($fullname, $email, $password, $role);
-        
+$fullname = trim($firstname . ' ' . $lastname);
+$result = $authController->register($fullname, $email, $password, $role); 
         if ($result === true) {
             $_SESSION['success'] = "Inscription réussie ! Votre compte est en attente de validation.";
             header("Location: login.php");
@@ -52,480 +122,71 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link rel="stylesheet" href="assets/css/main.css">
     <noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
     <!-- Font Awesome -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* Styles pour le générateur IA - ADAPTÉ À VOTRE STYLE */
-        .ai-password-section {
-            background: #f8f9fc;
-            border: 2px solid #e3e6f0;
-            border-radius: 10px;
-            padding: 0;
-            margin: 25px 0;
-            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.15);
-        }
-        
-        .ai-header {
-            background: #4e73df;
-            color: white;
-            padding: 18px 25px;
-            border-radius: 8px 8px 0 0;
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-        
-        .ai-header i {
-            font-size: 1.3rem;
-        }
-        
-        .ai-badge {
-            background: #1cc88a;
-            color: white;
-            padding: 3px 10px;
-            border-radius: 12px;
-            font-size: 0.8rem;
-            font-weight: bold;
-            margin-left: 10px;
-        }
-        
-        .ai-content {
-            padding: 25px;
-        }
-        
-        /* Style pour l'affichage du mot de passe généré */
-        .password-display-box {
-            background: white;
-            border: 2px solid #d1d3e2;
-            border-radius: 8px;
-            padding: 20px;
-            margin-bottom: 20px;
-            font-family: 'Courier New', monospace;
-            font-size: 1.3rem;
+        .photo-preview-container {
             text-align: center;
-            letter-spacing: 1px;
-            position: relative;
-            color: #5a5c69 !important;
-            font-weight: 600;
-        }
-        
-        .copy-btn {
-            position: absolute;
-            right: 15px;
-            top: 15px;
-            background: #4e73df;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            padding: 8px 15px;
-            cursor: pointer;
-            transition: all 0.3s;
-            font-size: 0.9rem;
-        }
-        
-        .copy-btn:hover {
-            background: #2e59d9;
-            transform: translateY(-2px);
-        }
-        
-        /* Barre de force du mot de passe */
-        .strength-container {
             margin: 20px 0;
         }
-        
-        .strength-label {
-            display: flex;
-            justify-content: space-between;
-            margin-bottom: 8px;
-            color: #5a5c69;
-            font-size: 0.9rem;
-        }
-        
-        .strength-bar {
-            height: 10px;
-            background: #eaecf4;
-            border-radius: 5px;
-            overflow: hidden;
-        }
-        
-        .strength-fill {
-            height: 100%;
-            width: 0%;
-            transition: all 0.5s ease;
-        }
-        
-        .strength-weak { background: #e74a3b; }
-        .strength-medium { background: #f6c23e; }
-        .strength-good { background: #1cc88a; }
-        .strength-strong { background: #36b9cc; }
-        .strength-very-strong { background: #4e73df; }
-        
-        /* Options de génération */
-        .options-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin: 25px 0;
-        }
-        
-        .option-group {
-            background: white;
-            padding: 20px;
-            border-radius: 8px;
-            border: 1px solid #e3e6f0;
-        }
-        
-        .option-group h4 {
-            color: #5a5c69 !important;
-            margin-bottom: 15px;
-            font-size: 1rem;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-weight: 600;
-        }
-        
-        .option-group h4 i {
-            color: #4e73df !important;
-        }
-        
-        /* Curseur de longueur */
-        .length-control {
-            margin: 20px 0;
-        }
-        
-        .length-slider {
-            width: 100%;
-            height: 8px;
-            -webkit-appearance: none;
-            background: #eaecf4;
-            border-radius: 4px;
-            outline: none;
-        }
-        
-        .length-slider::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 22px;
-            height: 22px;
-            background: #4e73df;
+        .photo-preview {
+            width: 120px;
+            height: 120px;
             border-radius: 50%;
-            cursor: pointer;
-            border: 3px solid white;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            object-fit: cover;
+            border: 3px solid #e0e0e0;
+            margin-bottom: 10px;
+            display: none;
         }
-        
-        .length-value {
+        .photo-placeholder {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            background: #f5f5f5;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 10px;
+            color: #999;
+            font-size: 40px;
+        }
+        .file-input-wrapper {
+            margin-bottom: 15px;
+        }
+        .file-input-label {
             display: inline-block;
+            padding: 8px 16px;
             background: #4e73df;
             color: white;
-            padding: 4px 12px;
-            border-radius: 15px;
-            font-weight: bold;
-            margin-top: 10px;
-            font-size: 0.9rem;
-        }
-        
-        /* Cases à cocher */
-        .checkboxes {
-            display: flex;
-            flex-direction: column;
-            gap: 12px;
-        }
-        
-        .checkbox-item {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .checkbox-item input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            accent-color: #4e73df;
-        }
-        
-        .checkbox-item label {
-            color: #5a5c69 !important;
-            font-size: 0.95rem;
+            border-radius: 4px;
             cursor: pointer;
-            font-weight: 500;
+            font-size: 14px;
         }
-        
-        /* Boutons d'action */
-        .action-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            justify-content: center;
-            margin: 25px 0;
+        .file-input-label:hover {
+            background: #2e59d9;
         }
-        
-        .btn-ai {
-            background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
-            color: white;
-            border: none;
-            padding: 12px 25px;
-            border-radius: 8px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 0.95rem;
+        .file-name {
+            font-size: 12px;
+            color: #666;
+            margin-top: 5px;
         }
-        
-        .btn-ai:hover {
-            background: linear-gradient(135deg, #2e59d9 0%, #1c3ca0 100%);
-            transform: translateY(-2px);
-            box-shadow: 0 0.15rem 1.75rem 0 rgba(58, 59, 69, 0.3);
+        .photo-hint {
+            font-size: 12px;
+            color: #999;
+            margin-top: 5px;
         }
-        
-        .btn-ai-secondary {
-            background: linear-gradient(135deg, #1cc88a 0%, #13855c 100%);
+        .password-match {
+            font-size: 12px;
+            margin-top: 5px;
         }
-        
-        .btn-ai-secondary:hover {
-            background: linear-gradient(135deg, #17a673 0%, #0e6b4a 100%);
+        .match-ok {
+            color: #1cc88a;
         }
-        
-        /* Boutons de thèmes */
-        .theme-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
-            margin: 20px 0;
-        }
-        
-        .theme-btn {
-            background: white;
-            border: 2px solid #d1d3e2;
-            padding: 10px 18px;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 0.9rem;
-            color: #5a5c69 !important;
-            font-weight: 500;
-        }
-        
-        .theme-btn:hover {
-            border-color: #4e73df;
-            background: #f8f9fe;
-            transform: translateY(-2px);
-            color: #4e73df !important;
-        }
-        
-        .theme-btn i {
-            font-size: 0.9rem;
-            color: #4e73df;
-        }
-        
-        /* Titre des thèmes */
-        .theme-title {
-            color: #5a5c69 !important;
-            margin-bottom: 15px;
-            text-align: center;
-            font-size: 1.1rem;
-            font-weight: 600;
-        }
-        
-        .theme-title i {
-            color: #4e73df !important;
-            margin-right: 8px;
-        }
-        
-        /* Indice et informations */
-        .password-hint {
-            background: #fff3cd;
-            border-left: 4px solid #f6c23e;
-            padding: 15px;
-            border-radius: 5px;
-            margin: 20px 0;
-            color: #856404 !important;
-            font-size: 0.9rem;
-        }
-        
-        .password-hint i {
-            margin-right: 10px;
-            color: #f6c23e;
-        }
-        
-        /* Résultat vérification fuite */
-        .leak-check-result {
-            padding: 15px;
-            border-radius: 5px;
-            margin: 15px 0;
-            display: none;
-            font-size: 0.9rem;
-        }
-        
-        .leak-safe {
-            background: #d1fae5;
-            border: 1px solid #a7f3d0;
-            color: #065f46 !important;
-        }
-        
-        .leak-warning {
-            background: #fee2e2;
-            border: 1px solid #fecaca;
-            color: #991b1b !important;
-        }
-        
-        /* Feedback pour le champ mot de passe */
-        .password-feedback {
-            margin-top: 10px;
-            padding: 10px;
-            border-radius: 5px;
-            font-size: 0.85rem;
-            display: none;
-        }
-        
-        .feedback-good {
-            background: #d1fae5;
-            color: #065f46 !important;
-            border: 1px solid #a7f3d0;
-        }
-        
-        .feedback-warning {
-            background: #fff3cd;
-            color: #856404 !important;
-            border: 1px solid #ffeaa7;
-        }
-        
-        .feedback-error {
-            background: #f8d7da;
-            color: #721c24 !important;
-            border: 1px solid #f5c6cb;
-        }
-        
-        /* Champ mot de passe avec icône */
-        .password-field {
-            position: relative;
-        }
-        
-        .toggle-password {
-            position: absolute;
-            right: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            background: none;
-            border: none;
-            color: #6c757d;
-            cursor: pointer;
-            font-size: 1.1rem;
-        }
-        
-        /* Conseils de sécurité */
-        .security-tips {
-            margin-top: 30px;
-            padding: 20px;
-            background: #f0f7ff;
-            border-radius: 8px;
-            border-left: 4px solid #4e73df;
-        }
-        
-        .security-tips h4 {
-            color: #224abe !important;
-            margin-bottom: 10px;
-            font-weight: 600;
-        }
-        
-        .security-tips ul {
-            color: #5a5c69 !important;
-            font-size: 0.9rem;
-            line-height: 1.6;
-            padding-left: 20px;
-        }
-        
-        .security-tips li {
-            margin-bottom: 8px;
-        }
-        
-        .security-tips i {
-            color: #4e73df;
-            margin-right: 8px;
-        }
-        
-        /* Pour s'assurer que tous les textes sont visibles */
-        #passwordGenerator,
-        #passwordGenerator * {
-            color: #5a5c69 !important;
-        }
-        
-        #passwordGenerator .ai-header,
-        #passwordGenerator .ai-header * {
-            color: white !important;
-        }
-        
-        #passwordGenerator .btn-ai,
-        #passwordGenerator .btn-ai * {
-            color: white !important;
-        }
-        
-        #passwordGenerator .length-value,
-        #passwordGenerator .length-value * {
-            color: white !important;
-        }
-        
-        #passwordGenerator .copy-btn,
-        #passwordGenerator .copy-btn * {
-            color: white !important;
-        }
-        
-        /* Responsive */
-        @media (max-width: 768px) {
-            .ai-content {
-                padding: 15px;
-            }
-            
-            .options-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .action-buttons {
-                flex-direction: column;
-            }
-            
-            .btn-ai {
-                width: 100%;
-                justify-content: center;
-            }
-            
-            .theme-buttons {
-                flex-direction: column;
-            }
-            
-            .theme-btn {
-                width: 100%;
-                justify-content: center;
-            }
-        }
-        
-        /* Animation */
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        .fade-in {
-            animation: fadeIn 0.5s ease-out;
-        }
-        
-        /* Badge IA pour le label */
-        label .ai-badge {
-            font-size: 0.7rem;
-            padding: 2px 8px;
-            margin-left: 5px;
-            vertical-align: middle;
+        .match-error {
+            color: #e74a3b;
         }
     </style>
+        
 </head>
 <body class="is-preload">
 
@@ -569,8 +230,26 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     </div>
                 <?php endif; ?>
 
-                <form method="post" action="" id="registerForm">
+                <form method="post" action="" enctype="multipart/form-data">
                     <div class="fields">
+                        <!-- Photo de profil -->
+                        <div class="field full">
+                            <div class="photo-preview-container">
+                                <div class="photo-placeholder">
+                                    <i class="fas fa-user"></i>
+                                </div>
+                                <img id="photoPreview" class="photo-preview" src="" alt="Aperçu de la photo">
+                                <div class="file-input-wrapper">
+                                    <label class="file-input-label">
+                                        <i class="fas fa-camera"></i> Choisir une photo de profil
+                                        <input type="file" name="profile_picture" id="profile_picture" accept="image/*" onchange="previewImage(this)" style="display: none;">
+                                    </label>
+                                </div>
+                                <div class="file-name" id="fileName">Aucun fichier choisi</div>
+                                <div class="photo-hint">Formats acceptés: JPG, PNG, GIF (max 2MB)</div>
+                            </div>
+                        </div>
+
                         <div class="field half">
                             <label for="firstname">Prénom</label>
                             <input type="text" name="firstname" id="firstname" 
@@ -625,6 +304,11 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <button type="button" class="btn-ai" onclick="showPasswordGenerator()" style="margin-top: 15px;">
                                 <i class="fas fa-robot"></i> Générer un mot de passe avec IA
                             </button>
+                        </div>
+                        <div class="field">
+                            <label for="confirm_password">Confirmer le mot de passe</label>
+                            <input type="password" name="confirm_password" id="confirm_password" placeholder="Retapez votre mot de passe" required />
+                            <div id="passwordMatch" class="password-match"></div>
                         </div>
                       
                         <!-- Champ Rôle -->
@@ -787,6 +471,72 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <script src="assets/js/breakpoints.min.js"></script>
 <script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/js/all.min.js"></script>
+
+<script>
+    // Prévisualisation de la photo
+    function previewImage(input) {
+        const preview = document.getElementById('photoPreview');
+        const placeholder = document.querySelector('.photo-placeholder');
+        const fileName = document.getElementById('fileName');
+        
+        if (input.files && input.files[0]) {
+            const file = input.files[0];
+            fileName.textContent = file.name;
+            
+            const reader = new FileReader();
+            reader.onload = function(e) {
+                preview.src = e.target.result;
+                preview.style.display = 'block';
+                placeholder.style.display = 'none';
+            }
+            reader.readAsDataURL(file);
+        } else {
+            preview.style.display = 'none';
+            placeholder.style.display = 'flex';
+            fileName.textContent = 'Aucun fichier choisi';
+        }
+    }
+
+    // Vérification de la correspondance des mots de passe
+    document.getElementById('confirm_password').addEventListener('input', function() {
+        const password = document.getElementById('password').value;
+        const confirmPassword = this.value;
+        const matchDiv = document.getElementById('passwordMatch');
+        
+        if (confirmPassword.length === 0) {
+            matchDiv.innerHTML = '';
+            matchDiv.className = 'password-match';
+        } else if (password === confirmPassword) {
+            matchDiv.innerHTML = '<i class="fas fa-check"></i> Les mots de passe correspondent';
+            matchDiv.className = 'password-match match-ok';
+        } else {
+            matchDiv.innerHTML = '<i class="fas fa-times"></i> Les mots de passe ne correspondent pas';
+            matchDiv.className = 'password-match match-error';
+        }
+    });
+
+    // Validation du formulaire côté client
+    document.querySelector('form').addEventListener('submit', function(e) {
+        const password = document.getElementById('password').value;
+        const confirmPassword = document.getElementById('confirm_password').value;
+        
+        // Vérifier les mots de passe
+        if (password !== confirmPassword) {
+            e.preventDefault();
+            alert('Les mots de passe ne correspondent pas.');
+            document.getElementById('confirm_password').focus();
+            return false;
+        }
+        
+        return true;
+    });
+
+    // Simuler le clic sur le fichier input quand on clique sur le label
+    document.querySelector('.file-input-label').addEventListener('click', function() {
+        document.getElementById('profile_picture').click();
+    });
+</script>
 
 <!-- Script pour le générateur IA -->
 <script>

@@ -788,62 +788,8 @@ function getProfilePictureUrl($user) {
             });
         });
     </script>
-    <!-- Section Face ID dans le profil -->
-<div class="profile-section">
-    <h3><i class="fas fa-camera"></i> Authentification Face ID</h3>
-    
-    <?php
-    require_once __DIR__ . '/../../controller/FaceAuthController.php';
-    $faceAuth = new FaceAuthController();
-    $hasFaceId = $faceAuth->hasFaceIdEnabled($_SESSION['user_id']);
-    ?>
-    
-    <div class="faceid-status">
-        <?php if ($hasFaceId): ?>
-            <div class="status-enabled">
-                <i class="fas fa-check-circle"></i>
-                <span>Face ID activé</span>
-                <p>Vous pouvez vous connecter avec la reconnaissance faciale</p>
-                <button onclick="deleteFaceId()" class="btn btn-danger btn-sm">
-                    <i class="fas fa-trash"></i> Désactiver Face ID
-                </button>
-            </div>
-        <?php else: ?>
-            <div class="status-disabled">
-                <i class="fas fa-times-circle"></i>
-                <span>Face ID non configuré</span>
-                <p>Activez l'authentification faciale pour une connexion plus rapide</p>
-                <a href="faceid-setup.php" class="btn btn-primary">
-                    <i class="fas fa-camera"></i> Configurer Face ID
-                </a>
-            </div>
-        <?php endif; ?>
-    </div>
-</div>
 
-<script>
-function deleteFaceId() {
-    if (confirm('Voulez-vous vraiment désactiver Face ID ?')) {
-        fetch('../../controller/handle_faceid.php', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                action: 'delete'
-            })
-        })
-        .then(response => response.json())
-        .then(data => {
-            if (data.success) {
-                alert('Face ID désactivé avec succès');
-                location.reload();
-            } else {
-                alert('Erreur: ' + data.error);
-            }
-        });
-    }
-}
-</script>
+
+
 </body>
 </html>
