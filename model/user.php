@@ -15,18 +15,19 @@ class User {
     private $created_at;
     private $updated_at;
 
-    public function __construct($nom = "", $email = "", $password = "", $role = "membre", $status = "en attente") {
+    // AJOUT du paramètre $profile_picture dans le constructeur existant
+    public function __construct($nom = "", $email = "", $password = "", $role = "membre", $status = "en attente", $profile_picture = 'default-avatar.png') {
         $this->nom = $nom;
         $this->email = $email;
         $this->password = $password;
         $this->role = $role;
         $this->status = $status;
-        $this->profile_picture = 'assets/images/default-avatar.png';
+        $this->profile_picture = $profile_picture; // AJOUT: Initialisation de l'attribut
         $this->created_at = date('Y-m-d H:i:s');
         $this->updated_at = date('Y-m-d H:i:s');
     }
 
-    // Getters
+    // Getters (inchangés)
     public function getId() { return $this->id; }
     public function getNom() { return $this->nom; }
     public function getEmail() { return $this->email; }
@@ -42,7 +43,7 @@ class User {
     public function getCreatedAt() { return $this->created_at; }
     public function getUpdatedAt() { return $this->updated_at; }
 
-    // Setters
+    // Setters (inchangés)
     public function setId($id) { $this->id = $id; return $this; }
     public function setNom($nom) { $this->nom = $nom; return $this; }
     public function setEmail($email) { $this->email = $email; return $this; }

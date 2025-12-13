@@ -6,7 +6,7 @@ session_start();
 $errors = [];
 $maxFileSize = 2 * 1024 * 1024; // 2MB max
 $allowedTypes = ['image/jpeg', 'image/jpg', 'image/png', 'image/gif'];
-$uploadPath = $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/assets/images/profile_pictures/';
+$uploadPath = $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/view/frontoffice/assets/images/uploads/';
 
 // Créer le dossier s'il n'existe pas
 if (!file_exists($uploadPath)) {
@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Vérifier si l'email existe déjà
     if (empty($errors)) {
         try {
-          $db = config::getConnexion();  
+            $db = config::getConnexion();  
             $stmt = $db->prepare("SELECT id FROM users WHERE email = ?");
             $stmt->execute([$email]);
             if ($stmt->fetch()) {
@@ -62,14 +62,21 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Gestion de l'upload de la photo
-    $profilePicture = 'default-avatar.png'; // Valeur par défaut
+    $profilePicture = null; // Valeur par défaut sera null
     
     if (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] === UPLOAD_ERR_OK) {
         $file = $_FILES['profile_picture'];
         $fileName = $file['name'];
         $fileTmpName = $file['tmp_name'];
         $fileSize = $file['size'];
-        $fileType = mime_content_type($fileTmpName);
+        
+        // Validation supplémentaire avec getimagesize()
+        $image_info = @getimagesize($fileTmpName);
+        if ($image_info === false) {
+            $errors[] = "Le fichier n'est pas une image valide.";
+        }
+        
+        $fileType = $image_info['mime'] ?? mime_content_type($fileTmpName);
         $fileExtension = strtolower(pathinfo($fileName, PATHINFO_EXTENSION));
         
         // Validation de la photo
@@ -89,26 +96,32 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             // Déplacer le fichier uploadé
             if (move_uploaded_file($fileTmpName, $uploadFile)) {
-                $profilePicture = 'profile_pictures/' . $newFileName;
+                $profilePicture = $newFileName; // Stocker juste le nom de fichier
             } else {
                 $errors[] = "Erreur lors de l'upload de la photo.";
             }
         }
     } elseif (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] !== UPLOAD_ERR_NO_FILE) {
-        $errors[] = "Erreur lors de l'upload du fichier.";
+        $errors[] = "Erreur lors de l'upload du fichier (Code: " . $_FILES['profile_picture']['error'] . ").";
     }
 
     if (empty($errors)) {
         $authController = new AuthController();
+        $fullname = trim($firstname . ' ' . $lastname);
         
-$fullname = trim($firstname . ' ' . $lastname);
-$result = $authController->register($fullname, $email, $password, $role); 
+        // Appeler la méthode register avec la photo de profil
+        $result = $authController->register($fullname, $email, $password, $role, $profilePicture); 
+        
         if ($result === true) {
             $_SESSION['success'] = "Inscription réussie ! Votre compte est en attente de validation.";
             header("Location: login.php");
             exit;
         } else {
             $errors[] = $result;
+            // Supprimer l'image uploadée si l'inscription a échoué
+            if ($profilePicture && file_exists($uploadPath . $profilePicture)) {
+                unlink($uploadPath . $profilePicture);
+            }
         }
     }
 }
