@@ -100,51 +100,55 @@ class AuthController {
         }
     }
 
-    // MÉTHODE REGISTER
-    public function register($nom, $email, $password, $role = 'membre') {
-        if (empty($nom) || empty($email) || empty($password)) {
-            return "Tous les champs sont obligatoires.";
-        }
-
-        $email = trim($email);
-        $email = strtolower($email);
-
-        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            return "Format d'email invalide.";
-        }
-
-        if (strlen($password) < 6) {
-            return "Le mot de passe doit contenir au moins 6 caractères.";
-        }
-
-        $allowedRoles = ['membre', 'conseilleur', 'admin'];
-        if (!in_array($role, $allowedRoles)) {
-            $role = 'membre';
-        }
-
-        try {
-            $existing = $this->userController->getUserByEmail($email);
-            if ($existing) {
-                return "Cet email est déjà utilisé.";
-            }
-
-            $user = new User($nom, $email, $password, $role, "en attente");
-
-            if ($this->userController->addUser($user)) {
-                return true;
-            } else {
-                return "Erreur lors de l'inscription.";
-            }
-
-        } catch (PDOException $e) {
-            error_log("❌ Erreur PDO register: " . $e->getMessage());
-            return "Erreur de base de données.";
-        } catch (Exception $e) {
-            error_log("❌ Erreur register: " . $e->getMessage());
-            return "Erreur lors de l'inscription.";
-        }
+  public function register($nom, $email, $password, $role = 'membre', $profilePicture = null) {
+    if (empty($nom) || empty($email) || empty($password)) {
+        return "Tous les champs sont obligatoires.";
     }
 
+    $email = trim($email);
+    $email = strtolower($email);
+
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        return "Format d'email invalide.";
+    }
+
+    if (strlen($password) < 6) {
+        return "Le mot de passe doit contenir au moins 6 caractères.";
+    }
+
+    $allowedRoles = ['membre', 'conseilleur', 'admin'];
+    if (!in_array($role, $allowedRoles)) {
+        $role = 'membre';
+    }
+
+    try {
+        $existing = $this->userController->getUserByEmail($email);
+        if ($existing) {
+            return "Cet email est déjà utilisé.";
+        }
+
+        // Utiliser null pour la photo si elle n'est pas fournie
+        if ($profilePicture === null || empty($profilePicture)) {
+            $profilePicture = 'default-avatar.png'; // Valeur par défaut
+        }
+
+        // Créer l'utilisateur avec la photo de profil
+        $user = new User($nom, $email, $password, $role, "en attente", $profilePicture);
+
+        if ($this->userController->addUser($user)) {
+            return true;
+        } else {
+            return "Erreur lors de l'inscription.";
+        }
+
+    } catch (PDOException $e) {
+        error_log("❌ Erreur PDO register: " . $e->getMessage());
+        return "Erreur de base de données.";
+    } catch (Exception $e) {
+        error_log("❌ Erreur register: " . $e->getMessage());
+        return "Erreur lors de l'inscription.";
+    }
+}
     // MÉTHODE LOGIN AVEC GÉOLOCALISATION ET LIMITATION
     public function login($email, $password) {
         if (empty($email) || empty($password)) {
