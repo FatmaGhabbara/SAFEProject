@@ -50,7 +50,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     // Vérifier si l'email existe déjà
     if (empty($errors)) {
         try {
-            $db = Database::getInstance()->getConnection();
+          $db = config::getConnexion();  
             $stmt = $db->prepare("SELECT id FROM users WHERE email = ?");
             $stmt->execute([$email]);
             if ($stmt->fetch()) {
