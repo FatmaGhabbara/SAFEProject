@@ -4,12 +4,12 @@ session_start();
 
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../frontoffice/login.php');
+    header('Location: /SAFEProject/frontoffice/login.php');
     exit();
 }
 
-require_once __DIR__ . '/../../controller/usercontroller.php';
-require_once __DIR__ . '/../../controller/AuthController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/SAFEProject/controller/usercontroller.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/SAFEProject/controller/AuthController.php';
 
 $userController = new UserController();
 $authController = new AuthController();

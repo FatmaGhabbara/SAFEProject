@@ -1,7 +1,7 @@
 <?php
 // DÉMARRER LA SESSION EN PREMIER
 session_start();
-require_once __DIR__ . '/../../controller/AuthController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/SAFEProject/controller/AuthController.php';
 
 // Après la création de $userController
 $authController = new AuthController();
@@ -12,11 +12,11 @@ $loginInfo = $authController->getLastLoginInfo();
 
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../frontoffice/login.php');
+    header('Location: /SAFEProject/view/frontoffice/login.php');
     exit();
 }
 
-require_once __DIR__ . '/../../controller/usercontroller.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/SAFEProject/controller/usercontroller.php';
 
 $userController = new UserController();
 $user = $userController->getUserById($_SESSION['user_id']);
@@ -27,16 +27,12 @@ $roleName = ucfirst($userRole);
 
 // Obtenir l'URL de la photo de profil
 function getProfilePictureUrl($user, $default = 'default-avatar.png') {
-    $baseUrl = '../frontoffice/assets/images/uploads/';
-<<<<<<< HEAD:SAFEProject/view/backoffice/member_dashboard.php
-    $defaultUrl = '../frontoffice/images/default-avatar.png';
-=======
-    $defaultUrl = '../frontoffice/assets/images/default-avatar.png';
->>>>>>> origin/main:view/backoffice/member_dashboard.php
+    $baseUrl = '/SAFEProject/view/frontoffice/assets/images/uploads/';
+    $defaultUrl = '/SAFEProject/view/frontoffice/assets/images/default-avatar.png';
     
     $profilePicture = $user->getProfilePicture();
     if (!empty($profilePicture) && $profilePicture !== 'default-avatar.png') {
-        $filePath = __DIR__ . '/../frontoffice/assets/images/uploads/' . $profilePicture;
+        $filePath = $_SERVER['DOCUMENT_ROOT'] . '/SAFEProject/view/frontoffice/assets/images/uploads/' . $profilePicture;
         if (file_exists($filePath)) {
             return $baseUrl . $profilePicture . '?t=' . filemtime($filePath);
         }
