@@ -19,7 +19,7 @@ include '../../controller/PostC.php';
 // =====================================================
 // Votre clé API Gemini (obtenue sur https://aistudio.google.com)
 // La clé commence par: AIzaSy...
-$gemini_api_key = 'AIzaSyC8jINuXEdInD0HbRpe6WYaHHAHqasVNJ0'; 
+$gemini_api_key = 'AIzaSyALwk7j-xX6WRpsP3MamhUjwYLKNnhk1RI'; 
 
 // Modes
 $debug_mode = true; // Mettez à false en production
