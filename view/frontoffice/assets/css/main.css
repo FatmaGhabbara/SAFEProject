@@ -2186,7 +2186,10 @@ input, select, textarea {
 	input[type="password"],
 	input[type="email"],
 	input[type="tel"],
+<<<<<<< HEAD
 	input[type="file"],
+=======
+>>>>>>> aab829f16e3aa2e6ba701ae4dd16b8c047cec2fa
 	select,
 	textarea {
 		-moz-appearance: none;
@@ -2209,7 +2212,10 @@ input, select, textarea {
 		input[type="password"]:invalid,
 		input[type="email"]:invalid,
 		input[type="tel"]:invalid,
+<<<<<<< HEAD
 		input[type="file"]:invalid,
+=======
+>>>>>>> aab829f16e3aa2e6ba701ae4dd16b8c047cec2fa
 		select:invalid,
 		textarea:invalid {
 			box-shadow: none;
@@ -2219,11 +2225,15 @@ input, select, textarea {
 		input[type="password"]:focus,
 		input[type="email"]:focus,
 		input[type="tel"]:focus,
+<<<<<<< HEAD
 		input[type="file"]:invalid,
+=======
+>>>>>>> aab829f16e3aa2e6ba701ae4dd16b8c047cec2fa
 		select:focus,
 		textarea:focus {
 			border-color: #5b6ba6;
 		}
+<<<<<<< HEAD
 		
 	input[type="file"] {
     background: rgba(255, 255, 255, 0.025);
@@ -2265,6 +2275,8 @@ input, select, textarea {
 	input[type="file"]::file-selector-button:hover {
 		background: rgba(255, 255, 255, 0.1);
 	}
+=======
+>>>>>>> aab829f16e3aa2e6ba701ae4dd16b8c047cec2fa
 
 	select {
 		background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' preserveAspectRatio='none' viewBox='0 0 40 40'%3E%3Cpath d='M9.4,12.3l10.4,10.4l10.4-10.4c0.2-0.2,0.5-0.4,0.9-0.4c0.3,0,0.6,0.1,0.9,0.4l3.3,3.3c0.2,0.2,0.4,0.5,0.4,0.9 c0,0.4-0.1,0.6-0.4,0.9L20.7,31.9c-0.2,0.2-0.5,0.4-0.9,0.4c-0.3,0-0.6-0.1-0.9-0.4L4.3,17.3c-0.2-0.2-0.4-0.5-0.4-0.9 c0-0.4,0.1-0.6,0.4-0.9l3.3-3.3c0.2-0.2,0.5-0.4,0.9-0.4S9.1,12.1,9.4,12.3z' fill='rgba(255, 255, 255, 0.125)' /%3E%3C/svg%3E");
@@ -2513,6 +2525,7 @@ input, select, textarea {
 			.image.main img {
 				width: 100%;
 			}
+<<<<<<< HEAD
 			/* ==================== */
 /* POSTS & COMMENTS SECTION */
 /* ==================== */
@@ -2757,6 +2770,8 @@ input, select, textarea {
     }
 }
 /* Fin Post  Comment Response 
+=======
+>>>>>>> aab829f16e3aa2e6ba701ae4dd16b8c047cec2fa
 
 /* List */
 
@@ -4098,8 +4113,11 @@ input, select, textarea {
 				width: 22em;
 				overflow: hidden;
 				-ms-flex: 1;
+<<<<<<< HEAD
 				flex: 1;
 				
+=======
+>>>>>>> aab829f16e3aa2e6ba701ae4dd16b8c047cec2fa
 			}
 
 				.wrapper.spotlight .image img {
@@ -4110,7 +4128,10 @@ input, select, textarea {
 			.wrapper.spotlight .content {
 				width: 100%;
 				-ms-flex: 2;
+<<<<<<< HEAD
 				flex: 1;
+=======
+>>>>>>> aab829f16e3aa2e6ba701ae4dd16b8c047cec2fa
 			}
 
 			.wrapper.spotlight:nth-child(2n - 1) .inner {
@@ -4451,6 +4472,7 @@ input, select, textarea {
 			padding: 2em 1.5em 0.1em 1.5em ;
 		}
 
+<<<<<<< HEAD
 	}
 	/* Dans votre fichier CSS existant ou dans une balise style */
 .password-generator {
@@ -4518,3 +4540,6 @@ input[type="range"]::-moz-range-thumb {
     visibility: visible;
     opacity: 1;
 }
+=======
+	}
+>>>>>>> aab829f16e3aa2e6ba701ae4dd16b8c047cec2fa

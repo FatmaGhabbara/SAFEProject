@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 // Activer les erreurs
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -8,10 +9,16 @@ session_start();
 
 // Vérifier si l'admin est connecté
 if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
+=======
+require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/controller/AdminController.php';
+session_start();
+if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
+>>>>>>> aab829f16e3aa2e6ba701ae4dd16b8c047cec2fa
     header('Location: ../frontoffice/login.php');
     exit();
 }
 
+<<<<<<< HEAD
 require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/controller/admincontroller.php';
 
 try {
@@ -43,11 +50,16 @@ try {
 } catch (Exception $e) {
     die("Erreur: " . htmlspecialchars($e->getMessage()));
 }
+=======
+$admin = new AdminController();
+$stats = $admin->getStats();
+>>>>>>> aab829f16e3aa2e6ba701ae4dd16b8c047cec2fa
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
+<<<<<<< HEAD
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -377,3 +389,22 @@ try {
 
 </body>
 </html>
+=======
+    <meta charset="UTF-8">
+    <title>Admin - Dashboard</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+<h2>Dashboard Admin</h2>
+<p>Nombre d'utilisateurs : <?= $stats['users'] ?></p>
+
+<nav>
+    <a href="user_list.php">Gérer utilisateurs</a> |
+    <a href="../frontoffice/index.php">Retour au site</a> |
+    <a href="../frontoffice/logout.php">Déconnexion</a>
+</nav>
+
+</body>
+</html>
+>>>>>>> aab829f16e3aa2e6ba701ae4dd16b8c047cec2fa

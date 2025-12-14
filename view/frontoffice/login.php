@@ -1,4 +1,5 @@
 <?php
+<<<<<<< HEAD
 // Activer l'affichage des erreurs pour debug
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -74,6 +75,28 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             } else {
                 $error = $result;
             }
+=======
+require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/controller/AuthController.php';
+session_start();
+
+$errors = [];
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $email = trim($_POST['email']);
+    $password = trim($_POST['password']);
+
+    if (empty($email)) $errors[] = "Veuillez entrer votre e-mail.";
+    if (empty($password)) $errors[] = "Veuillez entrer votre mot de passe.";
+
+    if (empty($errors)) {
+        $auth = new AuthController();
+        $result = $auth->login($email, $password);
+        if ($result === true) {
+            if ($_SESSION['role'] === 'admin') header("Location: ../backoffice/index.php");
+            else header("Location: profile.php");
+            exit;
+        } else {
+            $errors[] = $result;
+>>>>>>> aab829f16e3aa2e6ba701ae4dd16b8c047cec2fa
         }
     }
 }
@@ -83,6 +106,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
+<<<<<<< HEAD
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion - SafeSpace</title>
     <link rel="stylesheet" href="assets/css/main.css">
@@ -505,3 +529,34 @@ document.getElementById('loginForm')?.addEventListener('submit', function() {
 
 </body>
 </html>
+=======
+    <title>Connexion - SafeSpace</title>
+    <link rel="stylesheet" href="assets/css/main.css">
+</head>
+<body>
+
+<h2>Connexion</h2>
+
+<?php if(!empty($errors)): ?>
+    <ul style="color:red;">
+        <?php foreach($errors as $error): ?>
+            <li><?= htmlspecialchars($error) ?></li>
+        <?php endforeach; ?>
+    </ul>
+<?php endif; ?>
+
+<form method="post" action="">
+    <label>Email</label>
+    <input type="text" name="email" placeholder="exemple@mail.com">
+    <br>
+    <label>Mot de passe</label>
+    <input type="password" name="password" placeholder="••••••">
+    <br>
+    <input type="submit" value="Connexion">
+</form>
+
+<p><a href="register.php">Créer un compte</a></p>
+
+</body>
+</html>
+>>>>>>> aab829f16e3aa2e6ba701ae4dd16b8c047cec2fa
