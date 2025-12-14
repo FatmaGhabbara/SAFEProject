@@ -1,6 +1,19 @@
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Raleway:200,700|Source+Sans+Pro:300,600,300italic,600italic");
 
+:root {
+    /* Custom theme colors */
+    --color-bg-dark: #2e3141;
+    --primary: #098d8a;
+    --primary-dark: #066e66;
+    --primary-active: #055e5d;
+    --primary-gradient: linear-gradient(135deg, #098d8a 0%, #00bfa5 100%);
+    --accent: #ffb86b;
+    --danger: #e53935;
+    --danger-contrast: #ffffff;
+    --muted: rgba(255,255,255,0.6);
+}
+
 /*
 	Solid State by HTML5 UP
 	html5up.net | @ajlkn
@@ -2186,7 +2199,6 @@ input, select, textarea {
 	input[type="password"],
 	input[type="email"],
 	input[type="tel"],
-	input[type="file"],
 	select,
 	textarea {
 		-moz-appearance: none;
@@ -2209,7 +2221,6 @@ input, select, textarea {
 		input[type="password"]:invalid,
 		input[type="email"]:invalid,
 		input[type="tel"]:invalid,
-		input[type="file"]:invalid,
 		select:invalid,
 		textarea:invalid {
 			box-shadow: none;
@@ -2219,52 +2230,10 @@ input, select, textarea {
 		input[type="password"]:focus,
 		input[type="email"]:focus,
 		input[type="tel"]:focus,
-		input[type="file"]:invalid,
 		select:focus,
 		textarea:focus {
 			border-color: #5b6ba6;
 		}
-		
-	input[type="file"] {
-    background: rgba(255, 255, 255, 0.025);
-    border: solid 2px rgba(255, 255, 255, 0.125);
-    border-radius: 5px;
-    color: #ffffff;
-    font-family: "Source Sans Pro", Helvetica, sans-serif;
-    font-size: 1em;
-    padding: 0.5em 1em;
-    width: 100%;
-    cursor: pointer;
-    -moz-transition: border-color 0.2s ease-in-out;
-    -webkit-transition: border-color 0.2s ease-in-out;
-    -ms-transition: border-color 0.2s ease-in-out;
-    transition: border-color 0.2s ease-in-out;
-	}
-
-	input[type="file"]:hover {
-		border-color: rgba(255, 255, 255, 0.25);
-	}
-
-	input[type="file"]::file-selector-button {
-		background: rgba(255, 255, 255, 0.05);
-		border: solid 1px rgba(255, 255, 255, 0.125);
-		border-radius: 5px;
-		color: #ffffff;
-		padding: 0.5em 1em;
-		margin-right: 1em;
-		text-transform: uppercase;
-		font-weight: 600;
-		letter-spacing: 0.1em;
-		cursor: pointer;
-		-moz-transition: background-color 0.2s ease-in-out;
-		-webkit-transition: background-color 0.2s ease-in-out;
-		-ms-transition: background-color 0.2s ease-in-out;
-		transition: background-color 0.2s ease-in-out;
-	}
-
-	input[type="file"]::file-selector-button:hover {
-		background: rgba(255, 255, 255, 0.1);
-	}
 
 	select {
 		background-image: url("data:image/svg+xml;charset=utf8,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40' preserveAspectRatio='none' viewBox='0 0 40 40'%3E%3Cpath d='M9.4,12.3l10.4,10.4l10.4-10.4c0.2-0.2,0.5-0.4,0.9-0.4c0.3,0,0.6,0.1,0.9,0.4l3.3,3.3c0.2,0.2,0.4,0.5,0.4,0.9 c0,0.4-0.1,0.6-0.4,0.9L20.7,31.9c-0.2,0.2-0.5,0.4-0.9,0.4c-0.3,0-0.6-0.1-0.9-0.4L4.3,17.3c-0.2-0.2-0.4-0.5-0.4-0.9 c0-0.4,0.1-0.6,0.4-0.9l3.3-3.3c0.2-0.2,0.5-0.4,0.9-0.4S9.1,12.1,9.4,12.3z' fill='rgba(255, 255, 255, 0.125)' /%3E%3C/svg%3E");
@@ -2513,250 +2482,6 @@ input, select, textarea {
 			.image.main img {
 				width: 100%;
 			}
-			/* ==================== */
-/* POSTS & COMMENTS SECTION */
-/* ==================== */
-
-/* Posts Section */
-.posts-container {
-    margin: 2em 0;
-}
-
-.btn-add-post {
-    background-color: #4c5c96;
-    border: none;
-    border-radius: 5px;
-    color: #ffffff;
-    cursor: pointer;
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5em;
-    font-family: Raleway, Helvetica, sans-serif;
-    font-size: 0.8em;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    padding: 0.75em 1.5em;
-    text-transform: uppercase;
-    transition: background-color 0.2s ease-in-out;
-    margin-bottom: 2em;
-}
-
-.btn-add-post:hover {
-    background-color: #53639e;
-}
-
-/* Comments Section */
-.comments-section {
-    margin: 3em 0;
-}
-
-.comments-section h2 {
-    border-bottom: solid 2px rgba(255, 255, 255, 0.125);
-    padding-bottom: 0.5em;
-    margin-bottom: 1.5em;
-}
-
-.comments-list {
-    list-style: none;
-    padding: 0;
-}
-
-.comment-item {
-    background-color: rgba(53, 56, 73, 0.7);
-    border-radius: 5px;
-    padding: 1.5em;
-    margin-bottom: 2em;
-    border: solid 1px rgba(255, 255, 255, 0.1);
-}
-
-.comment-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 1em;
-    padding-bottom: 0.5em;
-    border-bottom: solid 1px rgba(255, 255, 255, 0.1);
-}
-
-.author {
-    font-weight: 600;
-    color: #ffffff;
-    font-family: Raleway, Helvetica, sans-serif;
-    font-size: 0.9em;
-}
-
-.time {
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.8em;
-}
-
-.message {
-    margin-bottom: 1em;
-    line-height: 1.6;
-    color: rgba(255, 255, 255, 0.9);
-}
-
-/* Image Display */
-.image-container {
-    margin: 1em 0;
-    text-align: center;
-}
-
-.post-image {
-    max-width: 100%;
-    height: auto;
-    border-radius: 5px;
-    border: solid 1px rgba(255, 255, 255, 0.1);
-}
-
-.no-image {
-    color: rgba(255, 255, 255, 0.5);
-    font-style: italic;
-    margin: 1em 0;
-}
-
-/* Comment Footer */
-.comment-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-top: 1.5em;
-    padding-top: 1em;
-    border-top: solid 1px rgba(255, 255, 255, 0.1);
-}
-
-.comment-footer .id {
-    color: rgba(255, 255, 255, 0.5);
-    font-size: 0.8em;
-    font-family: monospace;
-}
-
-.comment-actions, .response-actions {
-    display: flex;
-    gap: 0.5em;
-    flex-wrap: wrap;
-}
-
-/* Action Buttons */
-.btn-delete, .btn-update, .btn-respond {
-    background-color: transparent;
-    border: none;
-    border-radius: 5px;
-    color: #ffffff;
-    cursor: pointer;
-    font-family: Raleway, Helvetica, sans-serif;
-    font-size: 0.7em;
-    font-weight: 700;
-    letter-spacing: 0.1em;
-    padding: 0.5em 1em;
-    text-transform: uppercase;
-    transition: all 0.2s ease-in-out;
-    box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.125);
-}
-
-.btn-delete:hover {
-    background-color: rgba(220, 53, 69, 0.2);
-    box-shadow: inset 0 0 0 2px #dc3545;
-}
-
-.btn-update:hover {
-    background-color: rgba(255, 193, 7, 0.2);
-    box-shadow: inset 0 0 0 2px #ffc107;
-}
-
-.btn-respond:hover {
-    background-color: rgba(40, 167, 69, 0.2);
-    box-shadow: inset 0 0 0 2px #28a745;
-}
-
-/* Response Section */
-.response-section {
-    margin: 1.5em 0 0 2em;
-    padding: 1.5em;
-    background-color: rgba(46, 49, 65, 0.5);
-    border-radius: 5px;
-    border-left: solid 3px #4c5c96;
-}
-
-.response-section h3 {
-    font-size: 1em;
-    margin-bottom: 1em;
-    color: rgba(255, 255, 255, 0.8);
-}
-
-.response-list {
-    list-style: none;
-    padding: 0;
-}
-
-.response-item {
-    background-color: rgba(53, 56, 73, 0.5);
-    border-radius: 5px;
-    padding: 1em;
-    margin-bottom: 1em;
-    border: solid 1px rgba(255, 255, 255, 0.05);
-}
-
-.response-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 0.5em;
-}
-
-.response-header .author {
-    font-size: 0.85em;
-}
-
-.response-header .time {
-    font-size: 0.75em;
-}
-
-/* Nested Responses */
-.response-section .response-section {
-    margin: 1em 0 0 1.5em;
-    background-color: rgba(53, 56, 73, 0.3);
-    border-left-color: #45558d;
-}
-
-/* Responsive Design */
-@media screen and (max-width: 736px) {
-    .comment-header, .comment-footer {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.5em;
-    }
-    
-    .comment-actions, .response-actions {
-        width: 100%;
-        justify-content: flex-start;
-    }
-    
-    .response-section {
-        margin-left: 1em;
-    }
-    
-    .response-section .response-section {
-        margin-left: 1em;
-    }
-}
-
-@media screen and (max-width: 480px) {
-    .comment-item, .response-item {
-        padding: 1em;
-    }
-    
-    .btn-delete, .btn-update, .btn-respond {
-        font-size: 0.65em;
-        padding: 0.4em 0.8em;
-    }
-    
-    .response-section {
-        margin-left: 0.5em;
-        padding: 1em;
-    }
-}
-/* Fin Post  Comment Response 
 
 /* List */
 
@@ -3208,7 +2933,7 @@ input, select, textarea {
 		input[type="button"].primary,
 		button.primary,
 		.button.primary {
-			background-color: #4c5c96;
+			background-color: var(--primary);
 			box-shadow: none;
 		}
 
@@ -3217,7 +2942,7 @@ input, select, textarea {
 			input[type="button"].primary:hover,
 			button.primary:hover,
 			.button.primary:hover {
-				background-color: #53639e;
+				background-color: var(--primary-dark);
 			}
 
 			input[type="submit"].primary:active,
@@ -3225,7 +2950,7 @@ input, select, textarea {
 			input[type="button"].primary:active,
 			button.primary:active,
 			.button.primary:active {
-				background-color: #45558d;
+				background-color: var(--primary-active);
 			}
 
 			input[type="submit"].primary.icon:before,
@@ -3271,6 +2996,58 @@ input, select, textarea {
 		.button:disabled {
 			opacity: 0.25;
 		}
+
+		/* Signalement card action buttons - compact, modern theme */
+		.signalement-card .button,
+		.signalement-card .action-link.button {
+			display: inline-block;
+			padding: 0.35em 0.8em;
+			height: auto;
+			line-height: 1.6em;
+			border-radius: 6px;
+			font-size: 0.85em;
+			text-transform: none;
+			padding-left: 0.8em;
+			padding-right: 0.8em;
+			box-shadow: none;
+		}
+		.signalement-card .button.small,
+		.signalement-card .action-link.button.small {
+			padding: 0.25em 0.6em;
+			font-size: 0.8em;
+		}
+		.signalement-card .action-link {
+			background: transparent;
+			border: 1px solid rgba(255,255,255,0.06);
+			color: rgba(255,255,255,0.92);
+		}
+		.signalement-card .action-link:hover {
+			background: rgba(255,255,255,0.03);
+		}
+		.signalement-card .action-link.edit-link,
+		.signalement-card .button.primary.edit-link {
+			background: var(--primary-gradient);
+			border: none;
+			color: #fff;
+		}
+		.signalement-card .action-link.edit-link:hover {
+			filter: brightness(1.05);
+		}
+		.signalement-card .action-link.detail-link {
+			background: rgba(255,255,255,0.02);
+			border-color: rgba(255,255,255,0.06);
+		}
+		.signalement-card .action-link.delete-link,
+		.signalement-card .button.danger {
+			background: linear-gradient(180deg, rgba(229,57,53,0.08), rgba(229,57,53,0.04));
+			border-color: rgba(229,57,53,0.20);
+			color: var(--danger-contrast);
+		}
+		.signalement-card .action-link.delete-link:hover,
+		.signalement-card .button.danger:hover {
+			background: rgba(244,67,54,0.12);
+		}
+
 
 		@media screen and (max-width: 480px) {
 
@@ -4098,8 +3875,6 @@ input, select, textarea {
 				width: 22em;
 				overflow: hidden;
 				-ms-flex: 1;
-				flex: 1;
-				
 			}
 
 				.wrapper.spotlight .image img {
@@ -4110,7 +3885,6 @@ input, select, textarea {
 			.wrapper.spotlight .content {
 				width: 100%;
 				-ms-flex: 2;
-				flex: 1;
 			}
 
 			.wrapper.spotlight:nth-child(2n - 1) .inner {
@@ -4452,69 +4226,3 @@ input, select, textarea {
 		}
 
 	}
-	/* Dans votre fichier CSS existant ou dans une balise style */
-.password-generator {
-    animation: fadeIn 0.5s ease;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-10px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-/* Animation pour le mot de passe généré */
-.password-reveal {
-    animation: pulse 0.5s ease;
-}
-
-@keyframes pulse {
-    0% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-    100% { transform: scale(1); }
-}
-
-/* Style pour les badges de force */
-.badge-strength-weak { background-color: #dc3545; }
-.badge-strength-medium { background-color: #ffc107; color: #000; }
-.badge-strength-strong { background-color: #28a745; }
-.badge-strength-very-strong { background-color: #007bff; }
-
-/* Style pour le curseur de longueur */
-input[type="range"]::-webkit-slider-thumb {
-    background: #007bff;
-    cursor: pointer;
-}
-
-input[type="range"]::-moz-range-thumb {
-    background: #007bff;
-    cursor: pointer;
-}
-
-/* Tooltip pour les infos bulles */
-.tooltip-password {
-    position: relative;
-    display: inline-block;
-    cursor: help;
-}
-
-.tooltip-password .tooltiptext {
-    visibility: hidden;
-    width: 200px;
-    background-color: #333;
-    color: #fff;
-    text-align: center;
-    border-radius: 6px;
-    padding: 5px;
-    position: absolute;
-    z-index: 1;
-    bottom: 125%;
-    left: 50%;
-    margin-left: -100px;
-    opacity: 0;
-    transition: opacity 0.3s;
-}
-
-.tooltip-password:hover .tooltiptext {
-    visibility: visible;
-    opacity: 1;
-}
