@@ -12,7 +12,7 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
     exit();
 }
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/controller/admincontroller.php';
+require_once __DIR__ . '/../../controller/admincontroller.php';
 
 try {
     $adminController = new AdminController();
@@ -100,6 +100,13 @@ try {
             <a class="nav-link" href="users_list.php">
                 <i class="fas fa-fw fa-users"></i>
                 <span>Utilisateurs</span></a>
+        </li>
+
+        <!-- Nav Item - Support Requests -->
+        <li class="nav-item">
+            <a class="nav-link" href="admin_support_requests.php">
+                <i class="fas fa-fw fa-hands-helping"></i>
+                <span>Demandes Support</span></a>
         </li>
 
         <!-- Divider -->

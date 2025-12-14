@@ -2,7 +2,7 @@
 session_start();
 
 // Inclure les contrôleurs
-require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/controller/UserController.php';
+require_once __DIR__ . '/../../controller/UserController.php';
 
 // Vérifier si un ID utilisateur est spécifié, sinon utiliser l'utilisateur connecté
 $profileUserId = $_GET['id'] ?? ($_SESSION['user_id'] ?? null);
@@ -37,7 +37,7 @@ function getProfilePictureUrl($user) {
     $defaultUrl = 'assets/images/default-avatar.png';
     
     if (!empty($profilePicture) && $profilePicture !== 'default-avatar.png') {
-        $filePath = $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/view/frontoffice/assets/images/uploads/' . $profilePicture;
+        $filePath = __DIR__ . '/assets/images/uploads/' . $profilePicture;
         if (file_exists($filePath)) {
             return $baseUrl . $profilePicture . '?t=' . filemtime($filePath);
         }

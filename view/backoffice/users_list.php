@@ -2,7 +2,7 @@
 // DÉMARRER LA SESSION EN PREMIER
 session_start();
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/controller/admincontroller.php';
+require_once __DIR__ . '/../../controller/admincontroller.php';
 
 // Vérifier si l'admin est connecté
 if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {

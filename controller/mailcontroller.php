@@ -1,8 +1,8 @@
 <?php
 // Inclure PHPMailer depuis vendor
-require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/vendor/PHPMailer-master/src/PHPMailer.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/vendor/PHPMailer-master/src/SMTP.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/vendor/PHPMailer-master/src/Exception.php';
+require_once __DIR__ . '/../vendor/PHPMailer-master/src/PHPMailer.php';
+require_once __DIR__ . '/../vendor/PHPMailer-master/src/SMTP.php';
+require_once __DIR__ . '/../vendor/PHPMailer-master/src/Exception.php';
 
 class MailController {
     

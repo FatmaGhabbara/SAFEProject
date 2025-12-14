@@ -251,16 +251,16 @@ class AuthController {
 
             // Redirection selon le rôle
             if ($userData['role'] === 'admin') {
-                header('Location: /SAFEProject/view/backoffice/index.php');
+                header('Location: /view/backoffice/index.php');
                 exit();
             } elseif ($userData['role'] === 'conseilleur') {
-                header('Location: /SAFEProject/view/backoffice/adviser_dashboard.php');
+                header('Location: /view/backoffice/adviser_dashboard.php');
                 exit();
             } elseif ($userData['role'] === 'membre') {
-                header('Location: /SAFEProject/view/backoffice/member_dashboard.php');
+                header('Location: /view/backoffice/member_dashboard.php');
                 exit();
             } else {
-                header('Location: /SAFEProject/view/backoffice/member_dashboard.php');
+                header('Location: /view/backoffice/member_dashboard.php');
                 exit();
             }
             
@@ -357,7 +357,7 @@ class AuthController {
         }
         
         session_destroy();
-        header('Location: /SAFEProject/view/frontoffice/login.php');
+        header('Location: /view/frontoffice/login.php');
         exit();
     }
 
@@ -404,7 +404,7 @@ class AuthController {
     // MÉTHODES DE SÉCURITÉ
     public function requireAuth() {
         if (!$this->isLoggedIn()) {
-            header('Location: /SAFEProject/view/frontoffice/login.php');
+            header('Location: /view/frontoffice/login.php');
             exit();
         }
     }
@@ -412,7 +412,7 @@ class AuthController {
     public function requireAdmin() {
         $this->requireAuth();
         if (!$this->isAdmin()) {
-            header('Location: /SAFEProject/view/frontoffice/index.php');
+            header('Location: /view/frontoffice/index.php');
             exit();
         }
     }
@@ -420,7 +420,7 @@ class AuthController {
     public function requireConseilleur() {
         $this->requireAuth();
         if (!$this->isConseilleur() && !$this->isAdmin()) {
-            header('Location: /SAFEProject/view/frontoffice/index.php');
+            header('Location: /view/frontoffice/index.php');
             exit();
         }
     }

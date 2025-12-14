@@ -9,14 +9,16 @@ session_start();
 if (isset($_SESSION['user_id'])) {
     if ($_SESSION['user_role'] === 'admin') {
         header('Location: ../backoffice/index.php');
+    } elseif ($_SESSION['user_role'] === 'conseilleur') {
+        header('Location: ../backoffice/adviser_dashboard.php');
     } else {
-        header('Location: meme.php');
+        header('Location: ../backoffice/member_dashboard.php');
     }
     exit();
 }
 
-// Chemin absolu vers le contrôleur
-$controller_path = $_SERVER['DOCUMENT_ROOT'] . '/SAFEProject/controller/AuthController.php';
+// Chemin vers le contrôleur
+$controller_path = $_SERVER['DOCUMENT_ROOT'] . '/controller/AuthController.php';
 if (file_exists($controller_path)) {
     require_once $controller_path;
 } else {
@@ -26,54 +28,51 @@ if (file_exists($controller_path)) {
 
 $authController = new AuthController();
 $error = '';
-
-// ⭐⭐⭐ CLÉS reCAPTCHA - À MODIFIER AVEC LES VÔTRES ⭐⭐⭐
-$recaptcha_site_key = "6LeXWCgsAAAAANEGd1QzF3TFKjqWWGrIOyLYPkfa"; // VOTRE CLÉ SITE ICI
-$recaptcha_secret_key = "6LeXWCgsAAAAALngdk9wHBfBBZCogaCNHtqNXzuO"; // VOTRE CLÉ SECRÈTE ICI
+$captcha_enabled = true; // reCAPTCHA activé
 
 // Traitement du formulaire
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $email = $_POST['email'] ?? '';
     $password = $_POST['password'] ?? '';
     
-    // ⭐⭐⭐ VÉRIFICATION reCAPTCHA ⭐⭐⭐
-    $recaptcha_response = $_POST['g-recaptcha-response'] ?? '';
-    
-    if (empty($recaptcha_response)) {
-        $error = "Veuillez valider le CAPTCHA.";
-    } else {
-        // Vérifier avec Google
-        $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
-        $recaptcha_data = [
-            'secret' => $recaptcha_secret_key,
-            'response' => $recaptcha_response,
-            'remoteip' => $_SERVER['REMOTE_ADDR']
-        ];
+    if ($captcha_enabled) {
+        $recaptcha_response = $_POST['g-recaptcha-response'] ?? '';
         
-        $recaptcha_options = [
-            'http' => [
-                'method' => 'POST',
-                'content' => http_build_query($recaptcha_data),
-                'header' => "Content-Type: application/x-www-form-urlencoded\r\n"
-            ]
-        ];
-        
-        $recaptcha_context = stream_context_create($recaptcha_options);
-        $recaptcha_result = file_get_contents($recaptcha_url, false, $recaptcha_context);
-        $recaptcha_json = json_decode($recaptcha_result);
-        
-        if (!$recaptcha_json->success) {
-            $error = "Échec de la vérification CAPTCHA. Veuillez réessayer.";
+        if (empty($recaptcha_response)) {
+            $error = "Veuillez valider le CAPTCHA.";
         } else {
-            // CAPTCHA réussi, procéder à la connexion
-            $result = $authController->login($email, $password);
+            $recaptcha_secret_key = "6LeXWCgsAAAAALngdk9wHBfBBZCogaCNHtqNXzuO";
+            $recaptcha_url = 'https://www.google.com/recaptcha/api/siteverify';
+            $recaptcha_data = [
+                'secret' => $recaptcha_secret_key,
+                'response' => $recaptcha_response,
+                'remoteip' => $_SERVER['REMOTE_ADDR']
+            ];
             
-            if ($result === true) {
-                // La redirection est gérée par AuthController
-                exit();
-            } else {
-                $error = $result;
+            $recaptcha_options = [
+                'http' => [
+                    'method' => 'POST',
+                    'content' => http_build_query($recaptcha_data),
+                    'header' => "Content-Type: application/x-www-form-urlencoded\r\n"
+                ]
+            ];
+            
+            $recaptcha_context = stream_context_create($recaptcha_options);
+            $recaptcha_result = file_get_contents($recaptcha_url, false, $recaptcha_context);
+            $recaptcha_json = json_decode($recaptcha_result);
+            
+            if (!$recaptcha_json->success) {
+                $error = "Échec de la vérification CAPTCHA. Veuillez réessayer.";
             }
+        }
+    }
+    
+    if (empty($error)) {
+        $result = $authController->login($email, $password);
+        if ($result === true) {
+            exit();
+        } else {
+            $error = $result;
         }
     }
 }
@@ -89,8 +88,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <!-- ⭐⭐⭐ SCRIPT reCAPTCHA ⭐⭐⭐ -->
+    <?php if ($captcha_enabled): ?>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <?php endif; ?>
     
     <style>
         /* Styles spécifiques pour la page de login */
@@ -373,15 +373,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
                         </div>
                         
-                        <!-- Section reCAPTCHA -->
+                        <?php if ($captcha_enabled): ?>
                         <div class="field">
                             <div class="recaptcha-container">
-                                <div class="g-recaptcha" data-sitekey="<?= htmlspecialchars($recaptcha_site_key) ?>"></div>
+                                <div class="g-recaptcha" data-sitekey="6LeXWCgsAAAAANEGd1QzF3TFKjqWWGrIOyLYPkfa"></div>
                                 <div class="recaptcha-info">
                                     <i class="fas fa-robot"></i> Cette vérification permet de protéger votre compte contre les robots.
                                 </div>
                             </div>
                         </div>
+                        <?php endif; ?>
                     </div>
                     
                     <ul class="actions">
@@ -471,7 +472,7 @@ function togglePasswordVisibility() {
     }
 }
 
-// Validation du CAPTCHA avant soumission
+<?php if ($captcha_enabled): ?>
 document.addEventListener('DOMContentLoaded', function() {
     const loginForm = document.getElementById('loginForm');
     if (loginForm) {
@@ -484,8 +485,10 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     }
-    
-    // Focus sur l'email
+});
+<?php endif; ?>
+
+document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('email').focus();
 });
 
