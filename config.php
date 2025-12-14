@@ -18,11 +18,7 @@ class Config
         if (self::$pdo === null) {
             try {
                 self::$pdo = new PDO(
-<<<<<<< HEAD
-                    'mysql:host=127.0.0.1;dbname=safespace',
-=======
                     'mysql:host=localhost;dbname=safespace;charset=utf8',
->>>>>>> af8b4baf22b0b6e35827106fed7e959ed54c3093
                     'root',
                     '',
                     [
