@@ -8,7 +8,7 @@ class config
         if (!isset(self::$pdo)) {
             try {
                 self::$pdo = new PDO(
-                    'mysql:host=localhost;dbname=safespace',
+                    'mysql:host=127.0.0.1;dbname=safespace',
                     'root',
                     '',
                     [

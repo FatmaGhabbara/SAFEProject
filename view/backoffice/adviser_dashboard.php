@@ -1,11 +1,11 @@
 <?php
 // DÉMARRER LA SESSION EN PREMIER
 session_start();
-// Après session_start() et avant require_once
-require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/controller/AuthController.php';
+require_once __DIR__ . '/../../controller/AuthController.php';
+require_once __DIR__ . '/../../controller/usercontroller.php';
 
-// Après la création de $userController
 $authController = new AuthController();
+
 $welcomeMessage = $authController->getWelcomeMessage();
 $securityAlert = $authController->getSecurityAlert();
 $loginInfo = $authController->getLastLoginInfo();
@@ -16,30 +16,21 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'conseilleur') {
     exit();
 }
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/controller/usercontroller.php';
-
 $userController = new UserController();
 $user = $userController->getUserById($_SESSION['user_id']);
 
-// Récupérer quelques statistiques pour le conseiller
-$totalClients = 0;
-$pendingConsultations = 0;
-$completedConsultations = 0;
-$satisfactionRate = "95%";
-
-// Fonction pour obtenir l'URL de la photo de profil
-function getProfilePictureUrl($user, $default = 'default-avatar.png') {
-    $baseUrl = '../frontoffice/assets/images/uploads/';
-    $defaultUrl = '../frontoffice/assets/images/default-avatar.png';
+function getProfilePictureUrl($user) {
+    $baseUrl = '../frontoffice/assets/images/';
     
     $profilePicture = $user->getProfilePicture();
     if (!empty($profilePicture) && $profilePicture !== 'default-avatar.png') {
-        $filePath = $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/view/frontoffice/assets/images/uploads/' . $profilePicture;
+        $filePath = __DIR__ . '/../frontoffice/assets/images/uploads/' . $profilePicture;
         if (file_exists($filePath)) {
-            return $baseUrl . $profilePicture . '?t=' . filemtime($filePath);
+            return $baseUrl . 'uploads/' . $profilePicture . '?t=' . filemtime($filePath);
         }
     }
-    return $defaultUrl;
+    
+    return $baseUrl . 'default-avatar.png';
 }
 ?>
 
@@ -477,16 +468,9 @@ function getProfilePictureUrl($user, $default = 'default-avatar.png') {
             </li>
             
             <li class="nav-item">
-                <a class="nav-link" href="my_consultations.php">
-                    <i class="fas fa-fw fa-comments"></i>
-                    <span>Mes Consultations</span>
-                </a>
-            </li>
-            
-            <li class="nav-item">
-                <a class="nav-link" href="calendar.php">
-                    <i class="fas fa-fw fa-calendar"></i>
-                    <span>Calendrier</span>
+                <a class="nav-link" href="conseiller_support_dashboard.php">
+                    <i class="fas fa-fw fa-hands-helping"></i>
+                    <span>Demandes Support</span>
                 </a>
             </li>
 
@@ -594,7 +578,7 @@ function getProfilePictureUrl($user, $default = 'default-avatar.png') {
                                 <p class="profile-email-conseiller"><?= htmlspecialchars($user->getEmail()) ?></p>
                                 
                                 <div class="role-badge-conseiller">
-                                    💼 Conseiller Professionnel
+                                    Conseiller Professionnel
                                 </div>
                                 
                                 <div class="action-buttons-conseiller">
@@ -784,20 +768,12 @@ function getProfilePictureUrl($user, $default = 'default-avatar.png') {
                                 <div class="quick-actions-card-conseiller">
                                     <h3 class="section-title-conseiller">Actions rapides</h3>
                                     <div class="d-grid">
-                                        <button class="btn-action-conseiller" onclick="window.location.href='my_clients.php'">
-                                            <i class="fas fa-users"></i> Mes clients
+                                        <button class="btn-action-conseiller" onclick="window.location.href='conseiller_support_dashboard.php'">
+                                            <i class="fas fa-hands-helping"></i> Demandes Support
                                         </button>
                                         
-                                        <button class="btn-action-conseiller" onclick="window.location.href='my_consultations.php'">
-                                            <i class="fas fa-comments"></i> Mes consultations
-                                        </button>
-                                        
-                                        <button class="btn-action-conseiller" onclick="window.location.href='calendar.php'">
-                                            <i class="fas fa-calendar"></i> Mon calendrier
-                                        </button>
-                                        
-                                        <button class="btn-action-conseiller" onclick="window.location.href='new_consultation.php'">
-                                            <i class="fas fa-plus-circle"></i> Nouveau rendez-vous
+                                        <button class="btn-action-conseiller" onclick="window.location.href='edit_profile.php'">
+                                            <i class="fas fa-user-edit"></i> Modifier mon profil
                                         </button>
                                         
                                         <button class="btn-action-conseiller" onclick="window.location.href='../frontoffice/index.php'">
