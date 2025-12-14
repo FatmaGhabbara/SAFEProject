@@ -4,8 +4,18 @@
 // ===============================
 session_start();
 
+<<<<<<< HEAD
+// Inclure les contrôleurs
+require_once __DIR__ . '/../../controller/UserController.php';
+
+// Vérifier si un ID utilisateur est spécifié, sinon utiliser l'utilisateur connecté
+$profileUserId = $_GET['id'] ?? ($_SESSION['user_id'] ?? null);
+
+if (!$profileUserId) {
+=======
 // 🔐 Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['user_id'])) {
+>>>>>>> af8b4baf22b0b6e35827106fed7e959ed54c3093
     header('Location: login.php');
     exit();
 }
@@ -44,6 +54,14 @@ $isOwnProfile = ($_SESSION['user_id'] == $user->getId());
 function getProfilePictureUrl($user)
 {
     $baseUrl = 'assets/images/uploads/';
+<<<<<<< HEAD
+    $defaultUrl = 'assets/images/default-avatar.png';
+    
+    if (!empty($profilePicture) && $profilePicture !== 'default-avatar.png') {
+        $filePath = __DIR__ . '/assets/images/uploads/' . $profilePicture;
+        if (file_exists($filePath)) {
+            return $baseUrl . $profilePicture . '?t=' . filemtime($filePath);
+=======
     $default = 'assets/images/default-avatar.png';
 
     $picture = $user->getProfilePicture();
@@ -52,6 +70,7 @@ function getProfilePictureUrl($user)
         $path = $_SERVER['DOCUMENT_ROOT'] . '/SAFEProject/view/frontoffice/' . $baseUrl . $picture;
         if (file_exists($path)) {
             return $baseUrl . $picture . '?v=' . filemtime($path);
+>>>>>>> af8b4baf22b0b6e35827106fed7e959ed54c3093
         }
     }
     return $default;

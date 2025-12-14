@@ -2,8 +2,15 @@
 // ================== SESSION ==================
 session_start();
 
+<<<<<<< HEAD
+require_once __DIR__ . '/../../controller/admincontroller.php';
+
+// Vérifier si l'admin est connecté
+if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
+=======
 // ================== AUTH ==================
 if (!isset($_SESSION['user_id']) || ($_SESSION['user_role'] ?? '') !== 'admin') {
+>>>>>>> af8b4baf22b0b6e35827106fed7e959ed54c3093
     header('Location: ../frontoffice/login.php');
     exit();
 }

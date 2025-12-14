@@ -4,12 +4,12 @@ session_start();
 
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../frontoffice/login.php');
+    header('Location: /SAFEProject/frontoffice/login.php');
     exit();
 }
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/controller/usercontroller.php';
-require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/controller/AuthController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/SAFEProject/controller/usercontroller.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/SAFEProject/controller/AuthController.php';
 
 $userController = new UserController();
 $authController = new AuthController();
@@ -20,7 +20,7 @@ $message = '';
 $messageType = '';
 
 // Configuration upload - CORRIGÉ
-$uploadDir = $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/view/frontoffice/assets/images/uploads/';
+$uploadDir = __DIR__ . '/../frontoffice/assets/images/uploads/';
 $allowedTypes = ['jpg', 'jpeg', 'png', 'gif'];
 $maxFileSize = 2 * 1024 * 1024; // 2MB
 
@@ -84,6 +84,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
                 $messageType = 'error';
             }
         }
+    } elseif (isset($_FILES['profile_picture']) && $_FILES['profile_picture']['error'] !== UPLOAD_ERR_NO_FILE) {
+        // Log l'erreur d'upload pour debug
+        $uploadErrors = [
+            UPLOAD_ERR_INI_SIZE => 'Le fichier dépasse la taille maximale autorisée par le serveur.',
+            UPLOAD_ERR_FORM_SIZE => 'Le fichier dépasse la taille maximale du formulaire.',
+            UPLOAD_ERR_PARTIAL => 'Le fichier n\'a été que partiellement téléchargé.',
+            UPLOAD_ERR_NO_TMP_DIR => 'Dossier temporaire manquant.',
+            UPLOAD_ERR_CANT_WRITE => 'Échec de l\'écriture du fichier sur le disque.',
+            UPLOAD_ERR_EXTENSION => 'Une extension PHP a arrêté l\'upload du fichier.'
+        ];
+        $errorCode = $_FILES['profile_picture']['error'];
+        $message = $uploadErrors[$errorCode] ?? 'Erreur inconnue lors de l\'upload.';
+        $messageType = 'error';
     }
     
     // Validation des autres champs
@@ -106,12 +119,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['update_profile'])) {
                     if (empty($current_password)) {
                         $message = "Veuillez saisir votre mot de passe actuel pour changer le mot de passe.";
                         $messageType = 'error';
-                    } elseif (!$userController->verifyPassword($current_password, $user->getPassword())) {
-                        $message = "Le mot de passe actuel est incorrect.";
-                        $messageType = 'error';
-                    } elseif (strlen($new_password) < 6) {
-                        $message = "Le nouveau mot de passe doit contenir au moins 6 caractères.";
-                        $messageType = 'error';
+                    } else {
+                        // Récupérer le hash du mot de passe depuis la base de données
+                        $userData = $userController->getUserByEmail($user->getEmail());
+                        if (!$userData || !password_verify($current_password, $userData['password'])) {
+                            $message = "Le mot de passe actuel est incorrect.";
+                            $messageType = 'error';
+                        } elseif (strlen($new_password) < 6) {
+                            $message = "Le nouveau mot de passe doit contenir au moins 6 caractères.";
+                            $messageType = 'error';
+                        }
                     }
                 }
                 
@@ -176,7 +193,7 @@ function getProfilePictureUrl($user, $default = 'default-avatar.png') {
     
     $profilePicture = $user->getProfilePicture();
     if (!empty($profilePicture) && $profilePicture !== 'default-avatar.png') {
-        $filePath = $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/view/frontoffice/assets/images/uploads/' . $profilePicture;
+        $filePath = __DIR__ . '/../frontoffice/assets/images/uploads/' . $profilePicture;
         if (file_exists($filePath)) {
             // Ajouter un timestamp pour éviter le cache
             return $baseUrl . $profilePicture . '?t=' . filemtime($filePath);

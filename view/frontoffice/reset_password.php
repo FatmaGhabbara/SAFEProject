@@ -7,7 +7,7 @@ if (isset($_SESSION['user_id'])) {
     exit();
 }
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/controller/usercontroller.php';
+require_once __DIR__ . '/../../controller/usercontroller.php';
 
 $message = '';
 $message_type = '';
@@ -69,7 +69,7 @@ if (!$reset_data) {
                     $show_form = false;
                     
                     // Envoyer un email de confirmation
-                    require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/controller/MailController.php';
+                    require_once __DIR__ . '/../../controller/MailController.php';
                     $mailController = new MailController();
                     
 <<<<<<< HEAD:SAFEProject/view/frontoffice/reset_password.php

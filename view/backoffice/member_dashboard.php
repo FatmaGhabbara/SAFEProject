@@ -1,22 +1,22 @@
 <?php
 // DÉMARRER LA SESSION EN PREMIER
 session_start();
-// Après session_start() et avant require_once
-require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/controller/AuthController.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/SAFEProject/controller/AuthController.php';
 
 // Après la création de $userController
 $authController = new AuthController();
+
 $welcomeMessage = $authController->getWelcomeMessage();
 $securityAlert = $authController->getSecurityAlert();
 $loginInfo = $authController->getLastLoginInfo();
 
 // Vérifier si l'utilisateur est connecté
 if (!isset($_SESSION['user_id'])) {
-    header('Location: ../frontoffice/login.php');
+    header('Location: /SAFEProject/view/frontoffice/login.php');
     exit();
 }
 
-require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/controller/usercontroller.php';
+require_once $_SERVER['DOCUMENT_ROOT'] . '/SAFEProject/controller/usercontroller.php';
 
 $userController = new UserController();
 $user = $userController->getUserById($_SESSION['user_id']);
@@ -27,16 +27,12 @@ $roleName = ucfirst($userRole);
 
 // Obtenir l'URL de la photo de profil
 function getProfilePictureUrl($user, $default = 'default-avatar.png') {
-    $baseUrl = '../frontoffice/assets/images/uploads/';
-<<<<<<< HEAD:SAFEProject/view/backoffice/member_dashboard.php
-    $defaultUrl = '../frontoffice/images/default-avatar.png';
-=======
-    $defaultUrl = '../frontoffice/assets/images/default-avatar.png';
->>>>>>> origin/main:view/backoffice/member_dashboard.php
+    $baseUrl = '/SAFEProject/view/frontoffice/assets/images/uploads/';
+    $defaultUrl = '/SAFEProject/view/frontoffice/assets/images/default-avatar.png';
     
     $profilePicture = $user->getProfilePicture();
     if (!empty($profilePicture) && $profilePicture !== 'default-avatar.png') {
-        $filePath = $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/view/frontoffice/assets/images/uploads/' . $profilePicture;
+        $filePath = $_SERVER['DOCUMENT_ROOT'] . '/SAFEProject/view/frontoffice/assets/images/uploads/' . $profilePicture;
         if (file_exists($filePath)) {
             return $baseUrl . $profilePicture . '?t=' . filemtime($filePath);
         }
@@ -70,7 +66,8 @@ function getProfilePictureUrl($user, $default = 'default-avatar.png') {
     <style>
         /* Style professionnel élégant */
         body {
-            background-color: #f5f7fa;
+            background: linear-gradient(135deg, #4e73df 0%, #224abe 100%);
+            min-height: 100vh;
             font-family: 'Segoe UI', 'Nunito', sans-serif;
         }
         
@@ -412,30 +409,38 @@ function getProfilePictureUrl($user, $default = 'default-avatar.png') {
             </li>
 
             <hr class="sidebar-divider">
-            <div class="sidebar-heading">Interface</div>
+            <div class="sidebar-heading">Mon Espace</div>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="edit_profile.php">
+                    <i class="fas fa-fw fa-user-circle"></i>
+                    <span>Mon Profil</span>
+                </a>
+            </li>
             
             <li class="nav-item">
                 <a class="nav-link" href="edit_profile.php">
                     <i class="fas fa-fw fa-user-edit"></i>
-                    <span>Modifier mon profil</span>
+                    <span>Modifier Profil</span>
+                </a>
+            </li>
+            
+            <hr class="sidebar-divider">
+            <div class="sidebar-heading">Support</div>
+            
+            <li class="nav-item">
+                <a class="nav-link" href="../frontoffice/support_dashboard.php">
+                    <i class="fas fa-fw fa-list"></i>
+                    <span>Mes Demandes</span>
                 </a>
             </li>
             
             <li class="nav-item">
-                <a class="nav-link" href="my_consultations.php">
-                    <i class="fas fa-fw fa-comments"></i>
-                    <span>Mes Consultations</span>
+                <a class="nav-link" href="../frontoffice/create_support_request.php">
+                    <i class="fas fa-fw fa-plus-circle"></i>
+                    <span>Faire une Demande</span>
                 </a>
             </li>
-            
-            <?php if ($userRole === 'conseilleur'): ?>
-            <li class="nav-item">
-                <a class="nav-link" href="manage_consultations.php">
-                    <i class="fas fa-fw fa-tasks"></i>
-                    <span>Gérer Consultations</span>
-                </a>
-            </li>
-            <?php endif; ?>
 
             <hr class="sidebar-divider">
             <div class="sidebar-heading">Navigation</div>
@@ -640,14 +645,12 @@ function getProfilePictureUrl($user, $default = 'default-avatar.png') {
                                 <div class="quick-actions-card-elegant">
                                     <h3 class="section-title-elegant">Actions rapides</h3>
                                     <div class="d-grid">
-                                        <?php if ($userRole === 'membre'): ?>
-                                            <button class="btn-action-elegant" onclick="window.location.href='new_consultation.php'">
-                                                <i class="fas fa-plus"></i> Nouvelle consultation
-                                            </button>
-                                        <?php endif; ?>
+                                        <button class="btn-action-elegant" onclick="window.location.href='../frontoffice/support_dashboard.php'">
+                                            <i class="fas fa-hands-helping"></i> Mes demandes support
+                                        </button>
                                         
-                                        <button class="btn-action-elegant" onclick="window.location.href='my_consultations.php'">
-                                            <i class="fas fa-comments"></i> Mes consultations
+                                        <button class="btn-action-elegant" onclick="window.location.href='edit_profile.php'">
+                                            <i class="fas fa-user-edit"></i> Modifier mon profil
                                         </button>
                                         
                                         <?php if ($userRole === 'conseilleur'): ?>

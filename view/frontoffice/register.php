@@ -1,5 +1,10 @@
 <?php
+<<<<<<< HEAD
+require_once __DIR__ . '/../../controller/AuthController.php';
+
+=======
 require_once $_SERVER['DOCUMENT_ROOT'] . '/SAFEProject/controller/AuthController.php';
+>>>>>>> af8b4baf22b0b6e35827106fed7e959ed54c3093
 session_start();
 
 $errors = [];
