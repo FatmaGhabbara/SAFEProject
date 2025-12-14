@@ -110,6 +110,41 @@ INSERT INTO `password_resets` (`id`, `email`, `token`, `expires_at`, `created_at
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `support_requests`
+--
+
+CREATE TABLE `support_requests` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `counselor_user_id` int(11) DEFAULT NULL,
+  `titre` varchar(255) NOT NULL,
+  `description` text NOT NULL,
+  `urgence` enum('basse','moyenne','haute') DEFAULT 'moyenne',
+  `statut` enum('en_attente','assignee','en_cours','terminee','annulee') DEFAULT 'en_attente',
+  `date_creation` datetime DEFAULT current_timestamp(),
+  `date_assignation` datetime DEFAULT NULL,
+  `date_resolution` datetime DEFAULT NULL,
+  `notes_admin` text DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `support_messages`
+--
+
+CREATE TABLE `support_messages` (
+  `id` int(11) NOT NULL,
+  `support_request_id` int(11) NOT NULL,
+  `sender_id` int(11) NOT NULL,
+  `message` text NOT NULL,
+  `date_envoi` datetime DEFAULT current_timestamp(),
+  `lu` tinyint(1) DEFAULT 0
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `users`
 --
 
@@ -118,7 +153,7 @@ CREATE TABLE `users` (
   `nom` varchar(100) NOT NULL,
   `email` varchar(150) NOT NULL,
   `password` varchar(255) NOT NULL,
-  `role` enum('admin','moderateur','expert','membre') DEFAULT 'membre',
+  `role` enum('admin','moderateur','expert','membre','conseilleur') DEFAULT 'membre',
   `status` enum('actif','en attente','suspendu') DEFAULT 'en attente',
   `profile_picture` varchar(255) DEFAULT 'assets/images/default-avatar.png',
   `date_naissance` date DEFAULT NULL,
@@ -178,6 +213,27 @@ ALTER TABLE `password_resets`
   ADD KEY `idx_expires` (`expires_at`);
 
 --
+-- Index pour la table `support_requests`
+--
+ALTER TABLE `support_requests`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_user_id` (`user_id`),
+  ADD KEY `idx_counselor_user_id` (`counselor_user_id`),
+  ADD KEY `idx_statut` (`statut`),
+  ADD KEY `idx_urgence` (`urgence`),
+  ADD KEY `idx_date_creation` (`date_creation`);
+
+--
+-- Index pour la table `support_messages`
+--
+ALTER TABLE `support_messages`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `idx_support_request_id` (`support_request_id`),
+  ADD KEY `idx_sender_id` (`sender_id`),
+  ADD KEY `idx_lu` (`lu`),
+  ADD KEY `idx_date_envoi` (`date_envoi`);
+
+--
 -- Index pour la table `users`
 --
 ALTER TABLE `users`
@@ -213,6 +269,18 @@ ALTER TABLE `password_resets`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
+-- AUTO_INCREMENT pour la table `support_requests`
+--
+ALTER TABLE `support_requests`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT pour la table `support_messages`
+--
+ALTER TABLE `support_messages`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
@@ -233,6 +301,20 @@ ALTER TABLE `biometric_credentials`
 --
 ALTER TABLE `face_auth`
   ADD CONSTRAINT `face_auth_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Contraintes pour la table `support_requests`
+--
+ALTER TABLE `support_requests`
+  ADD CONSTRAINT `support_requests_ibfk_1` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `support_requests_ibfk_2` FOREIGN KEY (`counselor_user_id`) REFERENCES `users` (`id`) ON DELETE SET NULL;
+
+--
+-- Contraintes pour la table `support_messages`
+--
+ALTER TABLE `support_messages`
+  ADD CONSTRAINT `support_messages_ibfk_1` FOREIGN KEY (`support_request_id`) REFERENCES `support_requests` (`id`) ON DELETE CASCADE,
+  ADD CONSTRAINT `support_messages_ibfk_2` FOREIGN KEY (`sender_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
