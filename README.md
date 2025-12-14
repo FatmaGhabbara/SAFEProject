@@ -86,4 +86,4 @@ Pour contribuer à ce module :
 
 [cite_start]Ce projet est développé pour des **fins académiques** uniquement[cite: 286].
 
-Développé par **Fatma EZZAHRA Ghabbara** et **[Azzabi Alaedinne]** – ESPRIT – Web Technologies.
+Développé par **Azzabi Alaedinne** et **Fatma EZZAHRA Ghabbara** – ESPRIT – Web Technologies.
