@@ -1,173 +1,139 @@
 <?php
+
 require_once __DIR__ . '/../model/user.php';
 require_once __DIR__ . '/../controller/usercontroller.php';
 
-class AuthController {
-    private $userController;
-    private $maxAttempts = 5; // Nombre maximum de tentatives
-    private $lockoutTime = 900; // 15 minutes en secondes
+class AuthController
+{
+    private UserController $userController;
+    private int $maxAttempts = 5;     // max tentatives
+    private int $lockoutTime = 900;   // 15 minutes
 
-    public function __construct() {
-        if (session_status() == PHP_SESSION_NONE) {
+    public function __construct()
+    {
+        if (session_status() === PHP_SESSION_NONE) {
             session_start();
         }
         $this->userController = new UserController();
     }
 
-    // 🆕 MÉTHODE POUR GÉOLOCALISATION IP (ipapi.co)
-    private function getIpGeolocation($ip) {
+    /* =======================
+       GEOLOCALISATION IP
+    ======================= */
+    private function getIpGeolocation(string $ip): ?array
+    {
         try {
-            // API ipapi.co - simple et gratuit
             $url = "https://ipapi.co/{$ip}/json/";
-            
-            // Utiliser file_get_contents (plus simple)
             $context = stream_context_create([
                 'http' => [
-                    'timeout' => 3, // Timeout de 3 secondes
+                    'timeout' => 3,
                     'header' => "User-Agent: SafeSpace-App/1.0\r\n"
                 ]
             ]);
-            
+
             $response = @file_get_contents($url, false, $context);
-            
-            if ($response !== false) {
-                $data = json_decode($response, true);
-                
-                // Vérifier si l'API a retourné une erreur
-                if (isset($data['error'])) {
-                    error_log("❌ Erreur ipapi.co: " . ($data['reason'] ?? 'Unknown error'));
-                    return null;
-                }
-                
-                return [
-                    'ip' => $data['ip'] ?? $ip,
-                    'city' => $data['city'] ?? 'Inconnu',
-                    'region' => $data['region'] ?? 'Inconnu',
-                    'country' => $data['country_name'] ?? 'Inconnu',
-                    'country_code' => $data['country_code'] ?? 'XX',
-                    'timezone' => $data['timezone'] ?? 'UTC',
-                    'currency' => $data['currency'] ?? 'EUR',
-                    'languages' => $data['languages'] ?? 'fr',
-                    'isp' => $data['org'] ?? 'Inconnu',
-                    'latitude' => $data['latitude'] ?? null,
-                    'longitude' => $data['longitude'] ?? null
-                ];
+            if ($response === false) {
+                return null;
             }
-            
-            return null;
-            
+
+            $data = json_decode($response, true);
+            if (isset($data['error'])) {
+                return null;
+            }
+
+            return [
+                'ip' => $data['ip'] ?? $ip,
+                'city' => $data['city'] ?? 'Inconnu',
+                'region' => $data['region'] ?? 'Inconnu',
+                'country' => $data['country_name'] ?? 'Inconnu',
+                'country_code' => $data['country_code'] ?? 'XX',
+                'timezone' => $data['timezone'] ?? 'UTC',
+                'isp' => $data['org'] ?? 'Inconnu',
+            ];
         } catch (Exception $e) {
-            error_log("❌ Exception géolocalisation: " . $e->getMessage());
             return null;
         }
     }
 
-    // 🆕 MÉTHODE POUR DÉTECTER LE NAVIGATEUR
-    private function detectBrowser() {
-        $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? '';
-        
-        if (stripos($userAgent, 'Chrome') !== false && stripos($userAgent, 'Edg') === false) {
-            return 'Chrome';
-        } elseif (stripos($userAgent, 'Firefox') !== false) {
-            return 'Firefox';
-        } elseif (stripos($userAgent, 'Safari') !== false && stripos($userAgent, 'Chrome') === false) {
-            return 'Safari';
-        } elseif (stripos($userAgent, 'Edg') !== false) {
-            return 'Edge';
-        } elseif (stripos($userAgent, 'Opera') !== false || stripos($userAgent, 'OPR') !== false) {
-            return 'Opera';
-        } else {
-            return 'Navigateur';
-        }
+    /* =======================
+       DETECTION BROWSER / OS
+    ======================= */
+    private function detectBrowser(): string
+    {
+        $ua = $_SERVER['HTTP_USER_AGENT'] ?? '';
+        return match (true) {
+            stripos($ua, 'Edg') !== false => 'Edge',
+            stripos($ua, 'Chrome') !== false => 'Chrome',
+            stripos($ua, 'Firefox') !== false => 'Firefox',
+            stripos($ua, 'Safari') !== false => 'Safari',
+            stripos($ua, 'OPR') !== false => 'Opera',
+            default => 'Navigateur'
+        };
     }
 
-    // 🆕 MÉTHODE POUR DÉTECTER LE SYSTÈME D'EXPLOITATION
-    private function detectOS() {
-        $userAgent = $_SERVER['HTTP_USER_AGENT'] ?? '';
-        
-        if (stripos($userAgent, 'Windows') !== false) {
-            return 'Windows';
-        } elseif (stripos($userAgent, 'Mac') !== false) {
-            return 'macOS';
-        } elseif (stripos($userAgent, 'Linux') !== false) {
-            return 'Linux';
-        } elseif (stripos($userAgent, 'Android') !== false) {
-            return 'Android';
-        } elseif (stripos($userAgent, 'iPhone') !== false || stripos($userAgent, 'iPad') !== false) {
-            return 'iOS';
-        } else {
-            return 'OS';
-        }
+    private function detectOS(): string
+    {
+        $ua = $_SERVER['HTTP_USER_AGENT'] ?? '';
+        return match (true) {
+            stripos($ua, 'Windows') !== false => 'Windows',
+            stripos($ua, 'Mac') !== false => 'macOS',
+            stripos($ua, 'Linux') !== false => 'Linux',
+            stripos($ua, 'Android') !== false => 'Android',
+            stripos($ua, 'iPhone') !== false || stripos($ua, 'iPad') !== false => 'iOS',
+            default => 'OS'
+        };
     }
 
-    // MÉTHODE REGISTER
-    public function register($nom, $email, $password, $role = 'membre') {
-        if (empty($nom) || empty($email) || empty($password)) {
+    /* =======================
+       REGISTER
+    ======================= */
+    public function register(string $nom, string $email, string $password, string $role = 'membre')
+    {
+        if ($nom === '' || $email === '' || $password === '') {
             return "Tous les champs sont obligatoires.";
         }
 
-        $email = trim($email);
-        $email = strtolower($email);
+        $email = strtolower(trim($email));
 
         if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-            return "Format d'email invalide.";
+            return "Email invalide.";
         }
 
         if (strlen($password) < 6) {
-            return "Le mot de passe doit contenir au moins 6 caractères.";
+            return "Mot de passe minimum 6 caractères.";
         }
 
         $allowedRoles = ['membre', 'conseilleur', 'admin'];
-        if (!in_array($role, $allowedRoles)) {
+        if (!in_array($role, $allowedRoles, true)) {
             $role = 'membre';
         }
 
-        try {
-            $existing = $this->userController->getUserByEmail($email);
-            if ($existing) {
-                return "Cet email est déjà utilisé.";
-            }
-
-            $user = new User($nom, $email, $password, $role, "en attente");
-
-            if ($this->userController->addUser($user)) {
-                return true;
-            } else {
-                return "Erreur lors de l'inscription.";
-            }
-
-        } catch (PDOException $e) {
-            error_log("❌ Erreur PDO register: " . $e->getMessage());
-            return "Erreur de base de données.";
-        } catch (Exception $e) {
-            error_log("❌ Erreur register: " . $e->getMessage());
-            return "Erreur lors de l'inscription.";
+        if ($this->userController->getUserByEmail($email)) {
+            return "Cet email est déjà utilisé.";
         }
+
+        $user = new User($nom, $email, $password, $role, 'en attente');
+        return $this->userController->addUser($user)
+            ? true
+            : "Erreur lors de l'inscription.";
     }
 
-    // MÉTHODE LOGIN AVEC GÉOLOCALISATION ET LIMITATION
-    public function login($email, $password) {
-        if (empty($email) || empty($password)) {
+    /* =======================
+       LOGIN + RATE LIMIT
+    ======================= */
+    public function login(string $email, string $password)
+    {
+        if ($email === '' || $password === '') {
             return "Email et mot de passe requis.";
         }
 
-        try {
-            $email = trim($email);
-            $email = strtolower($email);
+        $email = strtolower(trim($email));
+        $ip = $_SERVER['REMOTE_ADDR'] ?? '0.0.0.0';
+        $key = 'login_' . md5($email . $ip);
 
-            // Vérifier les tentatives dans la session
-            $ip = $_SERVER['REMOTE_ADDR'];
-            $attemptKey = 'login_attempts_' . md5($email . $ip);
-            
-            // Initialiser le compteur si non existant
-            if (!isset($_SESSION[$attemptKey])) {
-                $_SESSION[$attemptKey] = [
-                    'count' => 0,
-                    'last_attempt' => time(),
-                    'blocked_until' => 0
-                ];
-            }
+        $_SESSION[$key] ??= ['count' => 0, 'blocked_until' => 0];
 
+<<<<<<< HEAD
             $attempts = $_SESSION[$attemptKey];
 
             // Vérifier si bloqué
@@ -270,9 +236,41 @@ class AuthController {
         } catch (Exception $e) {
             error_log("❌ Erreur login: " . $e->getMessage());
             return "Erreur lors de la connexion.";
+=======
+        if ($_SESSION[$key]['blocked_until'] > time()) {
+            return "Compte temporairement bloqué. Réessayez plus tard.";
+>>>>>>> af8b4baf22b0b6e35827106fed7e959ed54c3093
         }
+
+        $user = $this->userController->getUserByEmail($email);
+        if (!$user || !password_verify($password, $user['password'])) {
+            $_SESSION[$key]['count']++;
+            if ($_SESSION[$key]['count'] >= $this->maxAttempts) {
+                $_SESSION[$key]['blocked_until'] = time() + $this->lockoutTime;
+            }
+            return "Email ou mot de passe incorrect.";
+        }
+
+        unset($_SESSION[$key]);
+
+        if ($user['status'] !== 'actif' && $user['role'] !== 'admin') {
+            return "Compte en attente de validation.";
+        }
+
+        $_SESSION['user_id'] = $user['id'];
+        $_SESSION['user_role'] = $user['role'];
+        $_SESSION['fullname'] = $user['nom'];
+        $_SESSION['user_email'] = $user['email'];
+        $_SESSION['login_ip'] = $ip;
+        $_SESSION['login_browser'] = $this->detectBrowser();
+        $_SESSION['login_os'] = $this->detectOS();
+        $_SESSION['login_geo'] = $this->getIpGeolocation($ip);
+        $_SESSION['last_login'] = time();
+
+        return true;
     }
 
+<<<<<<< HEAD
     // 🆕 MÉTHODE POUR RÉCUPÉRER LA DERNIÈRE CONNEXION
     public function getLastLoginInfo() {
         if (!$this->isLoggedIn()) {
@@ -366,13 +364,22 @@ class AuthController {
         if (session_status() == PHP_SESSION_NONE) {
             session_start();
         }
+=======
+    /* =======================
+       AUTH HELPERS
+    ======================= */
+    public function isLoggedIn(): bool
+    {
+>>>>>>> af8b4baf22b0b6e35827106fed7e959ed54c3093
         return isset($_SESSION['user_id']);
     }
 
-    public function isAdmin() {
-        return $this->isLoggedIn() && isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'admin';
+    public function isAdmin(): bool
+    {
+        return $this->isLoggedIn() && $_SESSION['user_role'] === 'admin';
     }
 
+<<<<<<< HEAD
     public function isConseilleur() {
         return $this->isLoggedIn() && isset($_SESSION['user_role']) && $_SESSION['user_role'] === 'conseilleur';
     }
@@ -457,6 +464,12 @@ class AuthController {
         $attemptKey = 'login_attempts_' . md5($email . $ip);
         unset($_SESSION[$attemptKey]);
         return true;
+=======
+    public function logout(): void
+    {
+        session_destroy();
+        header('Location: /SAFEProject/view/frontoffice/login.php');
+        exit;
+>>>>>>> af8b4baf22b0b6e35827106fed7e959ed54c3093
     }
 }
-?>

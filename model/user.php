@@ -1,5 +1,10 @@
 <?php
-class User {
+
+// Prevent redeclaration issues when the file is included multiple times
+if (!class_exists('User')) {
+
+class User
+{
     private $id;
     private $nom;
     private $email;
@@ -15,7 +20,13 @@ class User {
     private $created_at;
     private $updated_at;
 
-    public function __construct($nom = "", $email = "", $password = "", $role = "membre", $status = "en attente") {
+    public function __construct(
+        string $nom = "",
+        string $email = "",
+        string $password = "",
+        string $role = "membre",
+        string $status = "en attente"
+    ) {
         $this->nom = $nom;
         $this->email = $email;
         $this->password = $password;
@@ -26,7 +37,9 @@ class User {
         $this->updated_at = date('Y-m-d H:i:s');
     }
 
-    // Getters
+    /* =======================
+       GETTERS
+    ======================= */
     public function getId() { return $this->id; }
     public function getNom() { return $this->nom; }
     public function getEmail() { return $this->email; }
@@ -42,7 +55,9 @@ class User {
     public function getCreatedAt() { return $this->created_at; }
     public function getUpdatedAt() { return $this->updated_at; }
 
-    // Setters
+    /* =======================
+       SETTERS (Fluent)
+    ======================= */
     public function setId($id) { $this->id = $id; return $this; }
     public function setNom($nom) { $this->nom = $nom; return $this; }
     public function setEmail($email) { $this->email = $email; return $this; }
@@ -58,4 +73,5 @@ class User {
     public function setCreatedAt($created_at) { $this->created_at = $created_at; return $this; }
     public function setUpdatedAt($updated_at) { $this->updated_at = $updated_at; return $this; }
 }
-?>
+
+}

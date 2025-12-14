@@ -1,13 +1,20 @@
 <?php
-// Activer l'affichage des erreurs pour debug
+// ===============================
+// Debug (عطّلها في الإنتاج)
+// ===============================
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
 
+// ===============================
+// Session
+// ===============================
 session_start();
 
-// Si déjà connecté, rediriger
+// ===============================
+// Redirection si déjà connecté
+// ===============================
 if (isset($_SESSION['user_id'])) {
-    if ($_SESSION['user_role'] === 'admin') {
+    if (($_SESSION['user_role'] ?? '') === 'admin') {
         header('Location: ../backoffice/index.php');
     } elseif ($_SESSION['user_role'] === 'conseilleur') {
         header('Location: ../backoffice/adviser_dashboard.php');
@@ -17,6 +24,7 @@ if (isset($_SESSION['user_id'])) {
     exit();
 }
 
+<<<<<<< HEAD
 // Chemin vers le contrôleur
 $controller_path = $_SERVER['DOCUMENT_ROOT'] . '/controller/AuthController.php';
 if (file_exists($controller_path)) {
@@ -24,16 +32,38 @@ if (file_exists($controller_path)) {
 } else {
     // Fallback au chemin relatif
     require_once '../../controller/AuthController.php';
+=======
+// ===============================
+// AuthController
+// ===============================
+$controllerPath = $_SERVER['DOCUMENT_ROOT'] . '/SAFEProject/controller/AuthController.php';
+if (!file_exists($controllerPath)) {
+    die('Erreur : AuthController introuvable');
+>>>>>>> af8b4baf22b0b6e35827106fed7e959ed54c3093
 }
+require_once $controllerPath;
 
 $authController = new AuthController();
 $error = '';
+<<<<<<< HEAD
 $captcha_enabled = true; // reCAPTCHA activé
+=======
 
-// Traitement du formulaire
+// ===============================
+// reCAPTCHA (⚠️ استبدل بالمفاتيح متاعك)
+// ===============================
+$recaptcha_site_key   = '6LeXWCgsAAAAANEGd1QzF3TFKjqWWGrIOyLYPkfa';
+$recaptcha_secret_key = '6LeXWCgsAAAAALngdk9wHBfBBZCogaCNHtqNXzuO';
+>>>>>>> af8b4baf22b0b6e35827106fed7e959ed54c3093
+
+// ===============================
+// Traitement formulaire
+// ===============================
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $email = $_POST['email'] ?? '';
+
+    $email    = trim($_POST['email'] ?? '');
     $password = $_POST['password'] ?? '';
+<<<<<<< HEAD
     
     if ($captcha_enabled) {
         $recaptcha_response = $_POST['g-recaptcha-response'] ?? '';
@@ -63,6 +93,46 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             
             if (!$recaptcha_json->success) {
                 $error = "Échec de la vérification CAPTCHA. Veuillez réessayer.";
+=======
+    $captcha  = $_POST['g-recaptcha-response'] ?? '';
+
+    if ($email === '' || $password === '') {
+        $error = 'Veuillez remplir tous les champs.';
+    } elseif ($captcha === '') {
+        $error = 'Veuillez valider le CAPTCHA.';
+    } else {
+
+        // Vérification reCAPTCHA
+        $verify = file_get_contents(
+            'https://www.google.com/recaptcha/api/siteverify',
+            false,
+            stream_context_create([
+                'http' => [
+                    'method'  => 'POST',
+                    'header'  => "Content-Type: application/x-www-form-urlencoded\r\n",
+                    'content' => http_build_query([
+                        'secret'   => $recaptcha_secret_key,
+                        'response' => $captcha,
+                        'remoteip' => $_SERVER['REMOTE_ADDR']
+                    ])
+                ]
+            ])
+        );
+
+        $captchaResult = json_decode($verify);
+
+        if (!$captchaResult || !$captchaResult->success) {
+            $error = 'Échec de la vérification CAPTCHA.';
+        } else {
+            // Login
+            $result = $authController->login($email, $password);
+
+            if ($result === true) {
+                // redirection gérée par AuthController
+                exit();
+            } else {
+                $error = $result;
+>>>>>>> af8b4baf22b0b6e35827106fed7e959ed54c3093
             }
         }
     }
@@ -77,17 +147,19 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 }
 ?>
-
 <!DOCTYPE html>
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion - SafeSpace</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="assets/css/main.css">
     <noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
+
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+<<<<<<< HEAD
     <?php if ($captcha_enabled): ?>
     <script src="https://www.google.com/recaptcha/api.js" async defer></script>
     <?php endif; ?>
@@ -308,11 +380,18 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             }
         }
     </style>
+=======
+
+    <!-- reCAPTCHA -->
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+>>>>>>> af8b4baf22b0b6e35827106fed7e959ed54c3093
 </head>
+
 <body class="is-preload">
 
 <div id="page-wrapper">
 
+    <!-- Header -->
     <header id="header">
         <h1><a href="index.php">SafeSpace</a></h1>
         <nav>
@@ -331,22 +410,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </div>
         </header>
 
-        <!-- Content -->
         <div class="wrapper">
             <div class="inner">
 
                 <?php if (isset($_GET['registered']) && $_GET['registered'] == '1'): ?>
                     <div class="alert alert-success">
-                        <i class="fas fa-check-circle"></i> Inscription réussie ! Votre compte est en attente d'approbation.
-                    </div>
-                <?php endif; ?>
-                
-                <?php if ($error): ?>
-                    <div class="alert alert-danger">
-                        <i class="fas fa-exclamation-circle"></i> <?= htmlspecialchars($error) ?>
+                        Inscription réussie. Compte en attente d’approbation.
                     </div>
                 <?php endif; ?>
 
+<<<<<<< HEAD
                 <form method="post" action="" id="loginForm">
                     <div class="fields">
                         <div class="field">
@@ -383,94 +456,82 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             </div>
                         </div>
                         <?php endif; ?>
+=======
+                <?php if ($error): ?>
+                    <div class="alert alert-danger">
+                        <?= htmlspecialchars($error) ?>
+>>>>>>> af8b4baf22b0b6e35827106fed7e959ed54c3093
                     </div>
-                    
+                <?php endif; ?>
+
+                <form method="post" id="loginForm">
+
+                    <div class="field">
+                        <label>Email</label>
+                        <input type="email" name="email" required
+                               value="<?= htmlspecialchars($_POST['email'] ?? '') ?>">
+                    </div>
+
+                    <div class="field password-field">
+                        <label>Mot de passe</label>
+                        <input type="password" name="password" id="password" required>
+                        <button type="button" class="toggle-password" onclick="togglePassword()">
+                            <i class="fas fa-eye" id="eyeIcon"></i>
+                        </button>
+                    </div>
+
+                    <div class="recaptcha-container">
+                        <div class="g-recaptcha" data-sitekey="<?= htmlspecialchars($recaptcha_site_key) ?>"></div>
+                    </div>
+
                     <ul class="actions">
-                        <li>
-                            <input type="submit" value="Se connecter" class="primary" />
-                        </li>
-                        <li>
-                            <a href="register.php" class="button">
-                                <i class="fas fa-user-plus"></i> Créer un compte
-                            </a>
-                        </li>
+                        <li><input type="submit" class="primary" value="Se connecter"></li>
+                        <li><a href="register.php" class="button">Créer un compte</a></li>
                     </ul>
                 </form>
-                
-                <!-- Section Windows Hello -->
+
+                <!-- Windows Hello -->
                 <div class="windows-section">
-                    <div class="windows-icon">
-                        <i class="fab fa-windows"></i>
-                    </div>
-                    <h3 style="color: #005a9e; margin-bottom: 15px; font-size: 1.2rem;">
-                        Connexion Admin sécurisée
-                        <span class="admin-only">Admin only</span>
-                    </h3>
-                    <p style="color: #5a5c69; margin-bottom: 15px; font-size: 0.95rem;">
-                        Windows Hello réservé à l'administrateur pour une authentification biométrique.
-                    </p>
-                    
+                    <h3>Connexion Admin sécurisée</h3>
                     <a href="fingerprint-login.php" class="btn-windows">
-                        <i class="fas fa-fingerprint"></i> Windows Hello (Admin)
+                        <i class="fas fa-fingerprint"></i> Windows Hello
                     </a>
-                    
-                    <div class="biometric-info">
-                        <i class="fas fa-info-circle"></i>
-                        <span>Réservé à l'administrateur • Empreinte • Reconnaissance faciale • PIN</span>
-                    </div>
                 </div>
-                
-                <!-- Liens utiles -->
+
                 <div class="links">
-                    <a href="forgot_password.php">
-                        <i class="fas fa-key"></i> Mot de passe oublié ?
-                    </a>
-                    <span style="color: #e3e6f0">|</span>
-                    <a href="index.php">
-                        <i class="fas fa-home"></i> Retour à l'accueil
-                    </a>
+                    <a href="forgot_password.php">Mot de passe oublié ?</a> |
+                    <a href="index.php">Accueil</a>
                 </div>
-                
-              
 
             </div>
         </div>
     </section>
 
-    <!-- Footer identique à register.php -->
     <section id="footer">
         <div class="inner">
-            <p>Protégeons ensemble, agissons avec bienveillance.</p>
-            <p style="font-size: 0.85rem; margin-top: 10px; color: #6c757d;">
-                <i class="fas fa-shield-alt"></i> Protégé par Google reCAPTCHA
-            </p>
+            <p>SafeSpace © <?= date('Y') ?></p>
         </div>
     </section>
 
 </div>
 
-<!-- Scripts identiques à register.php -->
+<!-- Scripts -->
 <script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.scrollex.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
 <script src="assets/js/main.js"></script>
 
 <script>
-// Afficher/masquer le mot de passe
-function togglePasswordVisibility() {
-    const passwordInput = document.getElementById('password');
-    const toggleIcon = document.getElementById('toggleIcon');
-    
-    if (passwordInput.type === 'password') {
-        passwordInput.type = 'text';
-        toggleIcon.className = 'fas fa-eye-slash';
+function togglePassword() {
+    const p = document.getElementById('password');
+    const i = document.getElementById('eyeIcon');
+    if (p.type === 'password') {
+        p.type = 'text';
+        i.className = 'fas fa-eye-slash';
     } else {
-        passwordInput.type = 'password';
-        toggleIcon.className = 'fas fa-eye';
+        p.type = 'password';
+        i.className = 'fas fa-eye';
     }
 }
+<<<<<<< HEAD
 
 <?php if ($captcha_enabled): ?>
 document.addEventListener('DOMContentLoaded', function() {
@@ -500,6 +561,8 @@ document.getElementById('loginForm')?.addEventListener('submit', function() {
         submitBtn.disabled = true;
     }
 });
+=======
+>>>>>>> af8b4baf22b0b6e35827106fed7e959ed54c3093
 </script>
 
 </body>

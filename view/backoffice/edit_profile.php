@@ -673,7 +673,10 @@ function getProfilePictureUrl($user, $default = 'default-avatar.png') {
                                                     <i class="fas fa-save"></i>
                                                 </span>
                                                 <span class="text">Enregistrer les modifications</span>
+<<<<<<< HEAD:SAFEProject/view/backoffice/edit_profile.php
+=======
                                             </button>
+>>>>>>> origin/main:view/backoffice/edit_profile.php
                                             <a href="<?= $dashboard_url ?>" class="btn btn-secondary btn-icon-split">
                                                 <span class="icon text-white-50">
                                                     <i class="fas fa-times"></i>
@@ -695,7 +698,11 @@ function getProfilePictureUrl($user, $default = 'default-avatar.png') {
                                 <div class="card-body">
                                     <div class="text-center">
                                         <img class="img-fluid px-3 px-sm-4 mt-3 mb-4" style="width: 25rem;" 
+<<<<<<< HEAD:SAFEProject/view/backoffice/edit_profile.php
+                                             src="../frontoffice/assets/img/profile.svg" alt="Image profil">
+=======
                                              src="../frontoffice/assets/images/profile.svg" alt="Image profil">
+>>>>>>> origin/main:view/backoffice/edit_profile.php
                                     </div>
                                     <p><strong>ID Utilisateur :</strong> #<?= htmlspecialchars($user->getId()) ?></p>
                                     <p><strong>Dernière mise à jour :</strong> 

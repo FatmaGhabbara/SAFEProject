@@ -72,18 +72,50 @@ if (!$reset_data) {
                     require_once __DIR__ . '/../../controller/MailController.php';
                     $mailController = new MailController();
                     
+<<<<<<< HEAD:SAFEProject/view/frontoffice/reset_password.php
                     $user = $userController->getUserByEmail($email);
                     if ($user) {
                         $subject = "✅ Votre mot de passe SafeSpace a été modifié";
                         $body = "
                         <h2>Bonjour " . htmlspecialchars($user['fullname']) . ",</h2>
+=======
+                    try {
+                        $user = $userController->getUserByEmail($email);
+                        $userFullname = "Utilisateur"; // Valeur par défaut
+                        
+                        if ($user) {
+                            // Vérifier et obtenir le nom complet
+                            if (isset($user['fullname']) && !empty($user['fullname'])) {
+                                $userFullname = htmlspecialchars($user['fullname']);
+                            } elseif (isset($user['username']) && !empty($user['username'])) {
+                                $userFullname = htmlspecialchars($user['username']);
+                            } elseif (isset($user['email'])) {
+                                // Extraire le nom de l'email comme fallback
+                                $emailParts = explode('@', $user['email']);
+                                $userFullname = htmlspecialchars($emailParts[0]);
+                            }
+                        }
+                        
+                        $subject = "✅ Votre mot de passe SafeSpace a été modifié";
+                        $body = "
+                        <h2>Bonjour " . $userFullname . ",</h2>
+>>>>>>> origin/main:view/frontoffice/reset_password.php
                         <p>Votre mot de passe SafeSpace a été modifié avec succès.</p>
                         <p><strong>Date :</strong> " . date('d/m/Y à H:i') . "</p>
                         <p>Si vous n'avez pas effectué cette modification, veuillez nous contacter immédiatement.</p>
                         <p>Cordialement,<br><strong>L'équipe SafeSpace</strong> 🔒</p>
                         ";
                         
+<<<<<<< HEAD:SAFEProject/view/frontoffice/reset_password.php
                         $mailController->sendEmail($email, $subject, $body, $user['fullname']);
+=======
+                        $mailController->sendEmail($email, $subject, $body, $userFullname);
+                        
+                    } catch (Exception $e) {
+                        // Logger l'erreur mais ne pas bloquer le processus de réinitialisation
+                        error_log("Erreur lors de l'envoi de l'email de confirmation: " . $e->getMessage());
+                        // Continuer sans lever d'exception pour ne pas perturber la réinitialisation
+>>>>>>> origin/main:view/frontoffice/reset_password.php
                     }
                 } else {
                     $message = "Erreur lors de la mise à jour du mot de passe";
