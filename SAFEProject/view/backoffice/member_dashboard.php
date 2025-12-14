@@ -28,7 +28,11 @@ $roleName = ucfirst($userRole);
 // Obtenir l'URL de la photo de profil
 function getProfilePictureUrl($user, $default = 'default-avatar.png') {
     $baseUrl = '../frontoffice/assets/images/uploads/';
+<<<<<<< HEAD:SAFEProject/view/backoffice/member_dashboard.php
     $defaultUrl = '../frontoffice/images/default-avatar.png';
+=======
+    $defaultUrl = '../frontoffice/assets/images/default-avatar.png';
+>>>>>>> origin/main:view/backoffice/member_dashboard.php
     
     $profilePicture = $user->getProfilePicture();
     if (!empty($profilePicture) && $profilePicture !== 'default-avatar.png') {
