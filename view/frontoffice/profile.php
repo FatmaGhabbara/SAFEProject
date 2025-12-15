@@ -1,6 +1,5 @@
 <?php
 session_start();
-<<<<<<< HEAD
 
 // Inclure les contrôleurs
 require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/controller/usercontroller.php';
@@ -9,16 +8,10 @@ require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/controller/usercontroller.p
 $profileUserId = $_GET['id'] ?? ($_SESSION['user_id'] ?? null);
 
 if (!$profileUserId) {
-=======
-require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/controller/usercontroller.php';
-// 🔐 Vérifier si l'utilisateur est connecté
-if (!isset($_SESSION['user_id'])) {
->>>>>>> aab829f16e3aa2e6ba701ae4dd16b8c047cec2fa
     header('Location: login.php');
     exit();
 }
 
-<<<<<<< HEAD
 try {
     $userController = new UserController();
     $user = $userController->getUserById($profileUserId);
@@ -76,10 +69,6 @@ function getProfilePictureUrl($user) {
     }
     return $defaultUrl;
 }
-=======
-$userController = new UserController();
-$user = $userController->getUser($_SESSION['user_id']);
->>>>>>> aab829f16e3aa2e6ba701ae4dd16b8c047cec2fa
 ?>
 
 <!DOCTYPE html>
@@ -87,7 +76,6 @@ $user = $userController->getUser($_SESSION['user_id']);
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<<<<<<< HEAD
     <!-- CORRECTION: Utiliser getter -->
     <title>Profil de <?= htmlspecialchars($user->getNom()) ?> - SafeSpace</title>
     
@@ -864,68 +852,3 @@ function deleteFaceId() {
 </script>
 </body>
 </html>
-=======
-    <title>Profil | SafeSpace</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-    <noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
-</head>
-<body class="is-preload">
-
-<div id="page-wrapper">
-
-    <!-- Header -->
-    <header id="header">
-        <h1><a href="index.php">SafeSpace</a></h1>
-        <nav><a href="#menu">Menu</a></nav>
-    </header>
-
-    <!-- Menu -->
-    <nav id="menu">
-        <div class="inner">
-            <h2>Menu</h2>
-            <ul class="links">
-                <li><a href="index.php">Accueil</a></li>
-                <li><a href="profile.php">Profil</a></li>
-                <li><a href="logout.php">Déconnexion</a></li>
-            </ul>
-            <a href="#" class="close">Fermer</a>
-        </div>
-    </nav>
-
-    <!-- Wrapper -->
-    <section id="wrapper">
-        <div class="wrapper">
-            <div class="inner">
-                <header>
-                    <h2>Profil de <?= htmlspecialchars($user['fullname']) ?></h2>
-                    <p>Email : <?= htmlspecialchars($user['email']) ?></p>
-                    <p>Rôle : <?= htmlspecialchars($user['role']) ?></p>
-                    <p>Statut : <?= htmlspecialchars($user['status']) ?></p>
-                </header>
-
-             
-               
-
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer -->
-    <section id="footer">
-        <div class="inner">
-            <p>Protégeons ensemble, agissons avec bienveillance.</p>
-        </div>
-    </section>
-
-</div>
-
-<script src="assets/js/jquery.min.js"></script>
-<script src="assets/js/jquery.scrollex.min.js"></script>
-<script src="assets/js/browser.min.js"></script>
-<script src="assets/js/breakpoints.min.js"></script>
-<script src="assets/js/util.js"></script>
-<script src="assets/js/main.js"></script>
-
-</body>
-</html>
->>>>>>> aab829f16e3aa2e6ba701ae4dd16b8c047cec2fa

@@ -8,7 +8,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $lastname = trim($_POST['lastname']);
     $email = trim($_POST['email']);
     $password = trim($_POST['password']);
-<<<<<<< HEAD
     $role = trim($_POST['role']);
 
     // Validation des champs
@@ -36,17 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         
         if ($result === true) {
             $_SESSION['success'] = "Inscription réussie ! Votre compte est en attente de validation.";
-=======
-
-    if (!$firstname || !$lastname) $errors[] = "Nom et prénom requis.";
-    if (!$email || !filter_var($email, FILTER_VALIDATE_EMAIL)) $errors[] = "Email valide requis.";
-    if (!$password) $errors[] = "Mot de passe requis.";
-
-    if (empty($errors)) {
-        $auth = new AuthController();
-        $result = $auth->register($firstname, $lastname, $email, $password);
-        if ($result === true) {
->>>>>>> aab829f16e3aa2e6ba701ae4dd16b8c047cec2fa
             header("Location: login.php");
             exit;
         } else {
@@ -62,7 +50,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta charset="UTF-8">
     <title>Inscription - SafeSpace</title>
     <link rel="stylesheet" href="assets/css/main.css">
-<<<<<<< HEAD
     <noscript><link rel="stylesheet" href="assets/css/noscript.css"></noscript>
     <!-- Font Awesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -1175,38 +1162,3 @@ document.addEventListener('DOMContentLoaded', function() {
 
 </body>
 </html>
-=======
-</head>
-<body>
-
-<h2>Inscription</h2>
-
-<?php if(!empty($errors)): ?>
-    <ul style="color:red;">
-        <?php foreach($errors as $error): ?>
-            <li><?= htmlspecialchars($error) ?></li>
-        <?php endforeach; ?>
-    </ul>
-<?php endif; ?>
-
-<form method="post" action="">
-    <label>Prénom</label>
-    <input type="text" name="firstname" placeholder="Prénom">
-    <br>
-    <label>Nom</label>
-    <input type="text" name="lastname" placeholder="Nom">
-    <br>
-    <label>Email</label>
-    <input type="text" name="email" placeholder="exemple@mail.com">
-    <br>
-    <label>Mot de passe</label>
-    <input type="password" name="password" placeholder="••••••">
-    <br>
-    <input type="submit" value="S'inscrire">
-</form>
-
-<p><a href="login.php">J'ai déjà un compte</a></p>
-
-</body>
-</html>
->>>>>>> aab829f16e3aa2e6ba701ae4dd16b8c047cec2fa
