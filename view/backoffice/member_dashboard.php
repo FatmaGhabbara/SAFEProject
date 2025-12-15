@@ -28,11 +28,7 @@ $roleName = ucfirst($userRole);
 // Obtenir l'URL de la photo de profil
 function getProfilePictureUrl($user, $default = 'default-avatar.png') {
     $baseUrl = '../frontoffice/assets/images/uploads/';
-<<<<<<< HEAD:SAFEProject/view/backoffice/member_dashboard.php
-    $defaultUrl = '../frontoffice/images/default-avatar.png';
-=======
     $defaultUrl = '../frontoffice/assets/images/default-avatar.png';
->>>>>>> origin/main:view/backoffice/member_dashboard.php
     
     $profilePicture = $user->getProfilePicture();
     if (!empty($profilePicture) && $profilePicture !== 'default-avatar.png') {
@@ -421,6 +417,15 @@ function getProfilePictureUrl($user, $default = 'default-avatar.png') {
                 </a>
             </li>
             
+            <?php if ($userRole === 'membre'): ?>
+            <li class="nav-item">
+                <a class="nav-link" href="my_support_requests.php">
+                    <i class="fas fa-fw fa-headset"></i>
+                    <span>Mes Demandes de Support</span>
+                </a>
+            </li>
+            <?php endif; ?>
+            
             <li class="nav-item">
                 <a class="nav-link" href="my_consultations.php">
                     <i class="fas fa-fw fa-comments"></i>
@@ -533,6 +538,11 @@ function getProfilePictureUrl($user, $default = 'default-avatar.png') {
                                     <a href="edit_profile.php" class="btn-elegant-primary">
                                         <i class="fas fa-edit mr-2"></i> Modifier mon profil
                                     </a>
+                                    <?php if ($userRole === 'membre'): ?>
+                                    <button class="btn-elegant-primary" data-toggle="modal" data-target="#supportRequestModal" style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%);">
+                                        <i class="fas fa-headset mr-2"></i> Demande de Support
+                                    </button>
+                                    <?php endif; ?>
                                     <a href="../frontoffice/index.php" class="btn-elegant-secondary">
                                         <i class="fas fa-globe mr-2"></i> Visiter le site
                                     </a>
@@ -729,5 +739,58 @@ function getProfilePictureUrl($user, $default = 'default-avatar.png') {
             );
         });
     </script>
+    
+    <!-- Modal de création de demande de support -->
+    <div class="modal fade" id="supportRequestModal" tabindex="-1" role="dialog">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header" style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%); color: white;">
+                    <h5 class="modal-title">
+                        <i class="fas fa-headset"></i> Nouvelle Demande de Support
+                    </h5>
+                    <button type="button" class="close text-white" data-dismiss="modal">
+                        <span>&times;</span>
+                    </button>
+                </div>
+                <form method="POST" action="my_support_requests.php">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="titre"><i class="fas fa-heading"></i> Titre de la demande *</label>
+                            <input type="text" class="form-control" id="titre" name="titre" required 
+                                   placeholder="Ex: Besoin d'aide pour...">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="description"><i class="fas fa-align-left"></i> Description détaillée *</label>
+                            <textarea class="form-control" id="description" name="description" rows="6" required
+                                      placeholder="Décrivez votre problème ou votre besoin en détail..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="urgence"><i class="fas fa-exclamation-triangle"></i> Niveau d'urgence</label>
+                            <select class="form-control" id="urgence" name="urgence">
+                                <option value="basse">Basse - Peut attendre</option>
+                                <option value="moyenne" selected>Moyenne - Dans les prochains jours</option>
+                                <option value="haute">Haute - Urgent</option>
+                            </select>
+                        </div>
+                        
+                        <div class="alert alert-info">
+                            <i class="fas fa-info-circle"></i>
+                            <strong>Note:</strong> Votre demande sera examinée par notre équipe et un conseiller vous sera assigné dans les plus brefs délais.
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">
+                            <i class="fas fa-times"></i> Annuler
+                        </button>
+                        <button type="submit" name="create_request" class="btn btn-success">
+                            <i class="fas fa-paper-plane"></i> Envoyer la Demande
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </body>
 </html>

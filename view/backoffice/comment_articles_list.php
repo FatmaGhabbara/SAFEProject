@@ -20,6 +20,14 @@ $search = trim($_GET['q'] ?? '');
 $comments = $commentC->listAllComments();
 $articles = $articleC->listArticles();
 
+// Ensure comments and articles are arrays
+if (!is_array($comments)) {
+    $comments = [];
+}
+if (!is_array($articles)) {
+    $articles = [];
+}
+
 $articlesById = [];
 foreach ($articles as $article) {
     $articlesById[$article['id_article']] = $article['titre'];
@@ -37,9 +45,11 @@ if ($search) {
     });
 }
 
-usort($comments, function ($a, $b) {
-    return strcmp($b['date_comment'], $a['date_comment']);
-});
+if (!empty($comments)) {
+    usort($comments, function ($a, $b) {
+        return strcmp($b['date_comment'], $a['date_comment']);
+    });
+}
 
 $totalComments = count($comments);
 ?>
@@ -53,29 +63,7 @@ $totalComments = count($comments);
 </head>
 <body id="page-top">
 <div id="wrapper">
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-        <div class="sidebar-brand d-flex align-items-center justify-content-center" style="padding: 1rem;">
-            <a class="navbar-brand nav-logo" href="index.php" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
-                <img src="assets/logo.png" alt="SafeSpace Logo" style="height: 40px; width: auto;">
-            </a>
-            <div class="sidebar-brand-text mx-3 text-white">SafeSpace <sup>Admin</sup></div>
-        </div>
-        <hr class="sidebar-divider my-0">
-        <li class="nav-item"><a class="nav-link" href="index.php"><i class="fas fa-fw fa-tachometer-alt"></i><span>Dashboard</span></a></li>
-        <hr class="sidebar-divider">
-        <div class="sidebar-heading">Gestion</div>
-        <li class="nav-item"><a class="nav-link" href="users_list.php"><i class="fas fa-fw fa-users"></i><span>Utilisateurs</span></a></li>
-        <li class="nav-item"><a class="nav-link" href="posts_list.php"><i class="fas fa-fw fa-comment"></i><span>Posts</span></a></li>
-        <li class="nav-item"><a class="nav-link" href="articles_list.php"><i class="fas fa-fw fa-newspaper"></i><span>Articles</span></a></li>
-        <li class="nav-item"><a class="nav-link" href="categories_list.php"><i class="fas fa-fw fa-folder-open"></i><span>Catégories</span></a></li>
-        <li class="nav-item active"><a class="nav-link" href="comment_articles_list.php"><i class="fas fa-fw fa-comments"></i><span>Commentaires d'articles</span></a></li>
-        <hr class="sidebar-divider">
-        <div class="sidebar-heading">Navigation</div>
-        <li class="nav-item"><a class="nav-link" href="../frontoffice/index.php"><i class="fas fa-fw fa-globe"></i><span>Site Public</span></a></li>
-        <li class="nav-item"><a class="nav-link" href="edit_profile.php"><i class="fas fa-fw fa-user"></i><span>Profil</span></a></li>
-        <hr class="sidebar-divider d-none d-md-block">
-        <div class="text-center d-none d-md-inline"><button class="rounded-circle border-0" id="sidebarToggle"></button></div>
-    </ul>
+    <?php include 'includes/admin_sidebar.php'; ?>
 
     <div id="content-wrapper" class="d-flex flex-column">
         <div id="content" class="p-4">

@@ -598,6 +598,9 @@ function getProfilePictureUrl($user, $default = 'default-avatar.png') {
                                 </div>
                                 
                                 <div class="action-buttons-conseiller">
+                                    <a href="counselor_requests.php" class="btn-conseiller-primary" style="background: linear-gradient(135deg, #28a745 0%, #20c997 100%);">
+                                        <i class="fas fa-headset mr-2"></i> Mes Demandes Assignées
+                                    </a>
                                     <a href="edit_profile.php" class="btn-conseiller-primary">
                                         <i class="fas fa-edit mr-2"></i> Modifier mon profil
                                     </a>

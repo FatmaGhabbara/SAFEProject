@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 // DÉMARRER LA SESSION EN PREMIER
 session_start();
 
@@ -14,27 +13,12 @@ if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
 $adminController = new AdminController();
 
 // Gestion des actions
-=======
-require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/controller/amincontroller.php';
-session_start();
-
-// 🔐 Vérifier si l'admin est connecté
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
-    header('Location: frontoffice/login.php');
-    exit();
-}
-
-$admin = new AdminController();
-
-// 🔄 Gestion des actions : approuver, bloquer, supprimer
->>>>>>> aab829f16e3aa2e6ba701ae4dd16b8c047cec2fa
 if (isset($_GET['action'], $_GET['id'])) {
     $id = intval($_GET['id']);
     $action = $_GET['action'];
 
     switch ($action) {
         case 'approve':
-<<<<<<< HEAD
             $adminController->approveUser($id);
             break;
         case 'block':
@@ -103,29 +87,10 @@ if (!empty($search)) {
 $totalUsers = count($users);
 $filteredCount = $totalUsers;
 $totalAllUsers = count($allUsers);
-=======
-            $admin->approveUser($id);
-            break;
-        case 'block':
-            $admin->blockUser($id);
-            break;
-        case 'delete':
-            $admin->deleteUser($id);
-            break;
-    }
-
-    header("Location: users_list.php");
-    exit();
-}
-
-// 📋 Récupérer tous les utilisateurs
-$users = $admin->getAllUsers();
->>>>>>> aab829f16e3aa2e6ba701ae4dd16b8c047cec2fa
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
-<<<<<<< HEAD
 
 <head>
     <meta charset="utf-8">
@@ -198,102 +163,7 @@ $users = $admin->getAllUsers();
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">SafeSpace <sup>Admin</sup></div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="index.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Gestion
-            </div>
-
-            <!-- Nav Item - Users -->
-            <li class="nav-item active">
-                <a class="nav-link" href="users_list.php">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>Utilisateurs</span></a>
-            </li>
-            <!-- Nav Item - Users -->
-            <li class="nav-item">
-                <a class="nav-link" href="posts_list.php">
-                    <i class="fas fa-fw fa-comment"></i>
-                    <span>Postes</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="articles_list.php">
-                    <i class="fas fa-fw fa-newspaper"></i>
-                    <span>Articles</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="categories_list.php">
-                    <i class="fas fa-fw fa-folder-open"></i>
-                    <span>Catégories</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="comment_articles_list.php">
-                    <i class="fas fa-fw fa-comments"></i>
-                    <span>Commentaires d'articles</span></a>
-            </li>
-
-            <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="charts.php">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Statistiques</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Navigation
-            </div>
-
-            <!-- Nav Item - Public Site -->
-            <li class="nav-item">
-                <a class="nav-link" href="../frontoffice/index.php">
-                    <i class="fas fa-fw fa-globe"></i>
-                    <span>Site Public</span></a>
-            </li>
-
-            <!-- Nav Item - Profile -->
-            <li class="nav-item">
-                <a class="nav-link" href="../frontoffice/profile.php">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>Mon Profil</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
-        <!-- End of Sidebar -->
+        <?php include 'includes/admin_sidebar.php'; ?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -807,53 +677,3 @@ $users = $admin->getAllUsers();
 
 </body>
 </html>
-=======
-<head>
-    <meta charset="UTF-8">
-    <title>Liste des utilisateurs - Admin</title>
-    <link rel="stylesheet" href="frontoffice/assets/css/main.css">
-</head>
-<body>
-
-<header>
-    <h1>Admin SafeSpace - Utilisateurs</h1>
-    <nav>
-        <a href="backoffice/index.php">Dashboard</a> |
-        <a href="frontoffice/index.php">Retour au site</a> |
-    
-    </nav>
-</header>
-
-<section>
-    <h2>Liste des utilisateurs</h2>
-    <?php if (!empty($users)): ?>
-    <table border="1" cellpadding="5" cellspacing="0">
-        <tr>
-            <th>ID</th>
-            <th>Nom complet</th>
-            <th>Email</th>
-            <th>Status</th>
-            <th>Actions</th>
-        </tr>
-        <?php foreach($users as $user): ?>
-        <tr>
-            <td><?= $user['id'] ?></td>
-            <td><?= htmlspecialchars($user['fullname']) ?></td>
-            <td><?= htmlspecialchars($user['email']) ?></td>
-            <td><?= htmlspecialchars($user['status']) ?></td>
-            <td>
-                <a href="user_list.php?action=approve&id=<?= $user['id'] ?>">Approuver</a> |
-                <a href="user_list.php?action=block&id=<?= $user['id'] ?>">Bloquer</a> |
-                <a href="user_list.php?action=delete&id=<?= $user['id'] ?>" onclick="return confirm('Supprimer cet utilisateur ?')">Supprimer</a>
-            </td>
-        </tr>
-        <?php endforeach; ?>
-    </table>
-    <?php else: ?>
-        <p>Aucun utilisateur trouvé.</p>
-    <?php endif; ?>
-</section>
-
-</body>
-</html>
->>>>>>> aab829f16e3aa2e6ba701ae4dd16b8c047cec2fa

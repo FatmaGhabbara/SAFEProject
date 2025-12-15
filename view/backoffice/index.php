@@ -1,5 +1,4 @@
 <?php
-<<<<<<< HEAD
 // Activer les erreurs
 error_reporting(E_ALL);
 ini_set('display_errors', 1);
@@ -9,16 +8,10 @@ session_start();
 
 // Vérifier si l'admin est connecté
 if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
-=======
-require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/controller/AdminController.php';
-session_start();
-if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
->>>>>>> aab829f16e3aa2e6ba701ae4dd16b8c047cec2fa
     header('Location: ../frontoffice/login.php');
     exit();
 }
 
-<<<<<<< HEAD
 require_once $_SERVER['DOCUMENT_ROOT'].'/SAFEProject/controller/admincontroller.php';
 
 try {
@@ -50,16 +43,11 @@ try {
 } catch (Exception $e) {
     die("Erreur: " . htmlspecialchars($e->getMessage()));
 }
-=======
-$admin = new AdminController();
-$stats = $admin->getStats();
->>>>>>> aab829f16e3aa2e6ba701ae4dd16b8c047cec2fa
 ?>
 
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-<<<<<<< HEAD
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -78,102 +66,7 @@ $stats = $admin->getStats();
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-      <!-- Sidebar -->
-      <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-        <!-- Sidebar Header -->
-        <div class="sidebar-brand d-flex align-items-center justify-content-center" style="padding: 1rem;">
-          <a class="navbar-brand nav-logo" href="index.php" style="display: flex; align-items: center; gap: 10px; text-decoration: none;">
-            <img src="assets/logo.png" alt="SafeSpace Logo" style="height: 40px; width: auto;">
-          </a>
-          <div class="sidebar-brand-text mx-3 text-white">SafeSpace <sup>Admin</sup></div>
-        </div>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider my-0">
-
-        <!-- Nav Item - Dashboard -->
-        <li class="nav-item active">
-            <a class="nav-link" href="index.php">
-                <i class="fas fa-fw fa-tachometer-alt"></i>
-                <span>Dashboard</span></a>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Gestion
-        </div>
-
-        <!-- Nav Item - Users -->
-        <li class="nav-item">
-            <a class="nav-link" href="users_list.php">
-                <i class="fas fa-fw fa-users"></i>
-                <span>Utilisateurs</span></a>
-        </li>
-
-        <!-- Nav Item - Posts -->
-        <li class="nav-item">
-            <a class="nav-link" href="posts_list.php">
-                <i class="fas fa-fw fa-comment"></i>
-                <span>Posts</span></a>
-        </li>
-
-        <!-- Nav Item - Articles -->
-        <li class="nav-item">
-            <a class="nav-link" href="articles_list.php">
-                <i class="fas fa-fw fa-newspaper"></i>
-                <span>Articles</span></a>
-        </li>
-
-        <!-- Nav Item - Categories -->
-        <li class="nav-item">
-            <a class="nav-link" href="categories_list.php">
-                <i class="fas fa-fw fa-folder-open"></i>
-                <span>Catégories</span></a>
-        </li>
-
-        <!-- Nav Item - Article Comments -->
-        <li class="nav-item">
-            <a class="nav-link" href="comment_articles_list.php">
-                <i class="fas fa-fw fa-comments"></i>
-                <span>Commentaires d'articles</span></a>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider">
-
-        <!-- Heading -->
-        <div class="sidebar-heading">
-            Navigation
-        </div>
-
-        <!-- Nav Item - Public Site -->
-        <li class="nav-item">
-            <a class="nav-link" href="../frontoffice/index.php">
-                <i class="fas fa-fw fa-globe"></i>
-                <span>Site Public</span></a>
-        </li>
-
-        <!-- Nav Item - Profile -->
-        <li class="nav-item">
-            <a class="nav-link" href="../frontoffice/profile.php">
-                <i class="fas fa-fw fa-user"></i>
-                <span>Mon Profil</span></a>
-        </li>
-
-        <!-- Divider -->
-        <hr class="sidebar-divider d-none d-md-block">
-
-        <!-- Sidebar Toggler (Sidebar) -->
-        <div class="text-center d-none d-md-inline">
-            <button class="rounded-circle border-0" id="sidebarToggle"></button>
-        </div>
-
-      </ul>
-      <!-- End of Sidebar -->
+      <?php include 'includes/admin_sidebar.php'; ?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -389,22 +282,3 @@ $stats = $admin->getStats();
 
 </body>
 </html>
-=======
-    <meta charset="UTF-8">
-    <title>Admin - Dashboard</title>
-    <link rel="stylesheet" href="assets/css/main.css">
-</head>
-<body>
-
-<h2>Dashboard Admin</h2>
-<p>Nombre d'utilisateurs : <?= $stats['users'] ?></p>
-
-<nav>
-    <a href="user_list.php">Gérer utilisateurs</a> |
-    <a href="../frontoffice/index.php">Retour au site</a> |
-    <a href="../frontoffice/logout.php">Déconnexion</a>
-</nav>
-
-</body>
-</html>
->>>>>>> aab829f16e3aa2e6ba701ae4dd16b8c047cec2fa

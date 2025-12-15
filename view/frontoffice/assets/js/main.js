@@ -4,10 +4,7 @@
 	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
 */
 
-<<<<<<< HEAD
 
-=======
->>>>>>> aab829f16e3aa2e6ba701ae4dd16b8c047cec2fa
 (function($) {
 
 	var	$window = $(window),
@@ -145,11 +142,6 @@
 						$menu._hide();
 
 			});
-<<<<<<< HEAD
 			
 
 })(jQuery);  // Fermeture correcte de l'IIFE ici
-=======
-
-})(jQuery);
->>>>>>> aab829f16e3aa2e6ba701ae4dd16b8c047cec2fa

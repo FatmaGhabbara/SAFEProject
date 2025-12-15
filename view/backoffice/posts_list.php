@@ -11,6 +11,10 @@ $cc = new CommentC();
 $rc = new RespondC();
 $pc = new PostC();
 $list_Post = $pc->listPost();
+// Ensure $list_Post is always an array to prevent foreach warnings
+if (!is_array($list_Post)) {
+    $list_Post = [];
+}
 
 // Vérifier si l'admin est connecté
 if (!isset($_SESSION['user_id']) || $_SESSION['user_role'] !== 'admin') {
@@ -262,95 +266,7 @@ $totalAllUsers = count($allUsers);
     <!-- Page Wrapper -->
     <div id="wrapper">
 
-        <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
-
-            <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.php">
-                <div class="sidebar-brand-icon rotate-n-15">
-                    <i class="fas fa-shield-alt"></i>
-                </div>
-                <div class="sidebar-brand-text mx-3">SafeSpace <sup>Admin</sup></div>
-            </a>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider my-0">
-
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="index.php">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Gestion
-            </div>
-
-            <!-- Nav Item - Users -->
-            <li class="nav-item">
-                <a class="nav-link" href="users_list.php">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>Utilisateurs</span></a>
-            </li>
-            <!-- Nav Item - Posts -->
-            <li class="nav-item active">
-                <a class="nav-link" href="posts_list.php">
-                    <i class="fas fa-fw fa-comment"></i>
-                    <span>Postes</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="articles_list.php">
-                    <i class="fas fa-fw fa-newspaper"></i>
-                    <span>Articles</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="categories_list.php">
-                    <i class="fas fa-fw fa-folder-open"></i>
-                    <span>Catégories</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="comment_articles_list.php">
-                    <i class="fas fa-fw fa-comments"></i>
-                    <span>Commentaires d'articles</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Navigation
-            </div>
-
-            <!-- Nav Item - Public Site -->
-            <li class="nav-item">
-                <a class="nav-link" href="../frontoffice/index.php">
-                    <i class="fas fa-fw fa-globe"></i>
-                    <span>Site Public</span></a>
-            </li>
-
-            <!-- Nav Item - Profile -->
-            <li class="nav-item">
-                <a class="nav-link" href="../frontoffice/profile.php">
-                    <i class="fas fa-fw fa-user"></i>
-                    <span>Mon Profil</span></a>
-            </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            <!-- Sidebar Toggler (Sidebar) -->
-            <div class="text-center d-none d-md-inline">
-                <button class="rounded-circle border-0" id="sidebarToggle"></button>
-            </div>
-
-        </ul>
-        <!-- End of Sidebar -->
+        <?php include 'includes/admin_sidebar.php'; ?>
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
